@@ -1,3 +1,19 @@
-[gd_scene format=3 uid="uid://db15mx0uooog4"]
+[gd_scene load_steps=2 format=3 uid="uid://db15mx0uooog4"]
 
-[node name="Actor" type="Node2D"]
+[ext_resource type="Script" path="res://Actor/actor.gd" id="1_gq7sa"]
+
+[node name="Actor" type="CharacterBody2D" node_paths=PackedStringArray("body_sprite", "actor_anim_tree")]
+script = ExtResource("1_gq7sa")
+body_sprite = NodePath("")
+actor_anim_tree = NodePath("")
+
+[node name="BodySprite" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CollBody")
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer"]
+
+[node name="CollBody" type="CollisionShape2D" parent="."]
+
+[node name="WeaponMarker" type="Marker2D" parent="."]

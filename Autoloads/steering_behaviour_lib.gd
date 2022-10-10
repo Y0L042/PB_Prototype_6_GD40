@@ -11,7 +11,7 @@ func steering_vectors_processor(steering_vector_array: PackedVector2Array, max_s
 		final_velocity += vector
 	steering_vector_array.clear()
 	final_velocity *= max_speed
-	final_velocity = clamp(final_velocity, Vector2(-max_speed, -max_speed), Vector2(max_speed, max_speed))
+	final_velocity.limit_length(max_speed) #clamp(final_velocity, Vector2(-max_speed, -max_speed), Vector2(max_speed, max_speed))
 	return final_velocity
 
 
