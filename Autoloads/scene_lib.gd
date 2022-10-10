@@ -3,13 +3,13 @@ extends Node
 #-------------------------
 # Scenes
 #-------------------------
- var ENEMY_PARTY: PackedScene = load("res://PartyManager/EnemyParty/enemy_party.tscn")
- var PLAYER_PARTY: PackedScene = load("res://PartyManager/PlayerParty/player_party.tscn")
+var ENEMY_PARTY: PackedScene = load("res://PartyManager/EnemyParty/enemy_party.tscn")
+var PLAYER_PARTY: PackedScene = load("res://PartyManager/PlayerParty/player_party.tscn")
 
 
 # var ACTOR: PackedScene = load("res://Actors/actor.tscn")
 
-var KNIGHT: PackedScene = load()
+var KNIGHT: PackedScene = load("res://Actor/Knight/knight.tscn")
 
 
 

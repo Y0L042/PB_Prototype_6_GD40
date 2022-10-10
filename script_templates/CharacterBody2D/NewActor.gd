@@ -1,33 +1,34 @@
-extends Node2D
+extends Actor
 
-class_name StateMachine
+# Classname
+
 
 #-------------------------------------------------------------------------------
 # States
 #-------------------------------------------------------------------------------
-enum States {
-
+enum states {
+	PASSIVE,
+	AGGRESSIVE,
+	HURT,
+	DEAD,
 }
-
-@export var default_state: States
-var current_state = default_state
-
-
-#-------------------------------------------------------------------------------
-# Initialization
-#-------------------------------------------------------------------------------
-
-
 
 
 #-------------------------------------------------------------------------------
 # State Machine
 #-------------------------------------------------------------------------------
-func change_state(NEW_STATE: States):#: int):
+func change_state(NEW_STATE: int):
 	current_state = NEW_STATE
 
 func state_process():
-	pass
+	if current_state == states.PASSIVE:
+		state_process_passive()
+	if current_state == states.AGGRESSIVE:
+		state_process_aggressive()
+	if current_state == states.HURT:
+		state_process_hurt()
+	if current_state == states.DEAD:
+		state_process_dead()
 
 
 #-------------------------------------------------------------------------------
@@ -36,11 +37,17 @@ func state_process():
 func state_process_passive():
 	pass
 
+
+
 func state_process_aggressive():
 	pass
 
+
+
 func state_process_hurt():
 	pass
+
+
 
 func state_process_dead():
 	pass

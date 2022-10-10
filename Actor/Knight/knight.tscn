@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://dai25fcq3236"]
+
+[ext_resource type="PackedScene" uid="uid://db15mx0uooog4" path="res://Actor/actor.tscn" id="1_55pwg"]
+[ext_resource type="Script" path="res://Actor/Knight/knight.gd" id="2_fx46o"]
+[ext_resource type="Texture2D" uid="uid://b3jwmyyh0w4r2" path="res://icon.svg" id="3_6m0sl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_us5va"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jqgor"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_artbc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cn7x7"]
+
+[node name="Knight" instance=ExtResource("1_55pwg")]
+script = ExtResource("2_fx46o")
+
+[node name="CollBody" parent="." index="0"]
+shape = SubResource("CircleShape2D_us5va")
+
+[node name="AnimationTree" parent="AnimationPlayer" index="0"]
+tree_root = SubResource("AnimationNodeStateMachine_jqgor")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_artbc")
+
+[node name="BodySprite" parent="Pivot" index="0"]
+scale = Vector2(0.165189, 0.163015)
+texture = ExtResource("3_6m0sl")
+
+[node name="CollisionShape2d" parent="Pivot/FoV" index="0"]
+visible = false
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_cn7x7")

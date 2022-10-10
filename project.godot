@@ -22,7 +22,7 @@ _global_script_classes=[{
 "base": "Actor",
 "class": &"KnightActor",
 "language": &"GDScript",
-"path": "res://Actor/Knight/knight_actor.gd"
+"path": "res://Actor/Knight/knight.gd"
 }, {
 "base": "Node2D",
 "class": &"PartyManager",
@@ -35,9 +35,9 @@ _global_script_classes=[{
 "path": "res://PartyManager/PlayerParty/player_party_manager.gd"
 }, {
 "base": "Node2D",
-"class": &"StateMachine",
+"class": &"_CLASS_",
 "language": &"GDScript",
-"path": "res://script_templates/StateMachineTemplate.gd"
+"path": "res://script_templates/Node2D/StateMachineTemplate.gd"
 }]
 _global_script_class_icons={
 "Actor": "",
@@ -45,7 +45,7 @@ _global_script_class_icons={
 "KnightActor": "",
 "PartyManager": "",
 "PlayerPartyManager": "",
-"StateMachine": ""
+"_CLASS_": ""
 }
 
 [application]
