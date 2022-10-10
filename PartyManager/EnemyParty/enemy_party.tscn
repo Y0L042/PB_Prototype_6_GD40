@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://drvipjs856m7i"]
+[gd_scene load_steps=2 format=3 uid="uid://drvipjs856m7i"]
 
-[node name="EnemyParty" type="Node2D"]
+[ext_resource type="Script" path="res://PartyManager/EnemyParty/enemy_party_manager.gd" id="1_c5pk3"]
+
+[node name="EnemyParty" type="Node2D" groups=["Enemy"]]
+script = ExtResource("1_c5pk3")

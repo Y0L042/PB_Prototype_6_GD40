@@ -48,13 +48,14 @@ func state_process_passive():
 
 	var isColliding: bool = get_slide_collision_count() > 0
 	var targetNotMoving: bool = pb.party_target_vel.length() <= 5
-	var withinRadius: bool = target_dist <= pb.party_active_actor_count*10
+	var withinRadius: bool = target_dist <= pb.active_actors_count*10
 	var nextToTarget: bool = target_dist <= 10
 	arrivedAtTarget = nextToTarget or (targetNotMoving and withinRadius and isColliding and collidingAgainstPersonNextToTarget)
 
 	if !arrivedAtTarget:
 		var seek_target = SBL.log_seek_arrive(get_global_position(), pb.party_target_pos, velocity, seek_arrive_weight, true, stopdist, dropoff)
 		steering_vector_array.append(seek_target)
+
 
 
 

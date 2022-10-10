@@ -11,3 +11,4 @@ func _ready() -> void:
 		set_party_blackboard(actor_amount, spawn_pos)
 		spawn_party_actors()
 
+

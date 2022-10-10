@@ -5,7 +5,7 @@ class_name Actor
 #-------------------------------------------------------------------------------
 # Properties
 #-------------------------------------------------------------------------------
-@export var speed: int
+@export var max_speed: int
 @export var friction: float
 @export var fov: int
 @export var view_distance: int
@@ -45,7 +45,7 @@ var pb: Dictionary # party blackboard
 #-------------------------------------------------------------------------------
 func spawn(spawn_data):
 	party_manager = spawn_data.party_manager
-	pb = spawn_data.pb
+	pb = spawn_data.party_blackboard
 	set_global_position(spawn_data.spawn_pos)
 	add_to_group(pb.party_group)
 
@@ -54,6 +54,13 @@ func spawn(spawn_data):
 #-------------------------------------------------------------------------------
 func managed_process():
 	state_process()
+	steering_move(SBL.steering_vectors_processor(steering_vector_array, max_speed))
+
+
+func steering_move(final_velocity: Vector2):
+	velocity += (final_velocity - velocity) * turn_force
+	move_and_slide()
+
 
 #-------------------------------------------------------------------------------
 # States

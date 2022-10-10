@@ -14,6 +14,9 @@
 
 [node name="Knight" instance=ExtResource("1_55pwg")]
 script = ExtResource("2_fx46o")
+max_speed = 150
+health = 3
+turn_force = 0.2
 
 [node name="CollBody" parent="." index="0"]
 shape = SubResource("CircleShape2D_us5va")
