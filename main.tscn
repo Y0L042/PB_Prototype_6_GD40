@@ -9,7 +9,7 @@
 
 [node name="PlayerParty" parent="." instance=ExtResource("2_auhax")]
 spawn_actors_manually = true
-actor_amount = 2
+actor_amount = 10
 
 [node name="SpawnPos" type="Marker2D" parent="PlayerParty"]
 position = Vector2(606, 307)
