@@ -22,4 +22,4 @@ func get_start_room_pos():
 	return walker.rooms.front() * 64 # x is block size
 
 func get_end_room_pos():
-	return walker.get_end_room()
+	return walker.get_end_room() * 64
