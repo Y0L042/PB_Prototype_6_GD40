@@ -8,6 +8,8 @@ extends TileMap
 
 @onready var noise_source = noise_texture.get_noise()
 
+@export var white_tile_filter: float = 0.15
+
 const TILES =  {
 	"WHITE": Vector2i(0,0),
 	"BLACK": Vector2i(1,0),
@@ -26,7 +28,7 @@ func generate_map(noise):
 
 
 func get_tile_index(noise_sample):
-	if noise_sample < 0.1:
+	if noise_sample < white_tile_filter:
 		return TILES.WHITE
 	return TILES.BLACK
 

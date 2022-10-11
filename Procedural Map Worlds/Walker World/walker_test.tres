@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cu26k6kjn0pf4"]
+
+[ext_resource type="Script" path="res://Procedural Map Worlds/Walker World/walker.gd" id="1_h281p"]
+
+[resource]
+script = ExtResource("1_h281p")
+max_corridor_length = 6
+random_turn_chance = 0

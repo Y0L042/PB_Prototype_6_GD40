@@ -1,5 +1,8 @@
-extends Node
+extends Resource
 class_name Walker
+
+@export var max_corridor_length: int = 6
+@export var random_turn_chance: float = 0
 
 const DIRECTIONS = [Vector2.RIGHT, Vector2.UP, Vector2.LEFT, Vector2.DOWN]
 
@@ -21,7 +24,7 @@ func _init(starting_position: Vector2, new_borders: Rect2):
 func walk(steps: int):
 	place_room(position)
 	for i_step in steps:
-		if steps_since_turn >= 6:
+		if steps_since_turn >= max_corridor_length or randf_range(0, 1) <= random_turn_chance:
 			change_direction()
 
 		if step():

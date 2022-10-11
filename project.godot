@@ -39,7 +39,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://PartyManager/PlayerParty/player_party_manager.gd"
 }, {
-"base": "Node",
+"base": "Resource",
 "class": &"Walker",
 "language": &"GDScript",
 "path": "res://Procedural Map Worlds/Walker World/walker.gd"
@@ -139,3 +139,4 @@ common/physics_ticks_per_second=30
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/canvas_textures/default_texture_filter=0

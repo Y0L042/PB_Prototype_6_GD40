@@ -10,6 +10,7 @@ party_speed = 150
 
 [node name="Camera2d" type="Camera2D" parent="."]
 current = true
+process_callback = 0
 script = ExtResource("2_ghsyt")
 
 [node name="Sprite2d" type="Sprite2D" parent="Camera2d"]
