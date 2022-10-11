@@ -27,8 +27,8 @@ func generate_map(noise):
 
 func get_tile_index(noise_sample):
 	if noise_sample < 0.1:
-		return TILES.BLACK
-	return TILES.WHITE
+		return TILES.WHITE
+	return TILES.BLACK
 
 
 func create_noise():
