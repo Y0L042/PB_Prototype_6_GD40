@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4af32clvg1hy"]
+
+[ext_resource type="Texture2D" uid="uid://og3bwynmca1i" path="res://Misc Assets/BWtiles.png" id="1_1suq3"]
+[ext_resource type="Script" path="res://Procedural Map Worlds/perlin_world.gd" id="2_nhnfx"]
+[ext_resource type="Texture2D" uid="uid://cdlpbthucf5yp" path="res://Procedural Map Worlds/perlin_world_noise.tres" id="3_jlbtm"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7sul"]
+texture = ExtResource("1_1suq3")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSet" id="TileSet_stukf"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_j7sul")
+
+[node name="Perlin World" type="TileMap"]
+tile_set = SubResource("TileSet_stukf")
+format = 2
+script = ExtResource("2_nhnfx")
+
+[node name="Noise" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+show_behind_parent = true
+position = Vector2(640, 363.5)
+scale = Vector2(7.8875, 7.87778)
+texture = ExtResource("3_jlbtm")
+
+[node name="Camera2d" type="Camera2D" parent="."]
+position = Vector2(636, 360)
+current = true

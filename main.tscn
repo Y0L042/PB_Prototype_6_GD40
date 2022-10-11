@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://ts8ox2okqrj0"]
+[gd_scene load_steps=4 format=3 uid="uid://ts8ox2okqrj0"]
 
+[ext_resource type="PackedScene" uid="uid://d4af32clvg1hy" path="res://Procedural Map Worlds/perlin_world.tscn" id="1_1qu0x"]
 [ext_resource type="PackedScene" uid="uid://drvipjs856m7i" path="res://PartyManager/EnemyParty/enemy_party.tscn" id="1_4gku7"]
 [ext_resource type="PackedScene" uid="uid://bddinpwgxst8b" path="res://PartyManager/PlayerParty/player_party.tscn" id="2_auhax"]
 
 [node name="Main" type="Node2D"]
+
+[node name="Perlin World" parent="." instance=ExtResource("1_1qu0x")]
+WIDTH = 1600
+HEIGHT = 900
 
 [node name="EnemyParty" parent="." instance=ExtResource("1_4gku7")]
 
