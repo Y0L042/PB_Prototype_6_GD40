@@ -1,4 +1,5 @@
-extends Resource
+extends Node
+
 class_name Walker
 
 @export var max_corridor_length: int = 6
