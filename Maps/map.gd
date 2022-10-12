@@ -15,42 +15,34 @@ const TILES =  {
 	"BLACK": Vector2i(1,0),
 }
 
-#var noise_map_gen: NoiseWorldGenerator = NoiseWorldGenerator.new()
-#var walker_map_gen: WalkerWorldGenerator = WalkerWorldGenerator.new()
+const isurrounding_tiles: PackedVector2Array = [
+	Vector2i(-1, -1), Vector2i(0, -1), Vector2i(1, -1),
+	Vector2i(-1, 0),                  Vector2i(1, 0),
+	Vector2i(-1, 1),  Vector2i(0, 1),  Vector2i(1, 1),
+]
+
+
+#-------------------------------------------------------------------------------
+# Initialize
+#-------------------------------------------------------------------------------
+func _ready() -> void:
+#	create_map(map_generators.noise_map, Vector2(160, 90))
+	create_map(map_generators.walker_map, Vector2(160, 90))
+
+
+
+
 
 #-------------------------------------------------------------------------------
 # Generating Map
 #-------------------------------------------------------------------------------
-func _ready() -> void:
-	# Generate map
-	generate_map(map_generators.noise_map, world_tilemap)
-	clean_map(world_tilemap, tilemap_size)
-	# Clean map
+func create_map(map_generator, size: Vector2 = Vector2(160, 90)):
+	map_generator.generate_map(world_tilemap, size)
+	map_generator.clean_map(world_tilemap, size)
 	# Place autotiles
 	# Populate map
 	# Spawn player
 	world_tilemap.force_update(0)
-
-func generate_map(map_generator, tilemap: TileMap, size: Vector2 = Vector2(160, 90)):
-	map_generator.generate_map(tilemap, size)
-	tilemap.force_update(0)
-
-
-func clean_map(tilemap: TileMap, size: Vector2):
-	for x in size.x:
-		for y in size.y:
-			var pos: Vector2i = Vector2i(x, y)
-			var cell_terrain = tilemap.get_cell_tile_data(0, Vector2i(x, y)).get_terrain_offset()
-			var cellcount: int = 0
-			for offset in tilemap.get_surrounding_tiles(pos):
-				if tilemap.get_cell_tile_data(0, offset).get_terrain_offset() == cell_terrain:
-					cellcount += 1
-			if cellcount < 3:
-				if tilemap.get_cell_tile_data(0, pos).get_terrain_offset() == TILES.WHITE:
-					tilemap.set_cell(0, pos, 1, TILES.BLACK)
-				else:
-					tilemap.set_cell(0, pos, 1, TILES.WHITE)
-	tilemap.force_update(0)
 
 
 

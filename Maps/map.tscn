@@ -16,5 +16,7 @@ tile_set = ExtResource("2_fg3jn")
 format = 2
 
 [node name="Camera2d" type="Camera2D" parent="."]
+position = Vector2(-1368, -1255)
+anchor_mode = 0
 current = true
-zoom = Vector2(0.08, 0.08)
+zoom = Vector2(0.1, 0.1)
