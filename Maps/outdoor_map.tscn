@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bekx5hn4cxo08"]
-
-[ext_resource type="PackedScene" uid="uid://cu4llpkfjxsyf" path="res://Procedural Map Worlds/Perlin World/perlin_world.tscn" id="1_elv6y"]
-
-[node name="Outdoor Map" type="Node2D"]
-
-[node name="Perlin World" parent="." instance=ExtResource("1_elv6y")]

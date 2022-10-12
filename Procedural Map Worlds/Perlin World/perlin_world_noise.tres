@@ -2,7 +2,6 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_88n6e"]
 noise_type = 3
-seed = 6
 frequency = 0.025
 fractal_type = 0
 domain_warp_enabled = true

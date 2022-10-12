@@ -1,5 +1,7 @@
 extends TileMap
 
+class_name NoiseWorldGenerator
+
 @onready var noise_sprite = %Noise
 @onready var noise_texture = noise_sprite.get_texture()
 

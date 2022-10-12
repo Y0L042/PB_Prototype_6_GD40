@@ -18,11 +18,11 @@ func _on_quit_pressed() -> void:
 
 func pause():
 	get_tree().paused = true
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func unpause():
 	get_tree().paused = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func quit():
 	get_tree().quit()

@@ -7,5 +7,3 @@
 [node name="UI_Main Menu" parent="." instance=ExtResource("1_54llp")]
 grow_horizontal = 2
 grow_vertical = 2
-
-[editable path="UI_Main Menu"]
