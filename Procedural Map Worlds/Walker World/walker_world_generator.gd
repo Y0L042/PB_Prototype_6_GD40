@@ -1,4 +1,4 @@
-extends TileMap
+extends Node2D
 
 class_name WalkerWorldGenerator
 
@@ -9,16 +9,18 @@ class_name WalkerWorldGenerator
 var walker: Walker
 
 func _ready() -> void:
-	generate_level()
+	pass
+#	generate_map()
 
 
-func generate_level():
+func generate_map(tilemap: TileMap):
 	walker = Walker.new(start_pos, borders)
 	var map = walker.walk(total_steps)
 	walker.queue_free()
 	for location in map:
-		set_cell(0, location, 1, Vector2i(0, 0))
-	force_update(0)
+		tilemap.set_cell(0, location, 1, Vector2i(0, 0))
+	tilemap.force_update(0)
+	return tilemap
 
 func get_start_room_pos():
 	return walker.rooms.front() * 64 # x is block size
