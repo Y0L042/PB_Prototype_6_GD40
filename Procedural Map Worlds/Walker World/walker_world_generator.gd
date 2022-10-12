@@ -2,9 +2,14 @@ extends Node2D
 
 class_name WalkerWorldGenerator
 
-@export var borders := Rect2(1,1, 38,21)
-@export var start_pos := Vector2(19, 11)
+@export var borders := Rect2(0, 0, 38,21)
+@export var start_pos := Vector2.ZERO
 @export var total_steps: int = 500
+
+const TILES =  {
+	"WHITE": Vector2i(0,0),
+	"BLACK": Vector2i(1,0),
+}
 
 var walker: Walker
 
@@ -13,12 +18,13 @@ func _ready() -> void:
 #	generate_map()
 
 
-func generate_map(tilemap: TileMap):
+func generate_map(tilemap: TileMap, size: Vector2 = Vector2.ZERO):
+	borders.end = size
 	walker = Walker.new(start_pos, borders)
 	var map = walker.walk(total_steps)
 	walker.queue_free()
 	for location in map:
-		tilemap.set_cell(0, location, 1, Vector2i(0, 0))
+		tilemap.set_cell(0, location, 1, TILES.WHITE)
 	tilemap.force_update(0)
 	return tilemap
 

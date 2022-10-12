@@ -5,5 +5,3 @@
 [node name="Main" type="Node2D"]
 
 [node name="UI_Main Menu" parent="." instance=ExtResource("1_54llp")]
-grow_horizontal = 2
-grow_vertical = 2
