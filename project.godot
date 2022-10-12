@@ -29,7 +29,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Actor/Knight/knight.gd"
 }, {
-"base": "TileMap",
+"base": "Node2D",
 "class": &"NoiseWorldGenerator",
 "language": &"GDScript",
 "path": "res://Procedural Map Worlds/Perlin World/noise_world_generator.gd"
@@ -49,7 +49,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Procedural Map Worlds/Walker World/walker.gd"
 }, {
-"base": "TileMap",
+"base": "Node2D",
 "class": &"WalkerWorldGenerator",
 "language": &"GDScript",
 "path": "res://Procedural Map Worlds/Walker World/walker_world_generator.gd"

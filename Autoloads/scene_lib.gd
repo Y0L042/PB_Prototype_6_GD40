@@ -15,7 +15,7 @@ var KNIGHT: PackedScene = load("res://Actor/Knight/knight.tscn")
 #-------------------------------------------------------------------------------
 # Maps
 #-------------------------------------------------------------------------------
-var OUTDOOR_WORLD: PackedScene = load("res://Maps/outdoor_map.tscn")
+var OUTDOOR_WORLD: PackedScene = load("res://Maps/map.tscn")
 
 #-------------------------------------------------------------------------------
 # Maps
