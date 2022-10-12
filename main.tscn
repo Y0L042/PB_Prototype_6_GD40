@@ -1,21 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://csbu1vpa8j2kg"]
+[gd_scene load_steps=2 format=3 uid="uid://csbu1vpa8j2kg"]
 
-[ext_resource type="PackedScene" uid="uid://cu4llpkfjxsyf" path="res://Procedural Map Worlds/Perlin World/perlin_world.tscn" id="1_1qu0x"]
-[ext_resource type="PackedScene" uid="uid://drvipjs856m7i" path="res://PartyManager/EnemyParty/enemy_party.tscn" id="1_4gku7"]
-[ext_resource type="PackedScene" uid="uid://bddinpwgxst8b" path="res://PartyManager/PlayerParty/player_party.tscn" id="2_auhax"]
+[ext_resource type="PackedScene" uid="uid://culcx3at2htif" path="res://UI/ui_main_menu.tscn" id="1_54llp"]
 
 [node name="Main" type="Node2D"]
 
-[node name="Perlin World" parent="." instance=ExtResource("1_1qu0x")]
-cell_quadrant_size = 64
-
-[node name="EnemyParty" parent="." instance=ExtResource("1_4gku7")]
-
-[node name="PlayerParty" parent="." instance=ExtResource("2_auhax")]
-spawn_actors_manually = true
-actor_amount = 10
-
-[node name="SpawnPos" type="Marker2D" parent="PlayerParty"]
-position = Vector2(606, 307)
-
-[editable path="Perlin World"]
+[node name="UI_Main Menu" parent="." instance=ExtResource("1_54llp")]
+grow_horizontal = 2
+grow_vertical = 2
