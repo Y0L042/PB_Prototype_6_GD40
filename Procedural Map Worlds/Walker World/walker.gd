@@ -65,7 +65,9 @@ func create_room(pos: Vector2, size: Vector2):
 
 
 func place_room(pos: Vector2):
-	var size = Vector2(randi() % 4 + 2, randi() % 4 + 2)
+	var room_min: int = 4
+	var room_max: int =  12
+	var size = Vector2(randi() % room_max + room_min, randi() % room_max + room_min)
 	var top_left_corner = (pos - size/2).ceil()
 	rooms.append(create_room(pos, size))
 	for y in size.y:
