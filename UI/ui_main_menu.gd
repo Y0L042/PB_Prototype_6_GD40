@@ -2,6 +2,7 @@ extends Control
 
 
 func _ready() -> void:
+	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_start_new_game_pressed() -> void:
@@ -16,7 +17,6 @@ func _on_continue_game_pressed() -> void:
 
 func start_new_game():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	get_parent().queue_free()
 	get_tree().change_scene_to_packed(SceneLib.OUTDOOR_WORLD)
 
 

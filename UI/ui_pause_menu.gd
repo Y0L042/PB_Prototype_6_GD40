@@ -6,8 +6,8 @@ func _ready() -> void:
 	canvas_layer.set_visible(false)
 
 func _on_main_menu_pressed() -> void:
-	get_parent().queue_free()
 	get_tree().change_scene_to_packed(SceneLib.MAIN_MENU)
+	get_tree().paused = false
 
 
 func _on_resume_pressed() -> void:
@@ -15,6 +15,7 @@ func _on_resume_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	quit()
+
 
 
 
