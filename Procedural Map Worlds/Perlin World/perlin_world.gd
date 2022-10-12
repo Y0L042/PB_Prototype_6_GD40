@@ -3,8 +3,8 @@ extends TileMap
 @onready var noise_sprite = %Noise
 @onready var noise_texture = noise_sprite.get_texture()
 
-@export @onready var WIDTH: int = noise_texture.width #512
-@export @onready var HEIGHT: int = noise_texture.height #512
+@onready var WIDTH: int = noise_texture.width
+@onready var HEIGHT: int = noise_texture.height
 
 @onready var noise_source = noise_texture.get_noise()
 
@@ -17,6 +17,7 @@ const TILES =  {
 
 func _ready() -> void:
 	generate_map(noise_source)
+	noise_sprite.set_visible(false)
 
 
 
@@ -33,10 +34,3 @@ func get_tile_index(noise_sample):
 	return TILES.BLACK
 
 
-func create_noise():
-	var noise
-	randomize()
-	noise = FastNoiseLite.new()
-	noise.set_noise_type(FastNoiseLite.TYPE_SIMPLEX)
-	noise.set_seed(randi())
-	return noise

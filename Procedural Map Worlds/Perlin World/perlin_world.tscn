@@ -25,7 +25,7 @@ sources/1 = SubResource("TileSetAtlasSource_j7sul")
 tile_set = SubResource("TileSet_stukf")
 format = 2
 script = ExtResource("2_nhnfx")
-white_tile_filter = 0.5
+white_tile_filter = 0.25
 
 [node name="Noise" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -34,4 +34,5 @@ scale = Vector2(7.8875, 7.87778)
 texture = ExtResource("3_jlbtm")
 
 [node name="Camera2d" type="Camera2D" parent="."]
-position = Vector2(636, 360)
+anchor_mode = 0
+zoom = Vector2(0.075, 0.075)
