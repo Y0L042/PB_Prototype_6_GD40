@@ -27,7 +27,7 @@ func pause():
 func unpause():
 	canvas_layer.set_visible(false)
 	get_tree().paused = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+#	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) disabled for debugging because it is annoying
 
 func quit():
 	get_tree().quit()

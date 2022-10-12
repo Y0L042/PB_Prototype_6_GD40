@@ -27,9 +27,13 @@ func _ready() -> void:
 
 
 
-func generate_map(tilemap: TileMap, noise = default_noise):
-	for x in WIDTH:
-		for y in HEIGHT:
+func generate_map(tilemap: TileMap, size: Vector2 = Vector2.ZERO, noise = default_noise):
+
+	default_noise_resource.width = size.x
+	default_noise_resource.height = size.y
+
+	for x in size.x:
+		for y in size.y:
 			var tile = get_tile_index(noise.get_noise_2d(float(x), float(y)))
 			tilemap.set_cell(0, Vector2i(x, y), 1, tile)
 	tilemap.force_update(0)
