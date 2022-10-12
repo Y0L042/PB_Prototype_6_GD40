@@ -26,8 +26,8 @@ const isurrounding_tiles: PackedVector2Array = [
 # Initialize
 #-------------------------------------------------------------------------------
 func _ready() -> void:
-#	create_map(map_generators.noise_map, Vector2(160, 90))
-	create_map(map_generators.walker_map, Vector2(160, 90))
+	create_map(map_generators.noise_map, Vector2(160, 90))
+#	create_map(map_generators.walker_map, Vector2(160, 90))
 
 
 
