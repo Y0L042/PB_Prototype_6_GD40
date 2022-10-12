@@ -7,6 +7,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_8enq3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -50,14 +52,12 @@ text = "Main Menu"
 horizontal_alignment = 1
 
 [node name="ContinueGame" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
 offset_top = 30.0
 offset_right = 135.0
 offset_bottom = 61.0
 text = "Continue"
 
 [node name="StartNewGame" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
 offset_top = 65.0
 offset_right = 135.0
 offset_bottom = 96.0
@@ -65,11 +65,11 @@ text = "Start New Game
 "
 
 [node name="Quit" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
 offset_top = 100.0
 offset_right = 135.0
 offset_bottom = 131.0
 text = "Quit"
 
-[connection signal="pressed" from="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/StartNewGame" to="." method="_on_start_new_game_pressed" flags=6]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueGame" to="." method="_on_continue_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/StartNewGame" to="." method="_on_start_new_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
