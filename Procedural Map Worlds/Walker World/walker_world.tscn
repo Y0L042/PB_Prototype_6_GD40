@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6ud33vpwcy3o"]
+[gd_scene load_steps=4 format=3 uid="uid://r8hl7dr8jcbv"]
 
 [ext_resource type="TileSet" uid="uid://b8edno2xrrojb" path="res://Procedural Map Worlds/BWtileset.tres" id="1_ifkag"]
-[ext_resource type="Script" path="res://Procedural Map Worlds/Walker World/walker_world.gd" id="2_qcmm5"]
+[ext_resource type="Script" path="res://Procedural Map Worlds/Walker World/walker_world_generator.gd" id="2_qcmm5"]
 [ext_resource type="Texture2D" uid="uid://b3jwmyyh0w4r2" path="res://icon.svg" id="3_jogad"]
 
 [node name="Walker World" type="TileMap"]

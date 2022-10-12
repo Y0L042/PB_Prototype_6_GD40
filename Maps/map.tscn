@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpj18pb28y0bb"]
+
+[ext_resource type="Script" path="res://Maps/map.gd" id="1_16esk"]
+
+[node name="Outdoor Map" type="Node2D"]
+script = ExtResource("1_16esk")
+
+[node name="TileMap" type="TileMap" parent="."]
+unique_name_in_owner = true
+format = 2

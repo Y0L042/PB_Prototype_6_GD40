@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cu4llpkfjxsyf"]
+[gd_scene load_steps=6 format=3 uid="uid://dcppkkvv1rjas"]
 
-[ext_resource type="Texture2D" uid="uid://og3bwynmca1i" path="res://Misc Assets/BWtiles.png" id="1_1suq3"]
-[ext_resource type="Script" path="res://Procedural Map Worlds/Perlin World/perlin_world.gd" id="2_nhnfx"]
-[ext_resource type="Texture2D" uid="uid://b7j5x53i5ibb6" path="res://Procedural Map Worlds/Perlin World/perlin_world_noise.tres" id="3_jlbtm"]
+[ext_resource type="Texture2D" path="res://Misc Assets/BWtiles.png" id="1_1suq3"]
+[ext_resource type="Script" path="res://Procedural Map Worlds/Perlin World/noise_world_generator.gd" id="2_5a8kg"]
+[ext_resource type="Texture2D" path="res://Procedural Map Worlds/Perlin World/perlin_world_noise.tres" id="3_jlbtm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7sul"]
 texture = ExtResource("1_1suq3")
@@ -24,7 +24,7 @@ sources/1 = SubResource("TileSetAtlasSource_j7sul")
 [node name="Perlin World" type="TileMap"]
 tile_set = SubResource("TileSet_stukf")
 format = 2
-script = ExtResource("2_nhnfx")
+script = ExtResource("2_5a8kg")
 white_tile_filter = 0.25
 
 [node name="Noise" type="Sprite2D" parent="."]

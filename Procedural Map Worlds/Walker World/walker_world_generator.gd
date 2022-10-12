@@ -1,5 +1,7 @@
 extends TileMap
 
+class_name WalkerWorldGenerator
+
 @export var borders := Rect2(1,1, 38,21)
 @export var start_pos := Vector2(19, 11)
 @export var total_steps: int = 500
