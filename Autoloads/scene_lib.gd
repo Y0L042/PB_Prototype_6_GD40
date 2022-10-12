@@ -17,6 +17,12 @@ var KNIGHT: PackedScene = load("res://Actor/Knight/knight.tscn")
 #-------------------------------------------------------------------------------
 var OUTDOOR_WORLD: PackedScene = load("res://Maps/outdoor_map.tscn")
 
+#-------------------------------------------------------------------------------
+# Maps
+#-------------------------------------------------------------------------------
+var MAIN_MENU: PackedScene = load("res://UI/ui_main_menu.tscn")
+var PAUSE_MENU: PackedScene = load("res://UI/ui_pause_menu.tscn")
+
 
 #-------------------------------------------------------------------------------
 # Scene Tools

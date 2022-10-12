@@ -79,3 +79,4 @@ offset_bottom = 131.0
 text = "Quit"
 
 [connection signal="pressed" from="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/StartNewGame" to="." method="_on_start_new_game_pressed" flags=6]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
