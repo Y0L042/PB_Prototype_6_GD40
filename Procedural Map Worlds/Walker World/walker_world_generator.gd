@@ -25,14 +25,36 @@ func _ready() -> void:
 
 
 func generate_map(tilemap: TileMap, size: Vector2 = Vector2.ZERO):
+	var corridor_width: int = 3
 	borders.end = size
+	start_pos = Vector2(round(size.x/2), round(size.y/2))
 	walker = Walker.new(start_pos, borders)
 	var map = walker.walk(total_steps)
 	walker.queue_free()
 	for location in map:
 		tilemap.set_cell(0, location, 1, TILES.WHITE)
+		for width in corridor_width:
+			tilemap.set_cell(0, location + Vector2(width,0), 1, TILES.WHITE)
+			tilemap.set_cell(0, location + Vector2(0,width), 1, TILES.WHITE)
+
+	for x in size.x:
+			for y in size.y:
+				var pos: Vector2i = Vector2i(x, y)
+				if tilemap.get_cell_atlas_coords(0, pos) != TILES.WHITE:
+					tilemap.set_cell(0, pos, 1, TILES.BLACK)
+
+	generate_map_borders(tilemap, size)
+
 	tilemap.force_update(0)
 	return tilemap
+
+func generate_map_borders(tilemap: TileMap, size: Vector2):
+	var b_size: int = 100
+	for x in size.x + b_size*2:
+		for y in size.y + b_size*2:
+			var pos: Vector2i = Vector2i(x - b_size, y - b_size)
+			if tilemap.get_cell_atlas_coords(0, pos) != TILES.WHITE:
+				tilemap.set_cell(0, pos, 1, TILES.BLACK)
 
 func clean_map(tilemap: TileMap, size: Vector2):
 	for i in 6:

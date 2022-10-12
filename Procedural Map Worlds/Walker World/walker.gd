@@ -2,7 +2,7 @@ extends Node
 
 class_name Walker
 
-@export var max_corridor_length: int = 6
+@export var max_corridor_length: int = 14
 @export var random_turn_chance: float = 0
 
 const DIRECTIONS = [Vector2.RIGHT, Vector2.UP, Vector2.LEFT, Vector2.DOWN]
