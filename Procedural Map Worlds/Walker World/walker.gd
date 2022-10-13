@@ -4,6 +4,8 @@ class_name Walker
 
 @export var max_corridor_length: int = 14
 @export var random_turn_chance: float = 0
+@export var room_min: int = 4
+@export var room_max: int =  12
 
 const DIRECTIONS = [Vector2.RIGHT, Vector2.UP, Vector2.LEFT, Vector2.DOWN]
 
@@ -66,8 +68,6 @@ func create_room(pos: Vector2, size: Vector2):
 
 
 func place_room(pos: Vector2):
-	var room_min: int = 4
-	var room_max: int =  12
 	var size = Vector2(randi() % room_max + room_min, randi() % room_max + room_min)
 	var top_left_corner = (pos - size/2).ceil()
 	rooms.append(create_room(pos, size))

@@ -15,10 +15,17 @@ var KNIGHT: PackedScene = load("res://Actor/Knight/knight.tscn")
 #-------------------------------------------------------------------------------
 # Maps
 #-------------------------------------------------------------------------------
-var OUTDOOR_WORLD: PackedScene = load("res://Maps/map.tscn")
+#var MapDataObject = load("res://Maps/mapdata_object.gd")
+
+var FOREST_MAP: PackedScene = load("res://Maps/Forest Map/forest_map.tscn")
+
+var map_generator: Dictionary = {
+	"noise_map": NoiseWorldGenerator,
+	"walker_map": WalkerWorldGenerator,
+}
 
 #-------------------------------------------------------------------------------
-# Maps
+# UI
 #-------------------------------------------------------------------------------
 var MAIN_MENU: PackedScene = load("res://UI/ui_main_menu.tscn")
 var PAUSE_MENU: PackedScene = load("res://UI/ui_pause_menu.tscn")
