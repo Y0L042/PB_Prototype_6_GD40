@@ -32,3 +32,7 @@ func spawn_child(child: PackedScene, parent):
 	parent.add_child(child_instance)
 	child_instance.set_global_position(Vector2.ZERO)
 	return child_instance
+
+
+func change_scene():
+	pass

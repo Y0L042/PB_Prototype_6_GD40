@@ -1,5 +1,6 @@
 extends Control
 
+signal startNewGame
 
 func _ready() -> void:
 	get_tree().paused = false
@@ -17,7 +18,7 @@ func _on_continue_game_pressed() -> void:
 
 func start_new_game():
 #	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) disabled for debugging because it is annoying
-	get_tree().change_scene_to_packed(SceneLib.OUTDOOR_WORLD)
+	startNewGame.emit(self)
 
 
 func quit():
