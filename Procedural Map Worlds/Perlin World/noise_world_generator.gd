@@ -51,7 +51,7 @@ func generate_map_blueprint(new_tilemap: TileMap = tilemap, new_size: Vector2 = 
 			var tile = get_tile_index(noise.get_noise_2d(float(x), float(y)))
 			new_tilemap.set_cell(0, Vector2i(x, y), 1, tile)
 
-	generate_map_borders(new_tilemap, size)
+#	generate_map_borders(new_tilemap, size)
 
 	return new_tilemap
 

@@ -1,11 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://csbu1vpa8j2kg"]
+[gd_scene load_steps=4 format=3 uid="uid://csbu1vpa8j2kg"]
 
 [ext_resource type="PackedScene" uid="uid://culcx3at2htif" path="res://UI/ui_main_menu.tscn" id="1_54llp"]
 [ext_resource type="Script" path="res://main.gd" id="1_a2tco"]
+[ext_resource type="Texture2D" uid="uid://b3jwmyyh0w4r2" path="res://icon.svg" id="3_4xi74"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_a2tco")
 
 [node name="UI_Main Menu" parent="." instance=ExtResource("1_54llp")]
+
+[node name="TEMPCAM" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+zoom = Vector2(0.1, 0.1)
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+position = Vector2(640, 363)
+texture = ExtResource("3_4xi74")
 
 [connection signal="startNewGame" from="UI_Main Menu" to="." method="_on_ui_main_menu_start_new_game"]

@@ -62,9 +62,7 @@ func generate_map_blueprint(new_tilemap: TileMap = tilemap, new_size: Vector2 = 
 				if new_tilemap.get_cell_atlas_coords(0, pos) != TILES.WHITE:
 					new_tilemap.set_cell(0, pos, 1, TILES.BLACK)
 
-	generate_map_borders(new_tilemap, new_size)
-
-	new_tilemap.force_update(0)
+#	generate_map_borders(new_tilemap, new_size)
 	return new_tilemap
 
 
@@ -79,7 +77,7 @@ func generate_map_borders(new_tilemap: TileMap = tilemap, new_size: Vector2 = ma
 
 
 
-func clean_map(new_tilemap: TileMap, new_size: Vector2):
+func clean_map(new_tilemap: TileMap = tilemap, new_size: Vector2 = map_size):
 	for i in 6:
 		for x in new_size.x:
 			for y in new_size.y:
