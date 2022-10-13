@@ -30,6 +30,11 @@ _global_script_classes=[{
 "path": "res://Actor/Knight/knight.gd"
 }, {
 "base": "Node2D",
+"class": &"Main",
+"language": &"GDScript",
+"path": "res://main.gd"
+}, {
+"base": "Node2D",
 "class": &"NoiseWorldGenerator",
 "language": &"GDScript",
 "path": "res://Procedural Map Worlds/Perlin World/noise_world_generator.gd"
@@ -64,6 +69,7 @@ _global_script_class_icons={
 "EnemyPartyManager": "",
 "FDB": "",
 "KnightActor": "",
+"Main": "",
 "NoiseWorldGenerator": "",
 "PartyManager": "",
 "PlayerPartyManager": "",
