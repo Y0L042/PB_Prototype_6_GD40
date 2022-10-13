@@ -2,11 +2,17 @@ extends Node
 
 class_name Walker
 
+#-------------------------------------------------------------------------------
+# Interface Properties
+#-------------------------------------------------------------------------------
 @export var max_corridor_length: int = 14
 @export var random_turn_chance: float = 0
 @export var room_min: int = 4
 @export var room_max: int =  12
 
+#-------------------------------------------------------------------------------
+# Variables
+#-------------------------------------------------------------------------------
 const DIRECTIONS = [Vector2.RIGHT, Vector2.UP, Vector2.LEFT, Vector2.DOWN]
 
 var position = Vector2.ZERO
@@ -17,14 +23,21 @@ var steps_since_turn = 0
 var rooms = []
 
 
-func _init(starting_position: Vector2, new_borders: Rect2):
+#-------------------------------------------------------------------------------
+# Initialization
+#-------------------------------------------------------------------------------
+func _init(starting_position: Vector2, new_borders: Rect2, room_size_range: Vector2):
 	assert(new_borders.has_point(starting_position))
 	position = starting_position
 	step_history.append(position)
 	borders = new_borders
+	room_min = room_size_range.x
+	room_max = room_size_range.y
 
 
-
+#-------------------------------------------------------------------------------
+# Walker Functions
+#-------------------------------------------------------------------------------
 func walk(steps: int):
 	place_room(position)
 	for i_step in steps:

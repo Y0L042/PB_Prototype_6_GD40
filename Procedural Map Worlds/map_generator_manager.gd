@@ -7,7 +7,7 @@ var map_generator
 
 func _init(new_map_data) -> void:
 	map_data = new_map_data
-	map_generator = map_data.generation_method.new()
+	map_generator = map_data.generation_method.new(map_data)
 	run_mapgenerator_functions()
 
 func run_mapgenerator_functions():
