@@ -14,6 +14,7 @@ var step_history: Array
 var steps_since_turn = 0
 var rooms = []
 
+
 func _init(starting_position: Vector2, new_borders: Rect2):
 	assert(new_borders.has_point(starting_position))
 	position = starting_position
