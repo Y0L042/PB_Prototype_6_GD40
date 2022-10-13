@@ -2,15 +2,19 @@ extends Node2D
 
 class_name WalkerWorldGenerator
 
-var borders := Rect2(0,0, 0,0)
-var start_pos := Vector2.ZERO
 
+#-------------------------------------------------------------------------------
+# Interface Properties
+#-------------------------------------------------------------------------------
 @export var tilemap: TileMap
-@export var map_size: Vector2
+@export var map_size: Vector2 = Vector2(160, 90)
 @export var total_steps: int = 500
 @export var corridor_width: int = 3
+@export var room_size_range: Vector2 = Vector2(2, 4)
 
-
+#-------------------------------------------------------------------------------
+# Variables
+#-------------------------------------------------------------------------------
 const TILES =  {
 	"WHITE": Vector2i(0,0),
 	"BLACK": Vector2i(1,0),
@@ -22,16 +26,28 @@ const isurrounding_tiles: PackedVector2Array = [
 	Vector2i(-1, 1),  Vector2i(0, 1),  Vector2i(1, 1),
 ]
 
+var borders := Rect2(0,0, 0,0)
+var start_pos := Vector2.ZERO
+
 var walker: Walker
 
+#-------------------------------------------------------------------------------
+# Initialization
+#-------------------------------------------------------------------------------
 func _init(map_data: MapDataObject) -> void:
-	pass
+	tilemap = map_data.global_tilemap
+	map_size = map_data.global_map_size
+	total_steps = map_data.walker_total_steps
+	corridor_width = map_data.walker_corridor_width
+	room_size_range = map_data.walker_room_size_range
 
-
+#-------------------------------------------------------------------------------
+# Map Generation Functions
+#-------------------------------------------------------------------------------
 func generate_map_blueprint(new_tilemap: TileMap = tilemap, new_size: Vector2 = map_size):
 	borders.end = new_size
 	start_pos = Vector2(round(new_size.x/2), round(new_size.y/2))
-	walker = Walker.new(start_pos, borders)
+	walker = Walker.new(start_pos, borders, room_size_range)
 	var map = walker.walk(total_steps)
 	walker.queue_free()
 	for location in map:

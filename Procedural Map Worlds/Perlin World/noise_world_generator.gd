@@ -2,11 +2,17 @@ extends Node2D
 
 class_name NoiseWorldGenerator
 
+
+#-------------------------------------------------------------------------------
+# Interface Properties
+#-------------------------------------------------------------------------------
 @export var white_tile_filter: float = 0.15
 @export var size: Vector2
 @export var tilemap: TileMap
 
-
+#-------------------------------------------------------------------------------
+# Variables
+#-------------------------------------------------------------------------------
 var default_noise_resource = preload("res://Procedural Map Worlds/Perlin World/perlin_world_noise.tres")
 var WIDTH: int = default_noise_resource.width
 var HEIGHT: int = default_noise_resource.height
@@ -23,11 +29,18 @@ const isurrounding_tiles: PackedVector2Array = [
 	Vector2i(-1, 1),  Vector2i(0, 1),  Vector2i(1, 1),
 ]
 
-
+#-------------------------------------------------------------------------------
+# Initialization
+#-------------------------------------------------------------------------------
 func _init(map_data: MapDataObject) -> void:
-	pass
+	tilemap = map_data.global_tilemap
+	size = map_data.global_map_size
+	# white_tile_filter = map_data.something...
 
 
+#-------------------------------------------------------------------------------
+# Blueprint Generation Functions
+#-------------------------------------------------------------------------------
 func generate_map_blueprint(new_tilemap: TileMap = tilemap, new_size: Vector2 = size, noise = default_noise):
 	default_noise_resource.width = new_size.x
 	default_noise_resource.height = new_size.y
