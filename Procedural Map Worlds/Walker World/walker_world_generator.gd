@@ -47,7 +47,9 @@ func _init(map_data: MapDataObject) -> void:
 func generate_map_blueprint(new_tilemap: TileMap = tilemap, new_size: Vector2 = map_size):
 	borders.end = new_size
 	start_pos = Vector2(round(new_size.x/2), round(new_size.y/2))
+
 	walker = Walker.new(start_pos, borders, room_size_range)
+
 	var map = walker.walk(total_steps)
 	walker.queue_free()
 	for location in map:
@@ -62,9 +64,7 @@ func generate_map_blueprint(new_tilemap: TileMap = tilemap, new_size: Vector2 = 
 				if new_tilemap.get_cell_atlas_coords(0, pos) != TILES.WHITE:
 					new_tilemap.set_cell(0, pos, 1, TILES.BLACK)
 
-#	generate_map_borders(new_tilemap, new_size)
 	return new_tilemap
-
 
 
 func generate_map_borders(new_tilemap: TileMap = tilemap, new_size: Vector2 = map_size):

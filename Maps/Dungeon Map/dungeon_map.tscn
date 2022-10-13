@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://ik0dt5vp6r4m"]
+[gd_scene load_steps=3 format=3 uid="uid://ik0dt5vp6r4m"]
 
 [ext_resource type="Script" path="res://Maps/Dungeon Map/dungeon_map.gd" id="1_hji61"]
+[ext_resource type="TileSet" uid="uid://b8edno2xrrojb" path="res://Procedural Map Worlds/BWtileset.tres" id="2_4mvcc"]
 
 [node name="DungeonMap" type="Node2D"]
 script = ExtResource("1_hji61")
+tilemap_size = Vector2(80, 45)
 
 [node name="DungeonTileMap" type="TileMap" parent="."]
 unique_name_in_owner = true
+tile_set = ExtResource("2_4mvcc")
 format = 2

@@ -3,6 +3,7 @@ extends Node2D
 @onready var world_tilemap: TileMap = %DungeonTileMap
 @export var tilemap_size: Vector2 = Vector2(160, 90)
 
+
 @export var walker_total_steps: int = 500
 @export var walker_corridor_width: int = 3
 @export var walker_room_size_range: Vector2 = Vector2(5, 12)
@@ -32,3 +33,7 @@ func generate_blueprint_map(new_map_data):
 
 func populate_blueprint_map():
 	pass
+
+
+
+
