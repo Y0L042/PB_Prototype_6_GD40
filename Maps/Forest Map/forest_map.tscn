@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs1lp1myunr7x"]
+
+[ext_resource type="Script" path="res://Maps/Forest Map/forest_map.gd" id="1_u6fgs"]
+[ext_resource type="TileSet" uid="uid://b8edno2xrrojb" path="res://Procedural Map Worlds/BWtileset.tres" id="2_t3v0m"]
+
+[node name="ForestMap" type="Node2D"]
+script = ExtResource("1_u6fgs")
+
+[node name="TileMap" type="TileMap" parent="."]
+unique_name_in_owner = true
+tile_set = ExtResource("2_t3v0m")
+format = 2
+
+[node name="Camera2d" type="Camera2D" parent="."]
+position = Vector2(-1368, -1255)
+anchor_mode = 0
+current = true
+zoom = Vector2(0.1, 0.1)

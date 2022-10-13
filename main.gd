@@ -18,5 +18,14 @@ func change_level(old_level, new_level, parent):
 
 
 func _on_ui_main_menu_start_new_game(main_menu) -> void:
-	var new_level = SceneLib.OUTDOOR_WORLD
+	var new_level = SceneLib.FOREST_MAP
 	change_level(main_menu, new_level, self)
+
+
+
+#-------------------------------------------------------------------------------
+# UI Interaction
+#-------------------------------------------------------------------------------
+#func _unhandled_input(event: InputEvent) -> void:
+#	if event.is_action_pressed("ui_cancel"):
+#		pause_menu.pause()
