@@ -24,7 +24,12 @@ var CASTLE_MAP: PackedScene = load("res://Maps/Castle Map/castle_map.tscn")
 var map_generator: Dictionary = {
 	"noise_map": NoiseWorldGenerator,
 	"walker_map": WalkerWorldGenerator,
+#	"tinykeep_map": TinyKeepWorldGenerator,
 }
+
+var TINYKEEP_ROOM: PackedScene = load("res://Procedural Map Worlds/TinyKeep World/room.tscn")
+
+
 
 #-------------------------------------------------------------------------------
 # UI

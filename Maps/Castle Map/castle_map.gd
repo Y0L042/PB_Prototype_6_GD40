@@ -11,7 +11,7 @@ extends Node2D
 #-------------------------------------------------------------------------------
 func _ready() -> void:
 	var new_map_data := MapDataObject.new()
-	new_map_data.generation_method = SceneLib.
+#	new_map_data.generation_method = SceneLib.
 	new_map_data.global_tilemap = world_tilemap
 	new_map_data.global_map_size = tilemap_size
 
