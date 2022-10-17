@@ -11,6 +11,8 @@ class_name WalkerWorldGenerator
 @export var total_steps: int = 500
 @export var corridor_width: int = 3
 @export var room_size_range: Vector2 = Vector2(2, 4)
+@export var corridor_length: int = 5
+@export var turn_chance: float = 0
 
 #-------------------------------------------------------------------------------
 # Variables
@@ -40,6 +42,8 @@ func _init(map_data: MapDataObject) -> void:
 	total_steps = map_data.walker_total_steps
 	corridor_width = map_data.walker_corridor_width
 	room_size_range = map_data.walker_room_size_range
+	corridor_length = map_data.walker_corridor_length
+	turn_chance = map_data.walker_turn_chance
 
 #-------------------------------------------------------------------------------
 # Map Generation Functions
@@ -50,7 +54,7 @@ func generate_map_blueprint(new_tilemap: TileMap = tilemap, new_size: Vector2 = 
 
 	walker = Walker.new(start_pos, borders, room_size_range)
 
-	var map = walker.walk(total_steps)
+	var map = walker.walk(total_steps, corridor_length, turn_chance)
 	walker.queue_free()
 	for location in map:
 		new_tilemap.set_cell(0, location, 1, TILES.WHITE)
