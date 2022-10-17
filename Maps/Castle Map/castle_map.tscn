@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://de8txp3usvx4w"]
+
+[ext_resource type="Script" path="res://Maps/Castle Map/castle_map.gd" id="1_7t1k4"]
+[ext_resource type="TileSet" uid="uid://b8edno2xrrojb" path="res://Procedural Map Worlds/BWtileset.tres" id="2_5s2qn"]
+
+[node name="CastleMap" type="Node2D"]
+script = ExtResource("1_7t1k4")
+tilemap_size = null
+
+[node name="CastleTileMap" type="TileMap" parent="."]
+unique_name_in_owner = true
+tile_set = ExtResource("2_5s2qn")
+format = 2

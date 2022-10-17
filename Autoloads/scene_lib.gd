@@ -19,6 +19,7 @@ var KNIGHT: PackedScene = load("res://Actor/Knight/knight.tscn")
 
 var FOREST_MAP: PackedScene = load("res://Maps/Forest Map/forest_map.tscn")
 var DUNGEON_MAP: PackedScene = load("res://Maps/Dungeon Map/dungeon_map.tscn")
+var CASTLE_MAP: PackedScene = load("res://Maps/Castle Map/castle_map.tscn")
 
 var map_generator: Dictionary = {
 	"noise_map": NoiseWorldGenerator,

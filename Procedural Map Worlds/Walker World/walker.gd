@@ -38,7 +38,7 @@ func _init(starting_position: Vector2, new_borders: Rect2, room_size_range: Vect
 #-------------------------------------------------------------------------------
 # Walker Functions
 #-------------------------------------------------------------------------------
-func walk(steps: int):
+func walk(steps: int, max_corridor_length = max_corridor_length, random_turn_chance = random_turn_chance):
 	place_room(position)
 	for i_step in steps:
 		if steps_since_turn >= max_corridor_length or randf_range(0, 1) <= random_turn_chance:
