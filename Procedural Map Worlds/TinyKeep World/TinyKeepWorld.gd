@@ -11,7 +11,7 @@ class_name TinyKeepWorldGenerator
 @export var min_size: int = 6
 @export var max_size: int = 15
 @export var hspread: int = 400
-@export var cull: float = 0.5
+@export var cull: float = 0.75
 
 #-------------------------------------------------------------------------------
 # Variables
@@ -23,7 +23,7 @@ var play_mode: bool = false
 var rooms_array: Array
 
 func _ready() -> void:
-	randomize()
+#	randomize()
 	make_rooms()
 
 func make_rooms(
@@ -41,20 +41,23 @@ func make_rooms(
 		var width = new_min_size + randi() % (new_max_size - new_min_size)
 		var height = new_min_size + randi() % (new_max_size - new_min_size)
 		room.call_deferred("make_room", pos, Vector2(width, height) * new_tile_size)
-#		room.make_room(pos, Vector2(width, height) * new_tile_size)
-		rooms_array.append(room)
 
 
 	# wait for movement to stop
+	var pause_time: float = 2.5
+	await get_tree().create_timer(pause_time).timeout
 
 	# cull rooms
 	var room_positions: PackedVector2Array
-	for room in rooms_array:
-		if randf() < new_cull:
-			rooms_array.pop_front()
-		else:
-			room.set_freeze_mode(RigidBody2D.FREEZE_MODE_STATIC)
-			room_positions.append(room.position)
+	for room in get_tree().get_root().get_children():
+		if room.is_in_group("TinyKeepRoom"):
+			if randf() <= new_cull:
+				room.queue_free()
+			else:
+				room.set_freeze_mode(RigidBody2D.FREEZE_MODE_STATIC)
+				rooms_array.append(room)
+				room_positions.append(room.position)
+
 	path = find_min_span_tree(room_positions)
 
 func find_min_span_tree(room_positions: PackedVector2Array):

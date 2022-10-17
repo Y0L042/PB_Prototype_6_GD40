@@ -8,6 +8,7 @@ var target_position: Vector2 = Vector2.ZERO : set = set_target_position, get = g
 @export var MAX_ZOOM: float = 10.0
 @export var ZOOM_RATE: float = 5.0
 @export var ZOOM_INCREMENT: float = 0.1
+@export var setMaster: bool = false
 
 var desired_zoom: float = zoom_level
 
@@ -34,14 +35,16 @@ func get_target_position():
 # Initialize
 #-------------------------------------------------------------------------------
 func _ready() -> void:
-	set_master()
+	if setMaster:
+		set_master()
 
 
 #-------------------------------------------------------------------------------
 # Runtime
 #-------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
-	set_target_position(get_master().pb.party_target_pos)
+	if master:
+		set_target_position(get_master().pb.party_target_pos)
 #	zoom_level = lerp(zoom_level, desired_zoom, ZOOM_RATE * delta)
 	set_zoom(Vector2(zoom_level, zoom_level))
 
