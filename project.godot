@@ -59,6 +59,16 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://PartyManager/PlayerParty/player_party_manager.gd"
 }, {
+"base": "RigidBody2D",
+"class": &"TinyKeepRoom",
+"language": &"GDScript",
+"path": "res://Procedural Map Worlds/TinyKeep World/room.gd"
+}, {
+"base": "Node2D",
+"class": &"TinyKeepWorldGenerator",
+"language": &"GDScript",
+"path": "res://Procedural Map Worlds/TinyKeep World/TinyKeepWorld.gd"
+}, {
 "base": "Node",
 "class": &"Walker",
 "language": &"GDScript",
@@ -85,6 +95,8 @@ _global_script_class_icons={
 "NoiseWorldGenerator": "",
 "PartyManager": "",
 "PlayerPartyManager": "",
+"TinyKeepRoom": "",
+"TinyKeepWorldGenerator": "",
 "Walker": "",
 "WalkerWorldGenerator": "",
 "_CLASS_": ""
@@ -165,6 +177,8 @@ ui_zoomout={
 [physics]
 
 common/physics_ticks_per_second=30
+2d/default_gravity=0.0
+2d/default_gravity_vector=Vector2(0, 0)
 
 [rendering]
 

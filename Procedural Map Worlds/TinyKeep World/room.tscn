@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://002kqkys1q0u"]
+
+[ext_resource type="Script" path="res://Procedural Map Worlds/TinyKeep World/room.gd" id="1_3n2qk"]
+
+[node name="Room" type="RigidBody2D"]
+inertia = 1.0
+continuous_cd = 2
+lock_rotation = true
+script = ExtResource("1_3n2qk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -5,7 +5,6 @@
 
 [node name="CastleMap" type="Node2D"]
 script = ExtResource("1_7t1k4")
-tilemap_size = null
 
 [node name="CastleTileMap" type="TileMap" parent="."]
 unique_name_in_owner = true

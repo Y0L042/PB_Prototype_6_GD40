@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs1jni7r4nwji"]
+
+[ext_resource type="Script" path="res://Procedural Map Worlds/TinyKeep World/TinyKeepWorld.gd" id="1_qdpio"]
+
+[node name="TinyKeepWorld" type="Node2D"]
+script = ExtResource("1_qdpio")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2(0.01, 0.01)
