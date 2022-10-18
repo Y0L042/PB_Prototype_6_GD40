@@ -5,8 +5,12 @@
 
 [node name="CastleMap" type="Node2D"]
 script = ExtResource("1_7t1k4")
+num_rooms = 25
+hspread = 1000
+cull = 0.5
 
 [node name="CastleTileMap" type="TileMap" parent="."]
 unique_name_in_owner = true
 tile_set = ExtResource("2_5s2qn")
+cell_quadrant_size = 64
 format = 2

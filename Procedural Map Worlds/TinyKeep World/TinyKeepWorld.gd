@@ -45,7 +45,7 @@ func tinykeep_setup(map_data: MapDataObject) -> void:
 func generate_map_blueprint():
 	randomize()
 	make_rooms()
-	make_map()
+
 
 #-------------------------------------------------------------------------------
 # Runtime
@@ -87,7 +87,9 @@ func make_rooms(
 			else:
 				room.set_freeze_mode(RigidBody2D.FREEZE_MODE_STATIC)
 				room_positions.append(room.position)
+				rooms_array.append(room)
 	path = find_min_span_tree_astar(room_positions)
+	make_map()
 
 
 
@@ -125,7 +127,6 @@ func find_min_span_tree_astar(room_positions: Array):
 
 
 
-
 func find_min_span_tree_delaunay(room_positions: Array):
 	var delaunay_points = Geometry2D.triangulate_delaunay(room_positions)
 	for triangle_index in delaunay_points.size() / 3 :
@@ -134,6 +135,7 @@ func find_min_span_tree_delaunay(room_positions: Array):
 			var point = delaunay_points[(triangle_index * 3) + index]
 			triangle_rooms.append(point)
 	return path
+
 
 
 func make_map():
@@ -147,6 +149,7 @@ func make_map():
 	for room in rooms_array:
 		var room_rect = Rect2(room.position-room.size, room.collshape.shape.extents*2)
 		full_rect = full_rect.merge(room_rect)
+	draw_rect(full_rect, Color.RED)
 	var topleft = tilemap.local_to_map(full_rect.position)
 	var bottomright = tilemap.local_to_map(full_rect.end)
 	for x in range(topleft.x, bottomright.x):
@@ -186,8 +189,10 @@ func carve_path(pos1, pos2):
 		x_y = pos2
 		y_x = pos1
 	for x in range(pos1.x, pos2.x, x_diff):
-		tilemap.set_cell(x, x_y.y, 0)
-		tilemap.set_cell(x, x_y.y + y_diff, 0)  # widen the corridor
+#		tilemap.set_cell(x, x_y.y, 0)
+		tilemap.set_cell(0, Vector2i(x, x_y.y), 1, TILES.WHITE)
+#		tilemap.set_cell(x, x_y.y + y_diff, 0)  # widen the corridor
+		tilemap.set_cell(0, Vector2i(x, x_y.y + y_diff), 1, TILES.WHITE)
 	for y in range(pos1.y, pos2.y, y_diff):
 #		tilemap.set_cell(y_x.x, y, 0)
 		tilemap.set_cell(0, Vector2i(y_x.x, y), 1, TILES.WHITE)
