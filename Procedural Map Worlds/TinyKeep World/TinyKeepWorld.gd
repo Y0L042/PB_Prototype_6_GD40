@@ -22,10 +22,24 @@ var end_room
 var play_mode: bool = false
 var rooms_array: Array
 
+#-------------------------------------------------------------------------------
+# Initialize
+#-------------------------------------------------------------------------------
 func _ready() -> void:
 #	randomize()
 	make_rooms()
 
+#-------------------------------------------------------------------------------
+# Runtime
+#-------------------------------------------------------------------------------
+func _physics_process(delta: float) -> void:
+	queue_redraw()
+
+
+
+#-------------------------------------------------------------------------------
+# Make Rooms
+#-------------------------------------------------------------------------------
 func make_rooms(
 	new_num_rooms: int = num_rooms,
 	new_hspread: int = hspread,
@@ -47,7 +61,8 @@ func make_rooms(
 	var pause_time: float = 2.5
 	await get_tree().create_timer(pause_time).timeout
 
-	# cull rooms
+	# cull rooms based on odds
+	#																		add second method of culling based on room size
 	var room_positions: PackedVector2Array
 	for room in get_tree().get_root().get_children():
 		if room.is_in_group("TinyKeepRoom"):
@@ -58,7 +73,23 @@ func make_rooms(
 				rooms_array.append(room)
 				room_positions.append(room.position)
 
-	path = find_min_span_tree(room_positions)
+	path = find_min_span_tree_astar(room_positions)
 
-func find_min_span_tree(room_positions: PackedVector2Array):
+func find_min_span_tree_astar(room_positions: PackedVector2Array):
+	# Prim's algorithm:
+	# Given an array of positions (nodes), generates a minimum spanning tree
+	# Returns an AStar object
 	pass
+
+func find_min_span_tree_delaunay(room_positions: PackedVector2Array):
+	pass
+
+
+
+#-------------------------------------------------------------------------------
+# Draw
+#-------------------------------------------------------------------------------
+func _draw():
+	for room in get_tree().get_root().get_children():
+		if room.is_in_group("TinyKeepRoom"):
+			draw_rect(Rect2(room.get_global_position() - room.size, room.size*2), Color(0, 1, 0), false)

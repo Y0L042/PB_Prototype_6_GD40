@@ -14,6 +14,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Actor/actor.gd"
 }, {
+"base": "RefCounted",
+"class": &"Delaunay",
+"language": &"GDScript",
+"path": "res://addons/gdDelaunay/Delaunay.gd"
+}, {
 "base": "PartyManager",
 "class": &"EnemyPartyManager",
 "language": &"GDScript",
@@ -86,6 +91,7 @@ _global_script_classes=[{
 }]
 _global_script_class_icons={
 "Actor": "",
+"Delaunay": "",
 "EnemyPartyManager": "",
 "FDB": "",
 "KnightActor": "",
@@ -124,7 +130,7 @@ window/size/resizable=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/fourbug/plugin.cfg")
+enabled=PackedStringArray("res://addons/fourbug/plugin.cfg", "res://addons/gdDelaunay/plugin.cfg")
 
 [input]
 
