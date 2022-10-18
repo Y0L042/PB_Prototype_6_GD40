@@ -11,6 +11,11 @@ func _init(new_map_data) -> void:
 	run_mapgenerator_functions()
 	map_data.global_tilemap.force_update(0)
 
+func _ready() -> void:
+	run_mapgenerator_functions()
+	map_data.global_tilemap.force_update(0)
+
+
 func run_mapgenerator_functions():
 	if map_generator.has_method("generate_map_blueprint"):
 		map_generator.generate_map_blueprint()

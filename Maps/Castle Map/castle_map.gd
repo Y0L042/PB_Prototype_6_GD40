@@ -35,7 +35,11 @@ func _ready() -> void:
 # Generating Map
 #-------------------------------------------------------------------------------
 func generate_blueprint_map(new_map_data):
-	var mapgenman := MapGeneratorManager.new(new_map_data)
+	var tinykeep_instance = SceneLib.TINYKEEP_WORLDGEN.instantiate()
+	self.add_child(tinykeep_instance)
+	tinykeep_instance.set_global_position(Vector2.ZERO)
+	tinykeep_instance.tinykeep_setup(new_map_data)
+	tinykeep_instance.generate_map_blueprint()
 
 
 func populate_blueprint_map():
