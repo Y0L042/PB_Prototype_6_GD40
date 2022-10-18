@@ -29,6 +29,8 @@ const TILES =  {
 	"WHITE": Vector2i(0,0),
 	"BLACK": Vector2i(1,0),
 }
+
+signal gen_complete
 #-------------------------------------------------------------------------------
 # Initialize
 #-------------------------------------------------------------------------------
@@ -45,6 +47,8 @@ func tinykeep_setup(map_data: MapDataObject) -> void:
 func generate_map_blueprint():
 	randomize()
 	make_rooms()
+
+
 
 
 #-------------------------------------------------------------------------------
@@ -90,6 +94,7 @@ func make_rooms(
 				rooms_array.append(room)
 	path = find_min_span_tree_astar(room_positions)
 	make_map()
+
 
 
 
@@ -149,7 +154,6 @@ func make_map():
 	for room in rooms_array:
 		var room_rect = Rect2(room.position-room.size, room.collshape.shape.extents*2)
 		full_rect = full_rect.merge(room_rect)
-	draw_rect(full_rect, Color.RED)
 	var topleft = tilemap.local_to_map(full_rect.position)
 	var bottomright = tilemap.local_to_map(full_rect.end)
 	for x in range(topleft.x, bottomright.x):
@@ -174,6 +178,7 @@ func make_map():
 				var end = tilemap.local_to_map(Vector2(path.get_point_position(conn).x, path.get_point_position(conn).y))
 				carve_path(start, end)
 		corridors.append(p)
+	gen_complete.emit()
 
 
 func carve_path(pos1, pos2):

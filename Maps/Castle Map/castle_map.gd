@@ -30,6 +30,8 @@ func _ready() -> void:
 
 	generate_blueprint_map(new_map_data)
 
+#	populate_blueprint_map(new_map_data)
+
 
 #-------------------------------------------------------------------------------
 # Generating Map
@@ -40,7 +42,11 @@ func generate_blueprint_map(new_map_data):
 	tinykeep_instance.set_global_position(Vector2.ZERO)
 	tinykeep_instance.tinykeep_setup(new_map_data)
 	tinykeep_instance.generate_map_blueprint()
+	await tinykeep_instance.gen_complete
+	populate_blueprint_map(new_map_data)
 
 
-func populate_blueprint_map():
-	pass
+func populate_blueprint_map(new_map_data):
+	var decorator := TileMapDecorator.new(new_map_data)
+	decorator.tilemapdecorator_ready()
+

@@ -13,6 +13,12 @@ var KNIGHT: PackedScene = load("res://Actor/Knight/knight.tscn")
 #-------------------------------------------------------------------------------
 # Maps
 #-------------------------------------------------------------------------------
+const TILES =  {
+	"WHITE": Vector2i(0,0),
+	"BLACK": Vector2i(1,0),
+}
+
+
 var FOREST_MAP: PackedScene = load("res://Maps/Forest Map/forest_map.tscn")
 var DUNGEON_MAP: PackedScene = load("res://Maps/Dungeon Map/dungeon_map.tscn")
 var CASTLE_MAP: PackedScene = load("res://Maps/Castle Map/castle_map.tscn")
