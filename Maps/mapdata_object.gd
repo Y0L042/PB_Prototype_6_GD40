@@ -15,3 +15,12 @@ var walker_corridor_length: int
 var walker_turn_chance: float
 
 # Noise-Specific Data
+
+
+# TinyKeep-Specific Data
+var tinykeep_tile_size: int
+var tinykeep_num_rooms: int
+var tinykeep_min_size: int
+var tinykeep_max_size: int
+var tinykeep_hspread: int
+var tinykeep_cull: float

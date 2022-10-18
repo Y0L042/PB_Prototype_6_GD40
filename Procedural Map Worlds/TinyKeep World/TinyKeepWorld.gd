@@ -31,11 +31,16 @@ const TILES =  {
 # Initialize
 #-------------------------------------------------------------------------------
 func _init(map_data: MapDataObject) -> void:
-	pass
+	num_rooms = map_data.tinykeep_num_rooms
 
 func _ready() -> void:
 #	randomize()
 	make_rooms()
+
+func generate_map_blueprint():
+	randomize()
+	make_rooms()
+	make_map()
 
 #-------------------------------------------------------------------------------
 # Runtime
@@ -58,7 +63,8 @@ func make_rooms(
 ):
 	for index in range(new_num_rooms):
 		var pos = Vector2(randi_range(-new_hspread, new_hspread), 0)
-		var room = SceneLib.TINYKEEP_ROOM.instantiate()
+#		var room = SceneLib.TINYKEEP_ROOM.instantiate()
+		var room = TinyKeepRoom.instantiate()
 		get_tree().get_root().call_deferred("add_child", room)
 		var width = new_min_size + randi() % (new_max_size - new_min_size)
 		var height = new_min_size + randi() % (new_max_size - new_min_size)

@@ -12,9 +12,13 @@ func _init(new_map_data) -> void:
 	map_data.global_tilemap.force_update(0)
 
 func run_mapgenerator_functions():
-	map_generator.generate_map_blueprint()
-	map_generator.generate_map_borders()
-	map_generator.clean_map()
-	map_generator.populate_map_blueprint()
+	if map_generator.has_method("generate_map_blueprint"):
+		map_generator.generate_map_blueprint()
+	if map_generator.has_method("generate_map_borders"):
+		map_generator.generate_map_borders()
+	if map_generator.has_method("clean_map"):
+		map_generator.clean_map()
+	if map_generator.has_method("populate_map_blueprint"):
+		map_generator.populate_map_blueprint()
 
 
