@@ -18,7 +18,7 @@ func change_level(old_level, new_level, parent):
 
 
 func _on_ui_main_menu_start_new_game(main_menu) -> void:
-	var new_level = SceneLib.DUNGEON_MAP
+	var new_level = SceneLib.CASTLE_MAP
 	change_level(main_menu, new_level, self)
 
 
