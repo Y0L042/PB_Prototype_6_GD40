@@ -17,6 +17,8 @@ class_name TinyKeepWorldGenerator
 #-------------------------------------------------------------------------------
 # Variables
 #-------------------------------------------------------------------------------
+var TINYKEEP_ROOM: PackedScene = load("res://Procedural Map Worlds/TinyKeep World/room.tscn")
+
 var path: AStar2D
 var start_room
 var end_room
@@ -30,12 +32,15 @@ const TILES =  {
 #-------------------------------------------------------------------------------
 # Initialize
 #-------------------------------------------------------------------------------
-func _init(map_data: MapDataObject) -> void:
+func tinykeep_setup(map_data: MapDataObject) -> void:
+	tile_size = map_data.tinykeep_tile_size
 	num_rooms = map_data.tinykeep_num_rooms
+	min_size = map_data.tinykeep_min_size
+	max_size = map_data.tinykeep_max_size
+	hspread = map_data.tinykeep_hspread
+	cull = map_data.tinykeep_cull
+	tilemap = map_data.global_tilemap
 
-func _ready() -> void:
-#	randomize()
-	make_rooms()
 
 func generate_map_blueprint():
 	randomize()
@@ -64,7 +69,7 @@ func make_rooms(
 	for index in range(new_num_rooms):
 		var pos = Vector2(randi_range(-new_hspread, new_hspread), 0)
 #		var room = SceneLib.TINYKEEP_ROOM.instantiate()
-		var room = TinyKeepRoom.instantiate()
+		var room = TINYKEEP_ROOM.instantiate()
 		get_tree().get_root().call_deferred("add_child", room)
 		var width = new_min_size + randi() % (new_max_size - new_min_size)
 		var height = new_min_size + randi() % (new_max_size - new_min_size)
@@ -142,8 +147,8 @@ func make_map():
 	for room in rooms_array:
 		var room_rect = Rect2(room.position-room.size, room.collshape.shape.extents*2)
 		full_rect = full_rect.merge(room_rect)
-	var topleft = tilemap.world_to_map(full_rect.position)
-	var bottomright = tilemap.world_to_map(full_rect.end)
+	var topleft = tilemap.local_to_map(full_rect.position)
+	var bottomright = tilemap.local_to_map(full_rect.end)
 	for x in range(topleft.x, bottomright.x):
 		for y in range(topleft.y, bottomright.y):
 			tilemap.set_cell(0, Vector2i(x, y), 1, TILES.BLACK)
@@ -152,7 +157,7 @@ func make_map():
 	var corridors: Array  # One corridor per connection
 	for room in rooms_array:
 		var s = (room.size / tile_size).floor()
-		var pos = tilemap.world_to_map(room.position)
+		var pos = tilemap.local_to_map(room.position)
 		var ul = (room.position / tile_size).floor() - s
 		for x in range(2, s.x * 2 - 1):
 			for y in range(2, s.y * 2 - 1):
@@ -162,8 +167,8 @@ func make_map():
 		var p = path.get_closest_point(Vector2(room.position.x, room.position.y))
 		for conn in path.get_point_connections(p):
 			if not conn in corridors:
-				var start = tilemap.world_to_map(Vector2(path.get_point_position(p).x, path.get_point_position(p).y))
-				var end = tilemap.world_to_map(Vector2(path.get_point_position(conn).x, path.get_point_position(conn).y))
+				var start = tilemap.local_to_map(Vector2(path.get_point_position(p).x, path.get_point_position(p).y))
+				var end = tilemap.local_to_map(Vector2(path.get_point_position(conn).x, path.get_point_position(conn).y))
 				carve_path(start, end)
 		corridors.append(p)
 
