@@ -23,6 +23,10 @@ var end_room
 var play_mode: bool = false
 var rooms_array: Array
 
+const TILES =  {
+	"WHITE": Vector2i(0,0),
+	"BLACK": Vector2i(1,0),
+}
 #-------------------------------------------------------------------------------
 # Initialize
 #-------------------------------------------------------------------------------
@@ -71,7 +75,6 @@ func make_rooms(
 				room.queue_free()
 			else:
 				room.set_freeze_mode(RigidBody2D.FREEZE_MODE_STATIC)
-				rooms_array.append(room)
 				room_positions.append(room.position)
 	path = find_min_span_tree_astar(room_positions)
 
@@ -130,34 +133,31 @@ func make_map():
 
 	# Fill TileMap with walls, then carve empty rooms
 	var full_rect = Rect2()
-	for room in $Rooms.get_children():
-		var r = Rect2(room.position-room.size,
-					room.get_node("CollisionShape2D").shape.extents*2)
-		full_rect = full_rect.merge(r)
+	for room in rooms_array:
+		var room_rect = Rect2(room.position-room.size, room.collshape.shape.extents*2)
+		full_rect = full_rect.merge(room_rect)
 	var topleft = tilemap.world_to_map(full_rect.position)
 	var bottomright = tilemap.world_to_map(full_rect.end)
 	for x in range(topleft.x, bottomright.x):
 		for y in range(topleft.y, bottomright.y):
-			tilemap.set_cell(x, y, 1)
+			tilemap.set_cell(0, Vector2i(x, y), 1, TILES.BLACK)
 
 	# Carve rooms
-	var corridors = []  # One corridor per connection
-	for room in $Rooms.get_children():
+	var corridors: Array  # One corridor per connection
+	for room in rooms_array:
 		var s = (room.size / tile_size).floor()
 		var pos = tilemap.world_to_map(room.position)
 		var ul = (room.position / tile_size).floor() - s
 		for x in range(2, s.x * 2 - 1):
 			for y in range(2, s.y * 2 - 1):
-				tilemap.set_cell(ul.x + x, ul.y + y, 0)
+#				tilemap.set_cell(ul.x + x, ul.y + y, 0)
+				tilemap.set_cell(0, Vector2i(ul.x + x, ul.y + y), 1, TILES.WHITE)
 		# Carve connecting corridor
-		var p = path.get_closest_point(Vector3(room.position.x,
-											room.position.y, 0))
+		var p = path.get_closest_point(Vector2(room.position.x, room.position.y))
 		for conn in path.get_point_connections(p):
 			if not conn in corridors:
-				var start = tilemap.world_to_map(Vector2(path.get_point_position(p).x,
-													path.get_point_position(p).y))
-				var end = tilemap.world_to_map(Vector2(path.get_point_position(conn).x,
-													path.get_point_position(conn).y))
+				var start = tilemap.world_to_map(Vector2(path.get_point_position(p).x, path.get_point_position(p).y))
+				var end = tilemap.world_to_map(Vector2(path.get_point_position(conn).x, path.get_point_position(conn).y))
 				carve_path(start, end)
 		corridors.append(p)
 
@@ -178,13 +178,15 @@ func carve_path(pos1, pos2):
 		tilemap.set_cell(x, x_y.y, 0)
 		tilemap.set_cell(x, x_y.y + y_diff, 0)  # widen the corridor
 	for y in range(pos1.y, pos2.y, y_diff):
-		tilemap.set_cell(y_x.x, y, 0)
-		tilemap.set_cell(y_x.x + x_diff, y, 0)
+#		tilemap.set_cell(y_x.x, y, 0)
+		tilemap.set_cell(0, Vector2i(y_x.x, y), 1, TILES.WHITE)
+#		tilemap.set_cell(y_x.x + x_diff, y, 0)
+		tilemap.set_cell(0, Vector2i(y_x.x + x_diff, y), 1, TILES.WHITE)
 
 
 func find_start_room():
 	var min_x = INF
-	for room in $Rooms.get_children():
+	for room in rooms_array:
 		if room.position.x < min_x:
 			start_room = room
 			min_x = room.position.x
@@ -192,7 +194,7 @@ func find_start_room():
 
 func find_end_room():
 	var max_x = -INF
-	for room in $Rooms.get_children():
+	for room in rooms_array:
 		if room.position.x > max_x:
 			end_room = room
 			max_x = room.position.x
@@ -201,9 +203,8 @@ func find_end_room():
 # Draw
 #-------------------------------------------------------------------------------
 func _draw():
-	for room in get_tree().get_root().get_children():
-		if room.is_in_group("TinyKeepRoom"):
-			draw_rect(Rect2(room.get_global_position() - room.size, room.size*2), Color(0, 1, 0), false)
+	for room in rooms_array:
+		draw_rect(Rect2(room.get_global_position() - room.size, room.size*2), Color(0, 1, 0), false)
 	if path:
 		for p in path.get_point_count():
 			for c in path.get_point_connections(p):
