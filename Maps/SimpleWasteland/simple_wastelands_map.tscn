@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d07i7mo3emk0b"]
+
+[ext_resource type="PackedScene" uid="uid://cd487np5ha3y7" path="res://Maps/common_tilemap.tscn" id="1_3hvu5"]
+
+[node name="SimpleWastelandsMap" type="Node2D"]
+
+[node name="CommonTileMap" parent="." instance=ExtResource("1_3hvu5")]
