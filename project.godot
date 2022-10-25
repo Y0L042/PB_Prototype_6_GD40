@@ -50,11 +50,6 @@ _global_script_classes=[{
 "path": "res://Procedural Map Worlds/map_generator_manager.gd"
 }, {
 "base": "Node2D",
-"class": &"NoiseWorldGenerator",
-"language": &"GDScript",
-"path": "res://Procedural Map Worlds/Perlin World/noise_world_generator.gd"
-}, {
-"base": "Node2D",
 "class": &"PartyManager",
 "language": &"GDScript",
 "path": "res://PartyManager/party_manager.gd"
@@ -103,7 +98,6 @@ _global_script_class_icons={
 "Main": "",
 "MapDataObject": "",
 "MapGeneratorManager": "",
-"NoiseWorldGenerator": "",
 "PartyManager": "",
 "PlayerPartyManager": "",
 "TileMapDecorator": "",

@@ -87,15 +87,50 @@ func clean_map(new_tilemap: TileMap = tilemap, new_size: Vector2 = size):
 func populate_map_blueprint():
 	pass
 
+class CustomArray:
+	pass
+
 func poisson_disc_sampler(new_tilemap: TileMap = tilemap):
-	var sample_points: Array = [[],[]]
 	var new_size = tilemap.get_used_rect()
+	var radius: int = 10 # radius of disks
+	var k: int = 30 # sample limit before rejection
+	var grid: Array
+	var width: float = radius / sqrt(2)
+	var cols = floor(new_size.x / width)
+	var rows = floor(new_size.y / width)
+
+	var sample_points: Array = [[],[]]
+
+
+
+	# Step 0: Set sample_points array to 0 (it also sets size)
 	for x in new_size.x:
+		sample_points.append([])
 		for y in new_size.y:
-			var pos: Vector2i = Vector2i(x, y)
-			sample_points[x][y] = 0
-			if new_tilemap.get_cell_atlas_coords(0, pos) == SceneLib.TILES.WHITE:
-				pass
+			sample_points[x].append(0)
+
+	# Step 1: Sample random point
+	var tempbool := true
+	while tempbool:
+		var x: int = randi_range(-new_size.x, new_size.x)
+		var y: int = randi_range(-new_size.y, new_size.y)
+		var pos := Vector2i(x, y)
+		if new_tilemap.get_cell_atlas_coords(0, pos) == SceneLib.TILES.WHITE:
+			sample_points[x][y] = 1
+			var active_sample = sample_points[x][y]
+			tempbool = false
+
+	# Step 2: Get a random sample in a range of focus point
+	while !sample_points.is_empty():
+		var x: int = randi_range(-new_size.x, new_size.x)
+		var y: int = randi_range(-new_size.y, new_size.y)
+		var active_point := Vector2i(x, y)
+		var k: int = 5 #?
+		for index in k:
+			var rand_vec = Vector2(randf_range(-360, 360), randf_range(-360, 360)).normalized()
+			rand_vec *= randi_range(radius, 3*radius)
+			rand_vec = rand_vec.round()
+
 
 
 
