@@ -55,7 +55,7 @@ func generate_map_blueprint(new_tilemap: TileMap = tilemap, new_size: Vector2 = 
 	walker = Walker.new(start_pos, borders, room_size_range)
 
 	var map = walker.walk(total_steps, corridor_length, turn_chance)
-	walker.queue_free()
+#	walker.queue_free()
 	for location in map:
 		new_tilemap.set_cell(0, location, 1, TILES.WHITE)
 		for width in corridor_width:
@@ -102,6 +102,8 @@ func clean_map(new_tilemap: TileMap = tilemap, new_size: Vector2 = map_size):
 func populate_map_blueprint():
 	pass
 
+func return_map_data():
+	return walker.rooms
 
 func get_start_room_pos():
 	return walker.rooms.front() * 64 # x is block size

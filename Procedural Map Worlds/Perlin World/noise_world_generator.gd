@@ -17,6 +17,7 @@ var default_noise_resource = preload("res://Procedural Map Worlds/Perlin World/p
 var WIDTH: int = default_noise_resource.width
 var HEIGHT: int = default_noise_resource.height
 var default_noise = default_noise_resource.get_noise()
+var areas = []
 
 const TILES =  {
 	"WHITE": Vector2i(0,0),
@@ -86,10 +87,22 @@ func clean_map(new_tilemap: TileMap = tilemap, new_size: Vector2 = size):
 func populate_map_blueprint():
 	pass
 
+func poisson_disc_sampler(new_tilemap: TileMap = tilemap):
+	var sample_points: Array = [[],[]]
+	var new_size = tilemap.get_used_rect()
+	for x in new_size.x:
+		for y in new_size.y:
+			var pos: Vector2i = Vector2i(x, y)
+			sample_points[x][y] = 0
+			if new_tilemap.get_cell_atlas_coords(0, pos) == SceneLib.TILES.WHITE:
+				pass
+
+
 
 func get_tile_index(noise_sample):
 	if noise_sample < white_tile_filter:
 		return TILES.WHITE
 	return TILES.BLACK
 
-
+func return_map_data():
+	return areas
