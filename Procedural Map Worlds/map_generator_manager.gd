@@ -13,6 +13,7 @@ func _init(new_map_data) -> void:
 
 func _ready() -> void:
 	run_mapgenerator_functions()
+	run_mappopulation_functions()
 	map_data.global_tilemap.force_update(0)
 
 
@@ -25,5 +26,9 @@ func run_mapgenerator_functions():
 		map_generator.clean_map()
 	if map_generator.has_method("populate_map_blueprint"):
 		map_generator.populate_map_blueprint()
+
+func run_mappopulation_functions():
+	var map_data = map_generator.return_map_data()
+
 
 
