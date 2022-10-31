@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://culcx3at2htif" path="res://UI/ui_main_menu.tscn" id="1_54llp"]
 [ext_resource type="Script" path="res://main.gd" id="1_a2tco"]
 [ext_resource type="Texture2D" uid="uid://b3jwmyyh0w4r2" path="res://icon.svg" id="3_4xi74"]
-[ext_resource type="PackedScene" uid="uid://b26x8d8pllql7" path="res://Camera/camera_2d.tscn" id="4_jw2xh"]
+[ext_resource type="PackedScene" uid="uid://bddinpwgxst8b" path="res://PartyManager/PlayerParty/player_party.tscn" id="4_ayb5o"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_a2tco")
@@ -13,6 +13,8 @@ texture = ExtResource("3_4xi74")
 
 [node name="UI_Main Menu" parent="." instance=ExtResource("1_54llp")]
 
-[node name="Camera2D" parent="." instance=ExtResource("4_jw2xh")]
+[node name="PlayerParty" parent="." instance=ExtResource("4_ayb5o")]
+spawn_actors_manually = true
+actor_amount = 1
 
 [connection signal="startNewGame" from="UI_Main Menu" to="." method="_on_ui_main_menu_start_new_game"]
