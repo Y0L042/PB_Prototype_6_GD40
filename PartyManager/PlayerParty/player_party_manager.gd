@@ -7,7 +7,7 @@ class_name PlayerPartyManager
 #-------------------------------------------------------------------------------
 func _ready() -> void:
 	if spawn_actors_manually:
-		var spawn_pos: Vector2 = get_node("SpawnPos").get_global_position()
+		var spawn_pos: Vector2 = get_tree().get_root().get_node("PlayerSpawn").get_child(0).get_global_position()
 		set_party_blackboard(actor_amount, spawn_pos)
 		spawn_party_actors()
 
