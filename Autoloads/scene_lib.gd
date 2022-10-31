@@ -18,7 +18,7 @@ const TILES =  {
 	"BLACK": Vector2i(1,0),
 }
 
-
+var STARTING_MAP: PackedScene =  load("res://Maps/Starting Map/starting_map.tscn")
 var FOREST_MAP: PackedScene = load("res://Maps/Forest Map/forest_map.tscn")
 var DUNGEON_MAP: PackedScene = load("res://Maps/Dungeon Map/dungeon_map.tscn")
 var CASTLE_MAP: PackedScene = load("res://Maps/Castle Map/castle_map.tscn")
