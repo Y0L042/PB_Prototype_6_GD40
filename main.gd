@@ -18,9 +18,17 @@ func change_level(old_level, new_level, parent):
 
 
 func _on_ui_main_menu_start_new_game(main_menu) -> void:
-	var new_level = SceneLib.FOREST_MAP
+	var new_level = SceneLib.STARTING_MAP
 	change_level(main_menu, new_level, self)
+	instantiate_player()
 
+#-------------------------------------------------------------------------------
+# Initialisation
+#-------------------------------------------------------------------------------
+func instantiate_player():
+	SceneLib.spawn_child(SceneLib.PLAYER_PARTY, self)
+	# set player position
+	# spawn soldiers
 
 
 #-------------------------------------------------------------------------------

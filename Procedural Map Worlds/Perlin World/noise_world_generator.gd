@@ -91,7 +91,7 @@ func populate_map_blueprint():
 
 
 
-
+# https://youtu.be/flQgnCUxHlw?t=1977
 func poisson_disc_sampler(new_tilemap: TileMap = tilemap):
 	var new_size = tilemap.get_used_rect().end
 	var radius: int = 10 # radius of disks
