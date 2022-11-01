@@ -1,9 +1,9 @@
-[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://b8edno2xrrojb"]
+[gd_resource type="TileSet" load_steps=21 format=3 uid="uid://b8edno2xrrojb"]
 
 [ext_resource type="Shader" path="res://Procedural Map Worlds/water_shader.gdshader" id="1_5d2uv"]
 [ext_resource type="Texture2D" uid="uid://og3bwynmca1i" path="res://Misc Assets/BWtiles.png" id="1_sp3mw"]
-[ext_resource type="Texture2D" uid="uid://0cfbiuj58dg2" path="res://Misc Assets/autotile_template_3x3_minimal_topdown_walls - Copy - Rescaled.png" id="2_ileh1"]
 [ext_resource type="Texture2D" uid="uid://co1683etw0i3k" path="res://Misc Assets/terrain.png" id="2_j03an"]
+[ext_resource type="Texture2D" uid="uid://dfj8gfv5w54nt" path="res://Misc Assets/wasteland1_autotile_template_3x3_minimal_topdown_walls - Copy - Rescaled- No Grid.png" id="3_1gice"]
 [ext_resource type="Texture2D" uid="uid://dss8aquwt4fp" path="res://Misc Assets/autotile_template_3x3_minimal_topdown_floor - Copy - Resized.png" id="3_ce68a"]
 [ext_resource type="Texture2D" uid="uid://dwdlx37wqcfoo" path="res://Misc Assets/autotile_template_3x3_minimal.png" id="5_5f80x"]
 
@@ -45,8 +45,23 @@ texture_region_size = Vector2i(128, 128)
 4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:0/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_k10bn"]
+polygon = PackedVector2Array(-64, -48, 64, -49, 64, 64, -64, 64)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5q70n"]
+polygon = PackedVector2Array(-64, -48, 64, -49, 64, 31, 17, 29, 13, 64, -64, 64)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_67lrs"]
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 31, 17, 29, 13, 64, -64, 64)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mawx5"]
+polygon = PackedVector2Array(-64, -48, 64, -49, 64, 64, -64, 64)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_l2jix"]
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qlr12"]
-texture = ExtResource("2_ileh1")
+texture = ExtResource("3_1gice")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/terrain_set = 1
@@ -98,6 +113,7 @@ texture_region_size = Vector2i(128, 128)
 6:0/0 = 0
 6:0/0/terrain_set = 1
 6:0/0/terrain = 0
+6:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_5q70n")
 6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:0/0/physics_layer_0/angular_velocity = 0.0
 6:0/0/terrains_peering_bit/right_side = 0
@@ -125,6 +141,7 @@ texture_region_size = Vector2i(128, 128)
 9:0/0 = 0
 9:0/0/terrain_set = 1
 9:0/0/terrain = 0
+9:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_mawx5")
 9:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:0/0/physics_layer_0/angular_velocity = 0.0
 9:0/0/terrains_peering_bit/right_side = 0
@@ -136,6 +153,7 @@ texture_region_size = Vector2i(128, 128)
 10:0/0 = 0
 10:0/0/terrain_set = 1
 10:0/0/terrain = 0
+10:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_k10bn")
 10:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 10:0/0/physics_layer_0/angular_velocity = 0.0
 10:0/0/terrains_peering_bit/right_side = 0
@@ -313,6 +331,7 @@ texture_region_size = Vector2i(128, 128)
 6:2/0 = 0
 6:2/0/terrain_set = 1
 6:2/0/terrain = 0
+6:2/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_67lrs")
 6:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:2/0/physics_layer_0/angular_velocity = 0.0
 6:2/0/terrains_peering_bit/right_side = 0
@@ -345,6 +364,7 @@ texture_region_size = Vector2i(128, 128)
 9:2/0 = 0
 9:2/0/terrain_set = 1
 9:2/0/terrain = 0
+9:2/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_l2jix")
 9:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:2/0/physics_layer_0/angular_velocity = 0.0
 9:2/0/terrains_peering_bit/right_side = 0
@@ -4552,6 +4572,7 @@ use_texture_padding = false
 
 [resource]
 tile_size = Vector2i(128, 128)
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 terrain_set_0/mode = 0
