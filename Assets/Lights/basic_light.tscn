@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://bcxy3k3beylbe" path="res://Assets/Misc/light.png" id="1_5vrke"]
 
 [node name="PointLight2D" type="PointLight2D"]
-position = Vector2(2048, 1536)
 blend_mode = 2
 shadow_enabled = true
 shadow_filter_smooth = 2.0
