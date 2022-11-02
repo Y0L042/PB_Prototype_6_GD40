@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drtvyit2jtldv"
-path="res://.godot/imported/BlockAtlas.png-48dfd5655ec977b0bffb621bdc640c8e.ctex"
+uid="uid://bcxy3k3beylbe"
+path="res://.godot/imported/light.png-d446e84e43f91aa36545129f6146a7d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Misc Assets/Block Atlas/BlockAtlas.png"
-dest_files=["res://.godot/imported/BlockAtlas.png-48dfd5655ec977b0bffb621bdc640c8e.ctex"]
+source_file="res://Assets/Misc/light.png"
+dest_files=["res://.godot/imported/light.png-d446e84e43f91aa36545129f6146a7d5.ctex"]
 
 [params]
 

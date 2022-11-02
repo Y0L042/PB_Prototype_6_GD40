@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0cfbiuj58dg2"
-path="res://.godot/imported/autotile_template_3x3_minimal_topdown_walls - Copy - Rescaled.png-4ad89d6b44eaeb81c105f87b0b3646cb.ctex"
+uid="uid://dgsm36qar73sy"
+path="res://.godot/imported/abandoned_isles.png-946f3774ec140687dcf06cb0fce9bb1f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Misc Assets/autotile_template_3x3_minimal_topdown_walls - Copy - Rescaled.png"
-dest_files=["res://.godot/imported/autotile_template_3x3_minimal_topdown_walls - Copy - Rescaled.png-4ad89d6b44eaeb81c105f87b0b3646cb.ctex"]
+source_file="res://Assets/TopDown/abandoned_isles.png"
+dest_files=["res://.godot/imported/abandoned_isles.png-946f3774ec140687dcf06cb0fce9bb1f.ctex"]
 
 [params]
 
