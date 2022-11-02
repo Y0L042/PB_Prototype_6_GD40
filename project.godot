@@ -194,5 +194,5 @@ common/physics_ticks_per_second=30
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method.web="mobile"
 textures/canvas_textures/default_texture_filter=0

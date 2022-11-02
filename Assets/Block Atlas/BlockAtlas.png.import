@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwdlx37wqcfoo"
-path="res://.godot/imported/autotile_template_3x3_minimal.png-06d965f68b593eb279c9c63156aa4cb0.ctex"
+uid="uid://drtvyit2jtldv"
+path="res://.godot/imported/BlockAtlas.png-05701ac8f8b29403a3344b1c5ca99c93.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Misc Assets/autotile_template_3x3_minimal.png"
-dest_files=["res://.godot/imported/autotile_template_3x3_minimal.png-06d965f68b593eb279c9c63156aa4cb0.ctex"]
+source_file="res://Assets/Block Atlas/BlockAtlas.png"
+dest_files=["res://.godot/imported/BlockAtlas.png-05701ac8f8b29403a3344b1c5ca99c93.ctex"]
 
 [params]
 

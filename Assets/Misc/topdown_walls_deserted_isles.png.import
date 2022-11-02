@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx4dyrjbdjnjm"
-path="res://.godot/imported/drawing.svg-65145f6853ad5eb97f7d87c225b214e2.ctex"
+uid="uid://iabvbgcj3ol4"
+path="res://.godot/imported/topdown_walls_deserted_isles.png-635d0741a3d0641ae75933d20aea3e7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Misc Assets/drawing.svg"
-dest_files=["res://.godot/imported/drawing.svg-65145f6853ad5eb97f7d87c225b214e2.ctex"]
+source_file="res://Assets/Misc/topdown_walls_deserted_isles.png"
+dest_files=["res://.godot/imported/topdown_walls_deserted_isles.png-635d0741a3d0641ae75933d20aea3e7d.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

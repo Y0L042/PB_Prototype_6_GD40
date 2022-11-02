@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcppkkvv1rjas"]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="Texture2D" uid="uid://og3bwynmca1i" path="res://Misc Assets/BWtiles.png" id="1_1suq3"]
+[ext_resource type="Texture2D" uid="uid://og3bwynmca1i" path="res://Assets/Misc/BWtiles.png" id="1_1suq3"]
 [ext_resource type="Texture2D" uid="uid://b7j5x53i5ibb6" path="res://Procedural Map Worlds/Perlin World/perlin_world_noise.tres" id="3_jlbtm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7sul"]

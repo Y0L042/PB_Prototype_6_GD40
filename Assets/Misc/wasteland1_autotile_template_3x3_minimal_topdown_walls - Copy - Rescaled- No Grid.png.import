@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcxy3k3beylbe"
-path="res://.godot/imported/light.png-a1d1ec4c6c00df364af5855083da9609.ctex"
+uid="uid://dfj8gfv5w54nt"
+path="res://.godot/imported/wasteland1_autotile_template_3x3_minimal_topdown_walls - Copy - Rescaled- No Grid.png-d5cd883f03ede90bbf53dfacceb5d37d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Misc Assets/light.png"
-dest_files=["res://.godot/imported/light.png-a1d1ec4c6c00df364af5855083da9609.ctex"]
+source_file="res://Assets/Misc/wasteland1_autotile_template_3x3_minimal_topdown_walls - Copy - Rescaled- No Grid.png"
+dest_files=["res://.godot/imported/wasteland1_autotile_template_3x3_minimal_topdown_walls - Copy - Rescaled- No Grid.png-d5cd883f03ede90bbf53dfacceb5d37d.ctex"]
 
 [params]
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://cd487np5ha3y7"]
 
-[ext_resource type="TileSet" uid="uid://b8edno2xrrojb" path="res://Procedural Map Worlds/BWtileset.tres" id="1_82qcq"]
+[ext_resource type="TileSet" uid="uid://q0svvuy1b0io" path="res://Maps/Starting Map/abandoned_isles.tres" id="1_tgi5d"]
 
 [node name="CommonTileMap" type="TileMap"]
 unique_name_in_owner = true
-tile_set = ExtResource("1_82qcq")
+tile_set = ExtResource("1_tgi5d")
 cell_quadrant_size = 32
 format = 2
 layer_0/name = "BlueprintWorld"

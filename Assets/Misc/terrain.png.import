@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://iabvbgcj3ol4"
-path="res://.godot/imported/topdown_walls_deserted_isles.png-cef50d43081ae4bf7ea07a6ee6a6fab8.ctex"
+uid="uid://co1683etw0i3k"
+path="res://.godot/imported/terrain.png-9209179b974185b3510717892c7519fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Misc Assets/topdown_walls_deserted_isles.png"
-dest_files=["res://.godot/imported/topdown_walls_deserted_isles.png-cef50d43081ae4bf7ea07a6ee6a6fab8.ctex"]
+source_file="res://Assets/Misc/terrain.png"
+dest_files=["res://.godot/imported/terrain.png-9209179b974185b3510717892c7519fc.ctex"]
 
 [params]
 
