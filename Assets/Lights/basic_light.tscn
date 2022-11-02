@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cokppfentoyb"]
+
+[ext_resource type="Texture2D" uid="uid://bcxy3k3beylbe" path="res://Assets/Misc/light.png" id="1_5vrke"]
+
+[node name="PointLight2D" type="PointLight2D"]
+position = Vector2(2048, 1536)
+blend_mode = 2
+shadow_enabled = true
+shadow_filter_smooth = 2.0
+texture = ExtResource("1_5vrke")
+texture_scale = 15.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5vrke")
