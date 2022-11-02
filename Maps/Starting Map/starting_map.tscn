@@ -1,11 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://dfsfplee324bd"]
 
 [ext_resource type="PackedScene" uid="uid://cd487np5ha3y7" path="res://Maps/common_tilemap.tscn" id="1_26uo1"]
-[ext_resource type="Texture2D" uid="uid://cx4dyrjbdjnjm" path="res://Misc Assets/drawing.svg" id="2_6snrc"]
 [ext_resource type="Texture2D" uid="uid://b3jwmyyh0w4r2" path="res://icon.svg" id="3_cslgx"]
 [ext_resource type="Texture2D" uid="uid://bcxy3k3beylbe" path="res://Misc Assets/light.png" id="3_jdjfc"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_16b3o"]
+polygon = PackedVector2Array(64, -60.8, 64, 59, 59.6, 64, -60.1, 64, -64, 60.7, -64, -59, -59, -63.8, 59.1, -64)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fyxtv"]
 polygon = PackedVector2Array(64, -60.8, 64, 59, 59.6, 64, -60.1, 64, -64, 60.7, -64, -59, -59, -63.8, 59.1, -64)
 
 [node name="StartingMap" type="Node2D"]
@@ -39,90 +41,37 @@ unique_name_in_owner = true
 [node name="Lighting" type="Node2D" parent="."]
 
 [node name="PointLight2D" type="PointLight2D" parent="Lighting"]
-position = Vector2(674, 847)
+position = Vector2(149, 1242)
 energy = 0.5
-range_item_cull_mask = 3
-shadow_enabled = true
-shadow_filter_smooth = 64.0
-texture = ExtResource("3_jdjfc")
-texture_scale = 5.0
-
-[node name="PointLight2D2" type="PointLight2D" parent="Lighting"]
-position = Vector2(2068, 658)
-energy = 0.5
-range_item_cull_mask = 3
-shadow_enabled = true
-shadow_filter_smooth = 64.0
-texture = ExtResource("3_jdjfc")
-texture_scale = 5.0
-
-[node name="PointLight2D3" type="PointLight2D" parent="Lighting"]
-position = Vector2(3043, 1282)
-energy = 0.5
-range_item_cull_mask = 3
-shadow_enabled = true
-shadow_filter_smooth = 64.0
-texture = ExtResource("3_jdjfc")
-texture_scale = 5.0
-
-[node name="PointLight2D4" type="PointLight2D" parent="Lighting"]
-position = Vector2(353, 1149)
-energy = 0.5
-range_item_cull_mask = 3
 shadow_enabled = true
 shadow_filter_smooth = 64.0
 texture = ExtResource("3_jdjfc")
 texture_scale = 5.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Lighting"]
+light_mask = 3
 color = Color(0.172549, 0.172549, 0.172549, 1)
 
 [node name="Dummy Sprites" type="Node2D" parent="."]
 
-[node name="Node" type="Node" parent="Dummy Sprites"]
-
-[node name="Drawing" type="Sprite2D" parent="Dummy Sprites/Node"]
+[node name="Drawing" type="Sprite2D" parent="Dummy Sprites"]
 light_mask = 2
 position = Vector2(541, 1140)
 texture = ExtResource("3_cslgx")
 
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="Dummy Sprites/Node"]
-position = Vector2(541, 1140)
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Dummy Sprites/Drawing"]
+show_behind_parent = true
 occluder = SubResource("OccluderPolygon2D_16b3o")
 
-[node name="Drawing2" type="Sprite2D" parent="Dummy Sprites"]
-position = Vector2(1110, 1190)
-scale = Vector2(0.0597972, 0.057)
-texture = ExtResource("2_6snrc")
+[node name="Icon" type="Sprite2D" parent="Dummy Sprites"]
+position = Vector2(301, 1204)
+texture = ExtResource("3_cslgx")
 
-[node name="Drawing3" type="Sprite2D" parent="Dummy Sprites"]
-position = Vector2(1098, 1267)
-scale = Vector2(0.0597972, 0.057)
-texture = ExtResource("2_6snrc")
-
-[node name="Drawing4" type="Sprite2D" parent="Dummy Sprites"]
-position = Vector2(1092, 1124)
-scale = Vector2(0.0597972, 0.057)
-texture = ExtResource("2_6snrc")
-
-[node name="Drawing5" type="Sprite2D" parent="Dummy Sprites"]
-position = Vector2(1054, 1212)
-scale = Vector2(0.0597972, 0.057)
-texture = ExtResource("2_6snrc")
-
-[node name="Drawing6" type="Sprite2D" parent="Dummy Sprites"]
-position = Vector2(1029, 1117)
-scale = Vector2(0.0597972, 0.057)
-texture = ExtResource("2_6snrc")
-
-[node name="Drawing7" type="Sprite2D" parent="Dummy Sprites"]
-position = Vector2(998, 1250)
-scale = Vector2(0.0597972, 0.057)
-texture = ExtResource("2_6snrc")
-
-[node name="Drawing8" type="Sprite2D" parent="Dummy Sprites"]
-position = Vector2(974, 1172)
-scale = Vector2(0.0597972, 0.057)
-texture = ExtResource("2_6snrc")
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Dummy Sprites/Icon"]
+show_behind_parent = true
+light_mask = 2
+position = Vector2(1, 38)
+scale = Vector2(1, 0.36)
+occluder = SubResource("OccluderPolygon2D_fyxtv")
 
 [connection signal="ready" from="." to="." method="_on_ready"]
