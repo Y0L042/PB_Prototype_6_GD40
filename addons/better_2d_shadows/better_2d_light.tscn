@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi3pexymdoe07"]
+
+[ext_resource type="Script" path="res://addons/better_2d_shadows/better_2d_light.gd" id="1_ejdk0"]
+
+[node name="Better2DLight" type="Node2D"]
+script = ExtResource("1_ejdk0")

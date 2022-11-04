@@ -14,6 +14,16 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Actor/actor.gd"
 }, {
+"base": "Node2D",
+"class": &"BetterLight2D",
+"language": &"GDScript",
+"path": "res://addons/better_2d_shadows/better_2d_light.gd"
+}, {
+"base": "Sprite2D",
+"class": &"BetterShadow2D",
+"language": &"GDScript",
+"path": "res://addons/better_2d_shadows/better_2d_shadow.gd"
+}, {
 "base": "RefCounted",
 "class": &"Delaunay",
 "language": &"GDScript",
@@ -96,6 +106,8 @@ _global_script_classes=[{
 }]
 _global_script_class_icons={
 "Actor": "",
+"BetterLight2D": "",
+"BetterShadow2D": "",
 "Delaunay": "",
 "EnemyPartyManager": "",
 "FDB": "",
@@ -136,7 +148,7 @@ window/size/resizable=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/fourbug/plugin.cfg", "res://addons/gdDelaunay/plugin.cfg")
+enabled=PackedStringArray("res://addons/fourbug/plugin.cfg", "res://addons/gdDelaunay/plugin.cfg", "res://addons/better_2d_shadows/plugin.cfg")
 
 [input]
 
