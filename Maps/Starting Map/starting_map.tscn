@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://lobugnmajmx3"]
+[gd_scene load_steps=12 format=3 uid="uid://lobugnmajmx3"]
 
 [ext_resource type="PackedScene" uid="uid://cd487np5ha3y7" path="res://Maps/common_tilemap.tscn" id="1_26uo1"]
 [ext_resource type="Texture2D" uid="uid://b3jwmyyh0w4r2" path="res://icon.svg" id="3_cslgx"]
 [ext_resource type="PackedScene" uid="uid://cokppfentoyb" path="res://Assets/Lights/basic_light.tscn" id="3_m0bhp"]
 [ext_resource type="Shader" path="res://Assets/Shaders/2D ZDepth Lighting.gdshader" id="5_3wysm"]
-[ext_resource type="Texture2D" uid="uid://jda4q6s8k0t3" path="res://Assets/Decor/Achitecture/pillar_basic_1.svg" id="6_rha8p"]
 [ext_resource type="Shader" path="res://Assets/Shaders/2D Godrays.gdshader" id="6_s7neh"]
 [ext_resource type="Texture2D" uid="uid://56uu3ahds53l" path="res://Assets/Decor/Achitecture/ps_pillar_1.png" id="7_oj236"]
 
@@ -33,13 +32,9 @@ shader = ExtResource("5_3wysm")
 cull_mode = 2
 polygon = PackedVector2Array(64, -60.8, 64, 59, 59.6, 64, -60.1, 64, -64, 60.7, -64, -59, -59, -63.8, 59.1, -64)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_f6vq0"]
-cull_mode = 2
-polygon = PackedVector2Array(-8, -469.4, -8, -468, 15, -462, 15, -460.5, 35, -445.5, 35, -443, 39, -436, 39, -203.5, 37.4, -203.5, 33.4, -192.5, 31.8, -192.5, 21.8, -182.5, 19.5, -182.5, 7.5, -175.5, 4.10001, -175.5, -13.7, -170.5, -42.2, -170.5, -68, -176.9, -68, -178.3, -78, -183.3, -78, -184.6, -90, -194.6, -90, -196.9, -95, -203.9, -95, -440.5, -93, -440.5, -81, -456.5, -78.5, -456.5, -56.5, -467.5, -52.3, -467.5, -40, -469.3, -40, -470.6)
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hfaud"]
 cull_mode = 1
-polygon = PackedVector2Array(-56.1366, -159.466, -56.1366, -8.02048, -49.4537, 6.13327, -9.35608, 17.4563, 23.3903, 8.02045, 34.7512, -8.02048, 34.7512, -164.184)
+polygon = PackedVector2Array(-56.8049, -159.466, -56.8049, -8.49225, -53.4634, 0.471802, -48.1171, 5.6615, -39.4293, 11.323, -32.0781, 14.6255, -22.0536, 16.5127, 1.33661, 16.9845, 12.0292, 13.6819, 23.3903, 8.02045, 31.4097, 0.471802, 36.0878, -8.49225, 36.0878, -160.409)
 
 [node name="StartingMap" type="Node2D"]
 
@@ -56,9 +51,9 @@ metadata/_edit_lock_ = true
 [node name="Camera2D" type="Camera2D" parent="."]
 modulate = Color(0, 0.752941, 0.176471, 1)
 top_level = true
-position = Vector2(668, 755)
+position = Vector2(1516, 1535)
 current = true
-zoom = Vector2(0.35, 0.35)
+zoom = Vector2(0.181, 0.181)
 limit_smoothed = true
 
 [node name="Spawns" type="Node2D" parent="."]
@@ -132,24 +127,42 @@ modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
 occluder = SubResource("OccluderPolygon2D_16b3o")
 
-[node name="PillarBasic1" type="Sprite2D" parent="."]
-position = Vector2(1506, 740)
-scale = Vector2(1, 1.4537)
-texture = ExtResource("6_rha8p")
-metadata/_edit_group_ = true
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="PillarBasic1"]
-modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 1, 1, 0)
-occluder = SubResource("OccluderPolygon2D_f6vq0")
-
-[node name="PsPillar1" type="Sprite2D" parent="."]
-position = Vector2(943, 1150)
+[node name="Decor" type="Node2D" parent="."]
+position = Vector2(620, 2309.56)
 scale = Vector2(1.49635, 2.11958)
+
+[node name="PsPillar1" type="Sprite2D" parent="Decor"]
+position = Vector2(622.849, -825.428)
 texture = ExtResource("7_oj236")
 metadata/_edit_group_ = true
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="PsPillar1"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Decor/PsPillar1"]
+modulate = Color(1, 1, 1, 0)
+occluder = SubResource("OccluderPolygon2D_hfaud")
+
+[node name="PsPillar2" type="Sprite2D" parent="Decor"]
+position = Vector2(914.225, -826.843)
+texture = ExtResource("7_oj236")
+metadata/_edit_group_ = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Decor/PsPillar2"]
+modulate = Color(1, 1, 1, 0)
+occluder = SubResource("OccluderPolygon2D_hfaud")
+
+[node name="PsPillar3" type="Sprite2D" parent="Decor"]
+texture = ExtResource("7_oj236")
+metadata/_edit_group_ = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Decor/PsPillar3"]
+modulate = Color(1, 1, 1, 0)
+occluder = SubResource("OccluderPolygon2D_hfaud")
+
+[node name="PsPillar4" type="Sprite2D" parent="Decor"]
+position = Vector2(291.376, -1.41541)
+texture = ExtResource("7_oj236")
+metadata/_edit_group_ = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Decor/PsPillar4"]
 modulate = Color(1, 1, 1, 0)
 occluder = SubResource("OccluderPolygon2D_hfaud")
 
