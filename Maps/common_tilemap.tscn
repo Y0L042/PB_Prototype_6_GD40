@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://cd487np5ha3y7"]
 
-[ext_resource type="TileSet" uid="uid://c5x75eg848moy" path="res://Assets/Custom Desert Autotile Set/custom_desert_TileSheet.tres" id="1_bdcsl"]
+[ext_resource type="TileSet" uid="uid://dj34tsxtpy0tf" path="res://Assets/Block Tileset/new_tile_set.tres" id="1_gqfmf"]
 
 [node name="CommonTileMap" type="TileMap"]
 unique_name_in_owner = true
-tile_set = ExtResource("1_bdcsl")
+tile_set = ExtResource("1_gqfmf")
 format = 2
 layer_0/name = "BlueprintWorld"
 layer_1/name = "BlueprintSpawn"
@@ -27,7 +27,7 @@ layer_3/modulate = Color(1, 1, 1, 1)
 layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = 0
-layer_3/tile_data = PackedInt32Array(655373, 655361, 0, 720909, 589825, 2, 786445, 589825, 2, 851981, 589825, 3, 851982, 589825, 3, 851983, 589825, 3, 851984, 589825, 3, 786448, 589825, 2, 786449, 720897, 2, 720913, 720897, 2, 720912, 589825, 2, 655376, 655361, 0, 655375, 655361, 0, 655374, 655361, 0, 786446, 589825, 2, 786447, 589825, 2, 720908, 524289, 1, 720910, 589825, 2, 720911, 589825, 2, 786444, 524289, 1, 655372, 524289, 0, 655377, 720897, 0, 851985, 720897, 3, 851980, 524289, 3)
+layer_3/tile_data = PackedInt32Array()
 layer_4/name = "Wall"
 layer_4/enabled = true
 layer_4/modulate = Color(1, 1, 1, 1)
