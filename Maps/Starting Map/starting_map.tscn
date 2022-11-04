@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://lobugnmajmx3"]
+[gd_scene load_steps=14 format=3 uid="uid://lobugnmajmx3"]
 
 [ext_resource type="PackedScene" uid="uid://cd487np5ha3y7" path="res://Maps/common_tilemap.tscn" id="1_26uo1"]
 [ext_resource type="Texture2D" uid="uid://b3jwmyyh0w4r2" path="res://icon.svg" id="3_cslgx"]
 [ext_resource type="PackedScene" uid="uid://cokppfentoyb" path="res://Assets/Lights/basic_light.tscn" id="3_m0bhp"]
 [ext_resource type="Shader" path="res://Assets/Shaders/2D ZDepth Lighting.gdshader" id="5_3wysm"]
 [ext_resource type="Shader" path="res://Assets/Shaders/2D Godrays.gdshader" id="6_s7neh"]
+[ext_resource type="Texture2D" uid="uid://56jy7xpfplje" path="res://Assets/Decor/Achitecture/ps_pillar_1_NormalMap.png" id="7_cmjap"]
 [ext_resource type="Texture2D" uid="uid://56uu3ahds53l" path="res://Assets/Decor/Achitecture/ps_pillar_1.png" id="7_oj236"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5bu17"]
@@ -31,6 +32,10 @@ shader = ExtResource("5_3wysm")
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_16b3o"]
 cull_mode = 2
 polygon = PackedVector2Array(64, -60.8, 64, 59, 59.6, 64, -60.1, 64, -64, 60.7, -64, -59, -59, -63.8, 59.1, -64)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_n10au"]
+diffuse_texture = ExtResource("7_oj236")
+normal_texture = ExtResource("7_cmjap")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hfaud"]
 cull_mode = 1
@@ -96,12 +101,20 @@ shadow_color = Color(0.490196, 0.313726, 0.262745, 0.580392)
 texture_scale = 12.18
 
 [node name="PointLight2D2" parent="Lighting" instance=ExtResource("3_m0bhp")]
-position = Vector2(1191, -1280)
+position = Vector2(1813, 185)
+scale = Vector2(4.9668, 4.06641)
 shadow_color = Color(0.490196, 0.313726, 0.262745, 0.580392)
 shadow_filter_smooth = 0.0
-texture_scale = 35.0
+texture_scale = 3.0
+height = 1750.0
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Lighting"]
+rotation = -1.22173
+shadow_enabled = true
+shadow_filter_smooth = 64.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Lighting"]
+color = Color(0.227451, 0.227451, 0.227451, 1)
 
 [node name="Dummy Sprites" type="Node2D" parent="."]
 
@@ -132,8 +145,8 @@ position = Vector2(620, 2309.56)
 scale = Vector2(1.49635, 2.11958)
 
 [node name="PsPillar1" type="Sprite2D" parent="Decor"]
-position = Vector2(622.849, -825.428)
-texture = ExtResource("7_oj236")
+position = Vector2(558.693, -596.137)
+texture = SubResource("CanvasTexture_n10au")
 metadata/_edit_group_ = true
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Decor/PsPillar1"]
@@ -141,8 +154,8 @@ modulate = Color(1, 1, 1, 0)
 occluder = SubResource("OccluderPolygon2D_hfaud")
 
 [node name="PsPillar2" type="Sprite2D" parent="Decor"]
-position = Vector2(914.225, -826.843)
-texture = ExtResource("7_oj236")
+position = Vector2(919.571, -622.557)
+texture = SubResource("CanvasTexture_n10au")
 metadata/_edit_group_ = true
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Decor/PsPillar2"]
