@@ -74,11 +74,12 @@ unique_name_in_owner = true
 [node name="Lighting" type="Node2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Lighting"]
+visible = false
 material = SubResource("ShaderMaterial_5bu17")
-offset_left = 4288.0
-offset_top = 1152.0
-offset_right = 5288.0
-offset_bottom = 2152.0
+offset_left = 491.0
+offset_top = 187.0
+offset_right = 1491.0
+offset_bottom = 1187.0
 scale = Vector2(5, 5)
 metadata/_edit_group_ = true
 
@@ -90,13 +91,11 @@ shadow_color = Color(0.490196, 0.313726, 0.262745, 0.580392)
 texture_scale = 25.0
 
 [node name="PointLight2D2" parent="Lighting" instance=ExtResource("3_m0bhp")]
-position = Vector2(9024, 3072)
-color = Color(1, 1, 0.745098, 1)
+position = Vector2(2534, 1726)
 shadow_color = Color(0.490196, 0.313726, 0.262745, 0.580392)
-texture_scale = 50.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Lighting"]
-color = Color(0.25098, 0.25098, 0.25098, 1)
+color = Color(0.815686, 0.815686, 0.815686, 1)
 
 [node name="Dummy Sprites" type="Node2D" parent="."]
 
