@@ -31,7 +31,7 @@ class ActorSpawnData:
 	var spawn_pos: Vector2
 
 #-------------------------------------------------------------------------------
-# GetSet
+# SetGEt
 #-------------------------------------------------------------------------------
 func set_party_speed(party_speed):
 	party_speed *= GlobalSettings.UNIT

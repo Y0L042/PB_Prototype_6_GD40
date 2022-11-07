@@ -40,7 +40,7 @@ var party_manager: PartyManager
 var pb: Dictionary # party blackboard
 
 #-------------------------------------------------------------------------------
-# GetSet
+# SetGet
 #-------------------------------------------------------------------------------
 func set_max_speed(max_speed):
 	max_speed *= GlobalSettings.UNIT
