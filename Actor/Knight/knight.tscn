@@ -14,7 +14,7 @@
 
 [node name="Knight" instance=ExtResource("1_55pwg")]
 script = ExtResource("2_fx46o")
-max_speed = 150
+max_speed = 5
 health = 3
 turn_force = 0.2
 

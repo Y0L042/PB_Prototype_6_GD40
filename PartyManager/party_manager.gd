@@ -7,7 +7,7 @@ class_name PartyManager
 #-------------------------------------------------------------------------------
 @export var spawn_actors_manually: bool = false
 @export var actor_amount: int
-@export var party_speed: int
+@export var party_speed: int : set = set_party_speed
 
 var pb = {
 	"party_group": null,
@@ -30,7 +30,11 @@ class ActorSpawnData:
 	var party_blackboard: Dictionary
 	var spawn_pos: Vector2
 
-
+#-------------------------------------------------------------------------------
+# GetSet
+#-------------------------------------------------------------------------------
+func set_party_speed(party_speed):
+	party_speed *= GlobalSettings.UNIT
 
 #-------------------------------------------------------------------------------
 # Initialization
