@@ -19,8 +19,8 @@ health = 3
 turn_force = 0.2
 
 [node name="CollBody" parent="." index="0"]
-position = Vector2(0, -98)
-scale = Vector2(10, 10)
+position = Vector2(0, -71)
+scale = Vector2(5, 5)
 shape = SubResource("CircleShape2D_looq6")
 
 [node name="AnimationTree" parent="AnimationPlayer" index="0"]
@@ -28,9 +28,9 @@ tree_root = SubResource("AnimationNodeStateMachine_jqgor")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_artbc")
 
 [node name="BodySprite" parent="Pivot" index="0"]
-position = Vector2(-17, -179)
-scale = Vector2(1.6875, 1.6875)
+position = Vector2(-3, -1)
 texture = ExtResource("3_6gs1s")
+offset = Vector2(0, -108)
 
 [node name="FoV" parent="Pivot" index="2"]
 visible = false
