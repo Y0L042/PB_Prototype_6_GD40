@@ -15,6 +15,7 @@ texture = ExtResource("3_cslgx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 top_level = true
+position = Vector2(-216, 648)
 anchor_mode = 0
 zoom = Vector2(0.25, 0.25)
 limit_smoothed = true

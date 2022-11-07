@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Actor/Knight/knight.gd" id="2_fx46o"]
 [ext_resource type="Texture2D" uid="uid://b3jwmyyh0w4r2" path="res://icon.svg" id="3_6m0sl"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_us5va"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_looq6"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jqgor"]
 
@@ -19,17 +19,22 @@ health = 3
 turn_force = 0.2
 
 [node name="CollBody" parent="." index="0"]
-shape = SubResource("CircleShape2D_us5va")
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_looq6")
 
 [node name="AnimationTree" parent="AnimationPlayer" index="0"]
 tree_root = SubResource("AnimationNodeStateMachine_jqgor")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_artbc")
 
 [node name="BodySprite" parent="Pivot" index="0"]
-scale = Vector2(0.165189, 0.163015)
+scale = Vector2(1.6875, 1.6875)
 texture = ExtResource("3_6m0sl")
+
+[node name="FoV" parent="Pivot" index="2"]
+visible = false
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2d" parent="Pivot/FoV" index="0"]
 visible = false
-scale = Vector2(4, 4)
+scale = Vector2(10, 10)
 shape = SubResource("CircleShape2D_cn7x7")

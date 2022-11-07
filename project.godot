@@ -139,6 +139,7 @@ SceneLib="*res://Autoloads/scene_lib.gd"
 Tools="*res://Autoloads/tools.gd"
 FactionLib="*res://Autoloads/faction_lib.gd"
 SBL="*res://Autoloads/steering_behaviour_lib.gd"
+GlobalSettings="*res://Autoloads/global_settings.gd"
 
 [display]
 
