@@ -5,12 +5,6 @@ class_name PlayerPartyManager
 #-------------------------------------------------------------------------------
 # Initialization
 #-------------------------------------------------------------------------------
-func spawn_actors() -> void:
-	if spawn_actors_manually:
-		var spawn_pos: Vector2 = get_tree().get_node("PlayerSpawn").get_child(0).get_global_position()
-		spawn(spawn_pos, actor_amount)
-
-
 
 
 #-------------------------------------------------------------------------------
