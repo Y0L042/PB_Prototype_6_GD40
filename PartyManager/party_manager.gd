@@ -54,7 +54,7 @@ func spawn_party_actors():
 #-------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
 	pass
-#	move_party_target(delta)
+	move_party_target(delta)
 #	for actor in pb.active_actors:
 #		actor.managed_process()
 
