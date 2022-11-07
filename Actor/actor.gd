@@ -52,6 +52,9 @@ func spawn(spawn_data):
 #-------------------------------------------------------------------------------
 # Runtime
 #-------------------------------------------------------------------------------
+func _physics_process(delta):
+	managed_process()
+
 func managed_process():
 	state_process()
 	steering_move(SBL.steering_vectors_processor(steering_vector_array, max_speed))

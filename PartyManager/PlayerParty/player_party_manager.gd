@@ -8,8 +8,8 @@ class_name PlayerPartyManager
 func spawn_actors() -> void:
 	if spawn_actors_manually:
 		var spawn_pos: Vector2 = get_tree().get_node("PlayerSpawn").get_child(0).get_global_position()
-		set_party_blackboard(actor_amount, spawn_pos)
-		spawn_party_actors()
+		spawn(spawn_pos, actor_amount)
+
 
 
 

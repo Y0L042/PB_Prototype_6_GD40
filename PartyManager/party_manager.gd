@@ -13,11 +13,11 @@ var pb = {
 	"party_group": null,
 	"all_actors": [],
 	"active_actors": [],
-	"party_pos": null,
-	"party_target_pos": null,
-	"party_target_vel": null,
-	"active_actors_count": null,
-	"party_max_speed": null,
+	"party_pos": Vector2.ZERO,
+	"party_target_pos": Vector2.ZERO,
+	"party_target_vel": Vector2.ZERO,
+	"active_actors_count": 0,
+	"party_max_speed": Vector2.ZERO,
 	"party_shader_color": null,
 }
 
@@ -35,11 +35,12 @@ class ActorSpawnData:
 #-------------------------------------------------------------------------------
 # Initialization
 #-------------------------------------------------------------------------------
-func set_party_blackboard(new_actor_count: int = 0, new_spawn_pos: Vector2 = Vector2.ZERO) -> void:
+func spawn(new_spawn_pos: Vector2 = Vector2.ZERO, new_actor_count: int = 0):
 	pb.party_pos = new_spawn_pos
 	pb.party_target_pos = pb.party_pos # temp
 	pb.active_actors_count = new_actor_count
 	pb.party_group = get_groups()[0]
+	spawn_party_actors()
 
 
 func spawn_party_actors():
@@ -52,9 +53,10 @@ func spawn_party_actors():
 # Runtime
 #-------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
-	move_party_target(delta)
-	for actor in pb.active_actors:
-		actor.managed_process()
+	pass
+#	move_party_target(delta)
+#	for actor in pb.active_actors:
+#		actor.managed_process()
 
 
 

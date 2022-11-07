@@ -1,10 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cd487np5ha3y7"]
+[gd_scene load_steps=2 format=3 uid="uid://d8pna4apkoj2"]
 
-[ext_resource type="TileSet" uid="uid://dj34tsxtpy0tf" path="res://Assets/Block Tileset/new_tile_set.tres" id="1_gqfmf"]
+[ext_resource type="TileSet" uid="uid://dj34tsxtpy0tf" path="res://Assets/Block Tileset/block_tileset.tres" id="1_xu7xp"]
 
 [node name="CommonTileMap" type="TileMap"]
 unique_name_in_owner = true
-tile_set = ExtResource("1_gqfmf")
+tile_set = ExtResource("1_xu7xp")
 format = 2
 layer_0/name = "BlueprintWorld"
 layer_1/name = "BlueprintSpawn"

@@ -1,0 +1,12 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dj34tsxtpy0tf"]
+
+[ext_resource type="Texture2D" uid="uid://nk2rolmowsxh" path="res://Assets/Block Tileset/block_asset.png" id="1_nnml3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ngjbl"]
+texture = ExtResource("1_nnml3")
+texture_region_size = Vector2i(216, 216)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(216, 216)
+sources/0 = SubResource("TileSetAtlasSource_ngjbl")
