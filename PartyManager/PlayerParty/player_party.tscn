@@ -6,7 +6,7 @@
 
 [node name="PlayerParty" type="Node2D" groups=["Player"]]
 script = ExtResource("1_tkij5")
-party_speed = 150
+party_speed = 1080
 
 [node name="Camera2d" type="Camera2D" parent="."]
 current = true
