@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://db15mx0uooog4" path="res://Actor/actor.tscn" id="1_55pwg"]
 [ext_resource type="Script" path="res://Actor/Knight/knight.gd" id="2_fx46o"]
-[ext_resource type="Texture2D" uid="uid://b3jwmyyh0w4r2" path="res://icon.svg" id="3_6m0sl"]
+[ext_resource type="Texture2D" uid="uid://cxw1vbc83ufdw" path="res://Assets/Photoshop/Knight1.png" id="3_6gs1s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_looq6"]
 
@@ -19,6 +19,7 @@ health = 3
 turn_force = 0.2
 
 [node name="CollBody" parent="." index="0"]
+position = Vector2(0, -98)
 scale = Vector2(10, 10)
 shape = SubResource("CircleShape2D_looq6")
 
@@ -27,8 +28,9 @@ tree_root = SubResource("AnimationNodeStateMachine_jqgor")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_artbc")
 
 [node name="BodySprite" parent="Pivot" index="0"]
+position = Vector2(-17, -179)
 scale = Vector2(1.6875, 1.6875)
-texture = ExtResource("3_6m0sl")
+texture = ExtResource("3_6gs1s")
 
 [node name="FoV" parent="Pivot" index="2"]
 visible = false

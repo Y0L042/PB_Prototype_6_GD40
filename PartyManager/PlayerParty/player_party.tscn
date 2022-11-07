@@ -5,11 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://2urlymjx1x2h" path="res://Camera/free-png-target-bullseye-target-png-1323-3427143875.png" id="3_weqwt"]
 
 [node name="PlayerParty" type="Node2D" groups=["Player"]]
+y_sort_enabled = true
 script = ExtResource("1_tkij5")
 party_speed = 5
 
 [node name="Camera2d" type="Camera2D" parent="."]
 current = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 script = ExtResource("2_ghsyt")
 zoom_level = 0.25
 MIN_ZOOM = 0.5

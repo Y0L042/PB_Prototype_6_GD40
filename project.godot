@@ -52,7 +52,7 @@ _global_script_classes=[{
 "base": "Node",
 "class": &"MapDataObject",
 "language": &"GDScript",
-"path": "res://Maps/mapdata_object.gd"
+"path": "res://Maps/_Obsolete/mapdata_object.gd"
 }, {
 "base": "Node",
 "class": &"MapGeneratorManager",

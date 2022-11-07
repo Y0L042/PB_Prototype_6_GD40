@@ -14,6 +14,7 @@ scale = Vector2(50, 50)
 texture = ExtResource("3_cslgx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 top_level = true
 position = Vector2(-216, 648)
 anchor_mode = 0
@@ -42,6 +43,7 @@ metadata/_edit_lock_ = true
 scale = Vector2(1.49635, 2.11958)
 
 [node name="Measurements" type="Node2D" parent="."]
+visible = false
 scale = Vector2(0.84375, 0.84375)
 metadata/_edit_group_ = true
 

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca62o65ibtuhx"]
+
+[ext_resource type="PackedScene" uid="uid://d8pna4apkoj2" path="res://Maps/common_tilemap.tscn" id="1_ekqqp"]
+
+[node name="BaseMap" type="Node2D"]
+
+[node name="CommonTileMap" parent="." instance=ExtResource("1_ekqqp")]
+
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="PlayerSpawn" type="Marker2D" parent="Spawns"]
+position = Vector2(0, 1)
+
+[node name="EnemySpawns" type="Node2D" parent="Spawns"]
+
+[node name="ItemSpawns" type="Node2D" parent="Spawns"]
