@@ -14,5 +14,5 @@ process_callback = 0
 script = ExtResource("2_ghsyt")
 
 [node name="Sprite2d" type="Sprite2D" parent="Camera2d"]
-scale = Vector2(0.01, 0.01)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_weqwt")
