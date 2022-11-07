@@ -6,11 +6,14 @@
 
 [node name="PlayerParty" type="Node2D" groups=["Player"]]
 script = ExtResource("1_tkij5")
-party_speed = 1080
+party_speed = 5
 
 [node name="Camera2d" type="Camera2D" parent="."]
 current = true
 script = ExtResource("2_ghsyt")
+zoom_level = 0.25
+MIN_ZOOM = 0.5
+MAX_ZOOM = 0.1
 setMaster = true
 
 [node name="Sprite2d" type="Sprite2D" parent="Camera2d"]

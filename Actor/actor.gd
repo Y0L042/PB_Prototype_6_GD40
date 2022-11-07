@@ -5,7 +5,7 @@ class_name Actor
 #-------------------------------------------------------------------------------
 # Properties
 #-------------------------------------------------------------------------------
-@export var max_speed: int
+@export var max_speed: int : set = set_max_speed
 @export var friction: float
 @export var fov: int
 @export var view_distance: int
@@ -39,6 +39,11 @@ var arrivedAtTarget: bool = false
 var party_manager: PartyManager
 var pb: Dictionary # party blackboard
 
+#-------------------------------------------------------------------------------
+# GetSet
+#-------------------------------------------------------------------------------
+func set_max_speed(max_speed):
+	max_speed *= GlobalSettings.UNIT
 
 #-------------------------------------------------------------------------------
 # Initialization
