@@ -10,6 +10,7 @@ var player_party_manager: PlayerPartyManager
 var level_list: Array
 var current_level
 
+var pause_menu = SceneLib.spawn_child(SceneLib.UI_PAUSE_MENU, self)
 var current_menu
 
 
@@ -49,12 +50,15 @@ func spawn_player_manager():
 func _level_ConditionSignal():
 	print("Condition met")
 	current_level.ConditionSignal.disconnect(_level_ConditionSignal)
+	var choice_menu = SceneLib.spawn_child(SceneLib.UI_ENDOFLEVELCHOICE, self)
+	# enable circle portals or whatever
 	
 	
 
 # next chosen level is placed on map
 func place_new_map(new_map):
 	new_map = SceneLib.spawn_child(new_map, self)
+	new_map.ConditionSignal.connect(_level_ConditionSignal)
 	level_list.append(new_map)
 
 
@@ -64,6 +68,7 @@ func place_new_map(new_map):
 func spawn_MainMenu():
 	var main_menu = SceneLib.spawn_child(SceneLib.UI_MAIN_MENU, self)
 	main_menu.btn_StartNewGame.pressed.connect(_on_ui_main_menu_start_new_game)
+#	main_menu.btn_Quit.pressed.connect(#quit)
 	
 	return main_menu
 	
@@ -77,6 +82,4 @@ func spawn_MainMenu():
 #-------------------------------------------------------------------------------
 # UI Interaction
 #-------------------------------------------------------------------------------
-#func _unhandled_input(event: InputEvent) -> void:
-#	if event.is_action_pressed("ui_cancel"):
-#		pause_menu.pause()
+
