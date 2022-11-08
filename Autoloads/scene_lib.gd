@@ -26,11 +26,11 @@ const TILES =  {
 	"BLACK": Vector2i(1,0),
 }
 
-var STARTING_MAP: PackedScene =  load("res://Maps/Starting Map/starting_map.tscn")
-var FOREST_MAP: PackedScene = load("res://Maps/Forest Map/forest_map.tscn")
-var DUNGEON_MAP: PackedScene = load("res://Maps/Dungeon Map/dungeon_map.tscn")
-var CASTLE_MAP: PackedScene = load("res://Maps/Castle Map/castle_map.tscn")
-var TINYKEEP_WORLDGEN: PackedScene = load("res://Procedural Map Worlds/TinyKeep World/tiny_keep_world.tscn")
+#var STARTING_MAP: PackedScene =  load("res://Maps/Starting Map/starting_map.tscn")
+#var FOREST_MAP: PackedScene = load("res://Maps/Forest Map/forest_map.tscn")
+#var DUNGEON_MAP: PackedScene = load("res://Maps/Dungeon Map/dungeon_map.tscn")
+#var CASTLE_MAP: PackedScene = load("res://Maps/Castle Map/castle_map.tscn")
+#var TINYKEEP_WORLDGEN: PackedScene = load("res://Procedural Map Worlds/TinyKeep World/tiny_keep_world.tscn")
 
 var map_generator: Dictionary = {
 	"noise_map": NoiseWorldGenerator,
@@ -45,8 +45,9 @@ var TINYKEEP_ROOM: PackedScene = load("res://Procedural Map Worlds/TinyKeep Worl
 #-------------------------------------------------------------------------------
 # UI
 #-------------------------------------------------------------------------------
-var MAIN_MENU: PackedScene = load("res://UI/ui_main_menu.tscn")
-var PAUSE_MENU: PackedScene = load("res://UI/ui_pause_menu.tscn")
+var UI_MAIN_MENU: PackedScene = load("res://UI/ui_main_menu.tscn")
+var UI_PAUSE_MENU: PackedScene = load("res://UI/ui_pause_menu.tscn")
+var UI_ENDOFLEVELCHOICE: PackedScene = load("res://UI/end_of_level_choice.tscn")
 
 
 #-------------------------------------------------------------------------------

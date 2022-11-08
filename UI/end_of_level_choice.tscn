@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://d1gfg50mjgo8u"]
+
+[node name="EndOfLevel_Choice" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/CenterContainer"]
+offset_left = 1770.0
+offset_top = 1064.0
+offset_right = 1869.0
+offset_bottom = 1095.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer"]
+offset_right = 99.0
+offset_bottom = 31.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer"]
+offset_right = 99.0
+offset_bottom = 31.0
+
+[node name="Choice 1" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+offset_right = 41.0
+offset_bottom = 31.0
+size_flags_horizontal = 0
+text = "East"
+
+[node name="Choice 2" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+offset_left = 45.0
+offset_right = 99.0
+offset_bottom = 31.0
+text = "South
+"

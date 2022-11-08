@@ -8,25 +8,31 @@ class_name Main
 #-------------------------------------------------------------------------------
 var player_party_manager: PlayerPartyManager
 var level_list: Array
+var current_level
 
-
-
+var current_menu
 
 
 
 #-------------------------------------------------------------------------------
 # Initialisation
 #-------------------------------------------------------------------------------
-func _on_ui_main_menu_start_new_game(main_menu) -> void:
-	var first_level = SceneLib.leveled_list_maps[0]
-	var starting_level = spawn_first_level(main_menu, first_level, self)
-	spawn_player_manager()
+func _ready():
+	current_menu = spawn_MainMenu()
 	
-func spawn_first_level(old_level, new_level, parent):
-	old_level.queue_free()
+
+func _on_ui_main_menu_start_new_game() -> void:
+	var first_level = SceneLib.leveled_list_maps[0]
+	var starting_level = spawn_first_level(first_level)
+	spawn_player_manager()
+	current_menu.queue_free()
+	
+	
+func spawn_first_level(new_level):
 	new_level = SceneLib.spawn_child(new_level, self)
 	new_level.ConditionSignal.connect(_level_ConditionSignal)
 	level_list.append(new_level)
+	current_level = new_level
 
 
 func spawn_player_manager():
@@ -39,16 +45,28 @@ func spawn_player_manager():
 # Events
 #-------------------------------------------------------------------------------
 
+#level condition signal emits and triggers choice for next levels
 func _level_ConditionSignal():
 	print("Condition met")
-	pass
-
-
-func place_new_map(new_map):
+	current_level.ConditionSignal.disconnect(_level_ConditionSignal)
 	
+	
+
+# next chosen level is placed on map
+func place_new_map(new_map):
 	new_map = SceneLib.spawn_child(new_map, self)
 	level_list.append(new_map)
 
+
+#-------------------------------------------------------------------------------
+# UI Main Menu
+#-------------------------------------------------------------------------------
+func spawn_MainMenu():
+	var main_menu = SceneLib.spawn_child(SceneLib.UI_MAIN_MENU, self)
+	main_menu.btn_StartNewGame.pressed.connect(_on_ui_main_menu_start_new_game)
+	
+	return main_menu
+	
 #-------------------------------------------------------------------------------
 # Runtime
 #-------------------------------------------------------------------------------

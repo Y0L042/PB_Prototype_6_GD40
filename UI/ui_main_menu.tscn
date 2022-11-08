@@ -28,12 +28,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/CenterContainer"]
-layout_mode = 2
 offset_right = 167.0
 offset_bottom = 155.0
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer"]
-layout_mode = 2
 offset_right = 167.0
 offset_bottom = 155.0
 theme_override_constants/margin_left = 16
@@ -42,7 +40,6 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
 offset_left = 16.0
 offset_top = 8.0
 offset_right = 151.0
@@ -50,21 +47,20 @@ offset_bottom = 139.0
 
 [node name="MenuLabel" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_right = 135.0
 offset_bottom = 26.0
 text = "Main Menu"
 horizontal_alignment = 1
 
 [node name="ContinueGame" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
+unique_name_in_owner = true
 offset_top = 30.0
 offset_right = 135.0
 offset_bottom = 61.0
 text = "Continue"
 
 [node name="StartNewGame" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
+unique_name_in_owner = true
 offset_top = 65.0
 offset_right = 135.0
 offset_bottom = 96.0
@@ -72,12 +68,8 @@ text = "Start New Game
 "
 
 [node name="Quit" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
+unique_name_in_owner = true
 offset_top = 100.0
 offset_right = 135.0
 offset_bottom = 131.0
 text = "Quit"
-
-[connection signal="pressed" from="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueGame" to="." method="_on_continue_game_pressed"]
-[connection signal="pressed" from="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/StartNewGame" to="." method="_on_start_new_game_pressed"]
-[connection signal="pressed" from="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

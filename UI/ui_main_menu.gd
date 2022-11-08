@@ -2,6 +2,14 @@ extends Control
 
 signal startNewGame
 
+@onready var btn_ContinueGame = %ContinueGame
+@onready var btn_StartNewGame = %StartNewGame
+@onready var btn_Quit = %Quit
+
+
+
+
+
 func _ready() -> void:
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
