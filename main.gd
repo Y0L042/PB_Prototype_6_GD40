@@ -3,18 +3,11 @@ extends Node2D
 class_name Main
 
 
-
+#-------------------------------------------------------------------------------
+# Variables
+#-------------------------------------------------------------------------------
 var player_party_manager: PlayerPartyManager
 var level_list: Array
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 
 
@@ -25,33 +18,43 @@ func _process(delta: float) -> void:
 # Initialisation
 #-------------------------------------------------------------------------------
 func _on_ui_main_menu_start_new_game(main_menu) -> void:
-	var first_level = SceneLib.STARTING_MAP
-	var starting_level = change_level(main_menu, first_level, self)
+	var first_level = SceneLib.leveled_list_maps[0]
+	var starting_level = spawn_first_level(main_menu, first_level, self)
 	spawn_player_manager()
+	
+func spawn_first_level(old_level, new_level, parent):
+	old_level.queue_free()
+	new_level = SceneLib.spawn_child(new_level, self)
+	new_level.ConditionSignal.connect(_level_ConditionSignal)
+	level_list.append(new_level)
 
 
 func spawn_player_manager():
 	player_party_manager = SceneLib.spawn_child(SceneLib.PLAYER_PARTY, self)
-	player_party_manager.spawn(level_list[0].player_manager_spawn_pos, 10)
-
-
-
+	player_party_manager.spawn(level_list[0].player_spawn_pos, 10)
 
 
 
 #-------------------------------------------------------------------------------
 # Events
 #-------------------------------------------------------------------------------
-func change_level(old_level, new_level, parent):
-	old_level.queue_free()
-	new_level = SceneLib.spawn_child(new_level, self)
-	level_list.append(new_level)
-	return new_level
 
+func _level_ConditionSignal():
+	print("Condition met")
+	pass
+
+
+func place_new_map(new_map):
+	
+	new_map = SceneLib.spawn_child(new_map, self)
+	level_list.append(new_map)
 
 #-------------------------------------------------------------------------------
 # Runtime
 #-------------------------------------------------------------------------------
+
+
+
 
 #-------------------------------------------------------------------------------
 # UI Interaction

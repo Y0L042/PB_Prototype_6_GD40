@@ -15,6 +15,11 @@ _global_script_classes=[{
 "path": "res://Actor/actor.gd"
 }, {
 "base": "Node2D",
+"class": &"BaseMapScript",
+"language": &"GDScript",
+"path": "res://Maps/base_map_script.gd"
+}, {
+"base": "Node2D",
 "class": &"BetterLight2D",
 "language": &"GDScript",
 "path": "res://addons/better_2d_shadows/better_2d_light.gd"
@@ -28,6 +33,11 @@ _global_script_classes=[{
 "class": &"Delaunay",
 "language": &"GDScript",
 "path": "res://addons/gdDelaunay/Delaunay.gd"
+}, {
+"base": "Node2D",
+"class": &"DockScript",
+"language": &"GDScript",
+"path": "res://Maps/docks.gd"
 }, {
 "base": "PartyManager",
 "class": &"EnemyPartyManager",
@@ -43,6 +53,11 @@ _global_script_classes=[{
 "class": &"KnightActor",
 "language": &"GDScript",
 "path": "res://Actor/Knight/knight.gd"
+}, {
+"base": "BaseMapScript",
+"class": &"Level000",
+"language": &"GDScript",
+"path": "res://Maps/Starting Map/level_000.gd"
 }, {
 "base": "Node2D",
 "class": &"Main",
@@ -102,16 +117,19 @@ _global_script_classes=[{
 "base": "Node2D",
 "class": &"_CLASS_",
 "language": &"GDScript",
-"path": "res://script_templates/Node2D/StateMachineTemplate.gd"
+"path": "res://script_templates_DISABLED/Node2D/StateMachineTemplate.gd"
 }]
 _global_script_class_icons={
 "Actor": "",
+"BaseMapScript": "",
 "BetterLight2D": "",
 "BetterShadow2D": "",
 "Delaunay": "",
+"DockScript": "",
 "EnemyPartyManager": "",
 "FDB": "",
 "KnightActor": "",
+"Level000": "",
 "Main": "",
 "MapDataObject": "",
 "MapGeneratorManager": "",

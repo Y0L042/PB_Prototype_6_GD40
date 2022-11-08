@@ -13,6 +13,14 @@ var KNIGHT: PackedScene = load("res://Actor/Knight/knight.tscn")
 #-------------------------------------------------------------------------------
 # Maps
 #-------------------------------------------------------------------------------
+var leveled_list_maps: Array = [
+	load("res://Maps/Starting Map/level_000.tscn"),
+	load("res://Maps/Level 1/Level 1.1/level_101.tscn"),
+]
+
+
+
+
 const TILES =  {
 	"WHITE": Vector2i(0,0),
 	"BLACK": Vector2i(1,0),
