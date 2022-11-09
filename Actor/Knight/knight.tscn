@@ -21,7 +21,6 @@ fov = 5
 view_distance = 5.0
 health = 3
 turn_force = 0.2
-weapon_scene = ExtResource("3_v57ja")
 
 [node name="CollBody" parent="." index="0"]
 position = Vector2(0, -71)
@@ -38,14 +37,6 @@ texture = ExtResource("3_6gs1s")
 offset = Vector2(0, -108)
 
 [node name="Sword1" parent="Pivot/WeaponMarker" index="0" instance=ExtResource("3_v57ja")]
-
-[node name="Sword2" parent="Pivot/WeaponMarker" index="1" instance=ExtResource("3_v57ja")]
-
-[node name="Sword3" parent="Pivot/WeaponMarker" index="2" instance=ExtResource("3_v57ja")]
-
-[node name="Sword4" parent="Pivot/WeaponMarker" index="3" instance=ExtResource("3_v57ja")]
-
-[node name="Sword5" parent="Pivot/WeaponMarker" index="4" instance=ExtResource("3_v57ja")]
 
 [node name="CollisionShape2D" parent="Pivot/FOV_Area" index="0"]
 shape = SubResource("CircleShape2D_b1vlk")

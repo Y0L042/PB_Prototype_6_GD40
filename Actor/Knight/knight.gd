@@ -60,20 +60,23 @@ func state_process_passive():
 
 func state_process_aggressive():
 	var stopdist: float = GlobalSettings.UNIT * 0.9
-	if FOV_enemy_list.size() > 1:
-		FOV_enemy_list.sort_custom(
-			func sort_ascending(a, b):
-				if self.get_global_position().distance_squared_to(a.get_global_position()) < self.get_global_position().distance_squared_to(b.get_global_position()):
-					return true
-				else:
-					return false
-		)
+
+	var enemy_distance_squared: float = get_global_position().distance_squared_to(FOV_enemy_list[0].get_global_position())
+	for enemy in FOV_enemy_list:
+		var dist: float = get_global_position().distance_squared_to(enemy.get_global_position())
+		if enemy_distance_squared > dist:
+			enemy_distance_squared = dist
 
 	var enemy_target: Vector2 = FOV_enemy_list[0].get_global_position()
 	var seek_target = SBL.arrive(get_global_position(), enemy_target, stopdist)
 	steering_vector_array.append(seek_target)
 
+	for weapon in weapon_array:
+		if enemy_distance_squared <= (weapon.attack_range*weapon.attack_range):
+			weapon.attack()
 
+	if !isAlive:
+		change_state(states.DEAD)
 
 func state_process_hurt():
 	pass
@@ -81,7 +84,7 @@ func state_process_hurt():
 
 
 func state_process_dead():
-	pass
+	self.queue_free()
 
 
 
