@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://Maps/_Obsolete/Castle Map/castle_map.gd" id="1_7t1k4"]
-[ext_resource type="PackedScene" uid="uid://d8pna4apkoj2" path="res://Maps/common_tilemap.tscn" id="2_o3hx5"]
+[ext_resource type="PackedScene" uid="uid://d8pna4apkoj2" path="res://Maps/_BaseMaterials/common_tilemap.tscn" id="2_o3hx5"]
 
 
 [node name="CastleMap" type="Node2D"]

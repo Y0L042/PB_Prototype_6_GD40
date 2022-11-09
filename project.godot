@@ -15,9 +15,14 @@ _global_script_classes=[{
 "path": "res://Actor/actor.gd"
 }, {
 "base": "Node2D",
+"class": &"BaseCondition",
+"language": &"GDScript",
+"path": "res://Maps/_BaseMaterials/condition_script.gd"
+}, {
+"base": "Node2D",
 "class": &"BaseMapScript",
 "language": &"GDScript",
-"path": "res://Maps/base_map_script.gd"
+"path": "res://Maps/_BaseMaterials/base_map_script.gd"
 }, {
 "base": "Node2D",
 "class": &"BetterLight2D",
@@ -37,7 +42,7 @@ _global_script_classes=[{
 "base": "Node2D",
 "class": &"DockScript",
 "language": &"GDScript",
-"path": "res://Maps/docks.gd"
+"path": "res://Maps/_BaseMaterials/docks.gd"
 }, {
 "base": "PartyManager",
 "class": &"EnemyPartyManager",
@@ -57,12 +62,17 @@ _global_script_classes=[{
 "base": "BaseMapScript",
 "class": &"Level000",
 "language": &"GDScript",
-"path": "res://Maps/Starting Map/level_000.gd"
+"path": "res://Maps/Level 0/level_000.gd"
 }, {
 "base": "Node2D",
-"class": &"Main",
+"class": &"MainGame",
 "language": &"GDScript",
-"path": "res://main.gd"
+"path": "res://Maps/Main Game/main_game_script.gd"
+}, {
+"base": "Node2D",
+"class": &"MainMenu",
+"language": &"GDScript",
+"path": "res://Maps/Main Menu/main_menu_script.gd"
 }, {
 "base": "Node",
 "class": &"MapDataObject",
@@ -121,6 +131,7 @@ _global_script_classes=[{
 }]
 _global_script_class_icons={
 "Actor": "",
+"BaseCondition": "",
 "BaseMapScript": "",
 "BetterLight2D": "",
 "BetterShadow2D": "",
@@ -130,7 +141,8 @@ _global_script_class_icons={
 "FDB": "",
 "KnightActor": "",
 "Level000": "",
-"Main": "",
+"MainGame": "",
+"MainMenu": "",
 "MapDataObject": "",
 "MapGeneratorManager": "",
 "NoiseWorldGenerator": "",
@@ -147,7 +159,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Pb Prototype 6 Gd 40"
-run/main_scene="res://main.tscn"
+run/main_scene="res://Maps/Main Menu/main_menu.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
 

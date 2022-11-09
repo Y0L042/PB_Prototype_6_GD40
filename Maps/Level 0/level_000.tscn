@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://becmmab0d0u1e"]
+[gd_scene load_steps=3 format=3 uid="uid://bamq5emjevwn0"]
 
-[ext_resource type="PackedScene" uid="uid://ca62o65ibtuhx" path="res://Maps/base_map.tscn" id="1_e862l"]
-[ext_resource type="Script" path="res://Maps/Starting Map/level_000.gd" id="2_qaqmt"]
+[ext_resource type="PackedScene" uid="uid://ca62o65ibtuhx" path="res://Maps/_BaseMaterials/base_map.tscn" id="1_e862l"]
+[ext_resource type="Script" path="res://Maps/Level 0/level_000.gd" id="2_qaqmt"]
 
 [node name="Level 000" instance=ExtResource("1_e862l")]
 script = ExtResource("2_qaqmt")

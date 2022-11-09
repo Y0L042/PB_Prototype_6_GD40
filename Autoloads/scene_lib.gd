@@ -13,8 +13,12 @@ var KNIGHT: PackedScene = load("res://Actor/Knight/knight.tscn")
 #-------------------------------------------------------------------------------
 # Maps
 #-------------------------------------------------------------------------------
+# Controllers
+var MAIN_MENU_c: PackedScene = load("res://Maps/Main Menu/main_menu.tscn")
+var MAIN_GAME_c: PackedScene = load("res://Maps/Main Game/main_game.tscn")
+
 var leveled_list_maps: Array = [
-	load("res://Maps/Starting Map/level_000.tscn"),
+	load("res://Maps/Level 0/level_000.tscn"),
 	load("res://Maps/Level 1/Level 1.1/level_101.tscn"),
 ]
 
@@ -62,3 +66,8 @@ func spawn_child(child: PackedScene, parent):
 
 func change_scene():
 	pass
+
+func save_game():
+	print("TBI - Save Game")
+func load_game():
+	print("TBI = Load Game")

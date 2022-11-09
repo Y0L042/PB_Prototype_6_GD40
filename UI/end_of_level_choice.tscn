@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://d1gfg50mjgo8u"]
+[gd_scene load_steps=2 format=3 uid="uid://d1gfg50mjgo8u"]
+
+[ext_resource type="Script" path="res://UI/end_of_level_choice_script.gd" id="1_pkl6t"]
 
 [node name="EndOfLevel_Choice" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_pkl6t")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -45,3 +48,6 @@ offset_right = 99.0
 offset_bottom = 31.0
 text = "South
 "
+
+[connection signal="pressed" from="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/Choice 1" to="." method="_on_choice_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/Choice 2" to="." method="_on_choice_2_pressed"]
