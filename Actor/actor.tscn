@@ -27,5 +27,6 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_fio7w")
 [node name="WeaponMarker" type="Marker2D" parent="Pivot"]
 
 [node name="FOV_Area" type="Area2D" parent="Pivot"]
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/FOV_Area"]

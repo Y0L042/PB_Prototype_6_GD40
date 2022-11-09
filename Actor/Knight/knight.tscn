@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dai25fcq3236"]
+[gd_scene load_steps=9 format=3 uid="uid://dai25fcq3236"]
 
 [ext_resource type="PackedScene" uid="uid://db15mx0uooog4" path="res://Actor/actor.tscn" id="1_55pwg"]
 [ext_resource type="Script" path="res://Actor/Knight/knight.gd" id="2_fx46o"]
 [ext_resource type="Texture2D" uid="uid://cxw1vbc83ufdw" path="res://Assets/Photoshop/Knight1.png" id="3_6gs1s"]
+[ext_resource type="PackedScene" uid="uid://bb52gs5k12t1u" path="res://Weapons/Sword/sword.tscn" id="3_v57ja"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_looq6"]
 
@@ -20,6 +21,7 @@ fov = 5
 view_distance = 5.0
 health = 3
 turn_force = 0.2
+weapon_scene = ExtResource("3_v57ja")
 
 [node name="CollBody" parent="." index="0"]
 position = Vector2(0, -71)
@@ -35,8 +37,19 @@ position = Vector2(-3, -1)
 texture = ExtResource("3_6gs1s")
 offset = Vector2(0, -108)
 
+[node name="Sword1" parent="Pivot/WeaponMarker" index="0" instance=ExtResource("3_v57ja")]
+
+[node name="Sword2" parent="Pivot/WeaponMarker" index="1" instance=ExtResource("3_v57ja")]
+
+[node name="Sword3" parent="Pivot/WeaponMarker" index="2" instance=ExtResource("3_v57ja")]
+
+[node name="Sword4" parent="Pivot/WeaponMarker" index="3" instance=ExtResource("3_v57ja")]
+
+[node name="Sword5" parent="Pivot/WeaponMarker" index="4" instance=ExtResource("3_v57ja")]
+
 [node name="CollisionShape2D" parent="Pivot/FOV_Area" index="0"]
 shape = SubResource("CircleShape2D_b1vlk")
 
+[connection signal="EnemySpotted" from="." to="." method="_on_enemy_spotted"]
 [connection signal="body_entered" from="Pivot/FOV_Area" to="." method="_on_fov_area_body_entered"]
 [connection signal="body_exited" from="Pivot/FOV_Area" to="." method="_on_fov_area_body_exited"]

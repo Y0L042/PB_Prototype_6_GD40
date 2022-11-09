@@ -59,7 +59,19 @@ func state_process_passive():
 
 
 func state_process_aggressive():
-	pass
+	var stopdist: float = GlobalSettings.UNIT * 0.9
+	if FOV_enemy_list.size() > 1:
+		FOV_enemy_list.sort_custom(
+			func sort_ascending(a, b):
+				if self.get_global_position().distance_squared_to(a.get_global_position()) < self.get_global_position().distance_squared_to(b.get_global_position()):
+					return true
+				else:
+					return false
+		)
+
+	var enemy_target: Vector2 = FOV_enemy_list[0].get_global_position()
+	var seek_target = SBL.arrive(get_global_position(), enemy_target, stopdist)
+	steering_vector_array.append(seek_target)
 
 
 
@@ -75,14 +87,19 @@ func state_process_dead():
 
 
 func _on_fov_area_body_entered(body: Node2D) -> void:
-	if body != self and body.pb.party_group != self.pb.party_group:
+	if body != self and body.pb.party_group != self.pb.party_group and body.isAlive:
+		if FOV_enemy_list.is_empty():
+			EnemySpotted.emit()
 		FOV_enemy_list.append(body)
-		print("i c u")
-		print(body)
+
+
 
 
 func _on_fov_area_body_exited(body: Node2D) -> void:
 	if body != self and body.pb.party_group != self.pb.party_group:
 		FOV_enemy_list.erase(body)
-		print("i dont c u no more")
-		print(body)
+
+
+
+func _on_enemy_spotted() -> void:
+	change_state(states.AGGRESSIVE)

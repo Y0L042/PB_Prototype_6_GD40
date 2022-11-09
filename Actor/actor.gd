@@ -9,9 +9,10 @@ class_name Actor
 @export var friction: float
 @export var fov: int
 @export var view_distance: float : set = set_view_distance
-@export var health: int
+@export var health: int : set = set_health
 @export var turn_force: float
 @export var myself = self
+@export var isAlive: bool = true
 
 
 
@@ -27,14 +28,16 @@ var arrivedAtTarget: bool = false
 #-------------------------------------------------------------------------------
 @onready var body_sprite: Sprite2D = $Pivot/BodySprite
 @onready var actor_anim_tree: AnimationTree = $AnimationPlayer/AnimationTree
-@export @onready var weapon_scene: PackedScene
 @onready var FOV_area: Area2D = $Pivot/FOV_Area
 @onready var pivot_marker: Marker2D = $Pivot
 @onready var weapon_marker: Marker2D = $Pivot/WeaponMarker
 @onready var actor_anim_tree_mode = actor_anim_tree["parameters/playback"]
 
+signal EnemySpotted
+
 var actor_target_velocity: Vector2
 var FOV_enemy_list: Array
+var weapon_array: Array
 
 #-------------------------------------------------------------------------------
 # Party Variables
@@ -53,6 +56,14 @@ func set_view_distance(new_view_distance):
 func get_view_distance() -> float:
 	return view_distance
 
+func set_health(new_health):
+	health = new_health
+
+func modify_health(health_modifier):
+	health += health_modifier
+	if health <= 0:
+		isAlive = false
+
 #-------------------------------------------------------------------------------
 # Initialization
 #-------------------------------------------------------------------------------
@@ -62,6 +73,11 @@ func spawn(spawn_data):
 	set_global_position(spawn_data.spawn_pos)
 	add_to_group(pb.party_group)
 	FOV_area.scale = Vector2(get_view_distance(), get_view_distance())
+	for weapon in weapon_marker.get_children():
+		weapon.group = pb.party_group
+		var weapon_offset: int = 75
+		weapon.set_position(Vector2(randi_range(-weapon_offset, weapon_offset), randi_range(-weapon_offset, weapon_offset)))
+		weapon_array.append(weapon)
 
 #-------------------------------------------------------------------------------
 # Runtime
@@ -79,6 +95,12 @@ func steering_move(final_velocity: Vector2):
 	velocity += (final_velocity - velocity) * turn_force
 	move_and_slide()
 
+#-------------------------------------------------------------------------------
+# Events
+#-------------------------------------------------------------------------------
+func take_damage(damage: float):
+	modify_health(damage)
+	# play damage effect/move to damage state or something
 
 #-------------------------------------------------------------------------------
 # States
@@ -134,6 +156,7 @@ func flip_sprite(look_dir: Vector2 = velocity): #please improve this
 	pass
 
 
-func rotate_sword():
+func rotate_weapon():
 	var angle: float = get_global_position().angle_to(velocity)
-	weapon_scene.set_rotation(angle - PI)
+	for weapon in weapon_array:
+		weapon.set_rotation(angle - PI)
