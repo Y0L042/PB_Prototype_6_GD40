@@ -32,5 +32,6 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_fio7w")
 [node name="WeaponMarker" type="Marker2D" parent="Pivot"]
 
 [node name="FoV" type="Area2D" parent="Pivot"]
+unique_name_in_owner = true
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="Pivot/FoV"]

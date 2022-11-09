@@ -8,7 +8,7 @@ class_name Actor
 @export var max_speed: int : set = set_max_speed
 @export var friction: float
 @export var fov: int
-@export var view_distance: int
+@export var view_distance: float : set = set_view_distance
 @export var health: int
 @export var turn_force: float
 
@@ -44,6 +44,10 @@ var pb: Dictionary # party blackboard
 #-------------------------------------------------------------------------------
 func set_max_speed(max_speed):
 	max_speed *= GlobalSettings.UNIT
+
+func set_view_distance(view_distance):
+	view_distance *= GlobalSettings.UNIT
+	FOV_area.scale = view_distance
 
 #-------------------------------------------------------------------------------
 # Initialization
