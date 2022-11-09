@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://Maps/Main Game/main_game_script.gd" id="1_0qpaf"]
 
 [node name="MainGame" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_0qpaf")

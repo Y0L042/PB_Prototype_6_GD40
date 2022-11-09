@@ -18,3 +18,6 @@ signal ConditionSignal
 	%West.get_global_position(),
 	%North.get_global_position()
 ]
+
+
+

@@ -57,10 +57,10 @@ var UI_ENDOFLEVELCHOICE: PackedScene = load("res://UI/end_of_level_choice.tscn")
 #-------------------------------------------------------------------------------
 # Scene Tools
 #-------------------------------------------------------------------------------
-func spawn_child(child: PackedScene, parent):
+func spawn_child(child: PackedScene, parent, new_global_position: Vector2 = Vector2.ZERO):
 	var child_instance = child.instantiate()
 	parent.add_child(child_instance)
-	child_instance.set_global_position(Vector2.ZERO)
+	child_instance.set_global_position(new_global_position)
 	return child_instance
 
 

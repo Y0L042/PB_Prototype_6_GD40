@@ -12,6 +12,7 @@ var level_list: Array
 var current_map
 var pause_menu = SceneLib.spawn_child(SceneLib.UI_PAUSE_MENU, self)
 var current_ui_menu
+var choice_menu
 
 #-------------------------------------------------------------------------------
 # Initialization
@@ -44,7 +45,7 @@ func spawn_player_manager():
 func _level_ConditionSignal():
 	print("Condition met")
 	current_map.ConditionSignal.disconnect(_level_ConditionSignal)
-	var choice_menu = SceneLib.spawn_child(SceneLib.UI_ENDOFLEVELCHOICE, self)
+	choice_menu = SceneLib.spawn_child(SceneLib.UI_ENDOFLEVELCHOICE, self)
 	# enable circle portals or whatever
 	choice_menu.EoL_choice.connect(_process_choice)
 
@@ -53,6 +54,7 @@ func _process_choice(choice):
 		place_new_map(SceneLib.leveled_list_maps[1], DOCKS.E)
 	if choice == 2:
 		place_new_map(SceneLib.leveled_list_maps[1], DOCKS.S)
+	choice_menu.queue_free()
 
 # next chosen level is placed on map
 func place_new_map(new_map, location):
