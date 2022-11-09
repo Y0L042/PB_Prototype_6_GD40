@@ -68,6 +68,14 @@ func flee(current_pos: Vector2, current_vel: Vector2, flee_target: Vector2, weig
 	return vel # normalized, weighted
 
 
+func arrive(current_pos: Vector2, seek_target: Vector2, arrive_distance: float,  weight: float = 1.0):
+	var dist_squared: float =  current_pos.distance_squared_to(seek_target)
+	var dir_vec: Vector2 = current_pos.direction_to(seek_target)
+	if dist_squared > arrive_distance * arrive_distance:
+		return seek(current_pos, seek_target, weight)
+	else:
+		var vel: Vector2 = dir_vec * current_pos.distance_squared_to(seek_target) / (arrive_distance*arrive_distance) * weight
+		return vel # not completely normalized, weighted
 
 
 func project_collision_raycasts(current_pos: Vector2, current_vel: Vector2, space_state: PhysicsDirectSpaceState2D, fov: float, ray_distance: float, ray_count: int):

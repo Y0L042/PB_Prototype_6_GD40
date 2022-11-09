@@ -37,3 +37,6 @@ offset = Vector2(0, -108)
 
 [node name="CollisionShape2D" parent="Pivot/FOV_Area" index="0"]
 shape = SubResource("CircleShape2D_b1vlk")
+
+[connection signal="body_entered" from="Pivot/FOV_Area" to="." method="_on_fov_area_body_entered"]
+[connection signal="body_exited" from="Pivot/FOV_Area" to="." method="_on_fov_area_body_exited"]

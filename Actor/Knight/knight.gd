@@ -35,9 +35,9 @@ func state_process():
 # State Functions
 #-------------------------------------------------------------------------------
 func state_process_passive():
-	var seek_arrive_weight: float = 1.0
-	var stopdist: float = 15
-	var dropoff: float = 0.1
+	var stopdist: float = GlobalSettings.UNIT * 0.9
+
+
 
 	var target_dist = get_global_position().distance_to(pb.party_target_pos)
 	var collidingAgainstPersonNextToTarget: bool = false
@@ -53,7 +53,7 @@ func state_process_passive():
 	arrivedAtTarget = nextToTarget or (targetNotMoving and withinRadius and isColliding and collidingAgainstPersonNextToTarget)
 
 	if !arrivedAtTarget:
-		var seek_target = SBL.log_seek_arrive(get_global_position(), pb.party_target_pos, velocity, seek_arrive_weight, true, stopdist, dropoff)
+		var seek_target = SBL.arrive(get_global_position(), pb.party_target_pos, stopdist)
 		steering_vector_array.append(seek_target)
 
 
@@ -72,3 +72,17 @@ func state_process_dead():
 	pass
 
 
+
+
+func _on_fov_area_body_entered(body: Node2D) -> void:
+	if body != self and body.pb.party_group != self.pb.party_group:
+		FOV_enemy_list.append(body)
+		print("i c u")
+		print(body)
+
+
+func _on_fov_area_body_exited(body: Node2D) -> void:
+	if body != self and body.pb.party_group != self.pb.party_group:
+		FOV_enemy_list.erase(body)
+		print("i dont c u no more")
+		print(body)

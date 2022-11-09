@@ -11,6 +11,7 @@ class_name Actor
 @export var view_distance: float : set = set_view_distance
 @export var health: int
 @export var turn_force: float
+@export var myself = self
 
 
 
@@ -33,6 +34,7 @@ var arrivedAtTarget: bool = false
 @onready var actor_anim_tree_mode = actor_anim_tree["parameters/playback"]
 
 var actor_target_velocity: Vector2
+var FOV_enemy_list: Array
 
 #-------------------------------------------------------------------------------
 # Party Variables
@@ -69,8 +71,8 @@ func _physics_process(delta):
 
 func managed_process():
 	state_process()
-	steering_move(actor_target_velocity)
-#	steering_move(SBL.steering_vectors_processor(steering_vector_array, max_speed))
+#	steering_move(actor_target_velocity)
+	steering_move(SBL.steering_vectors_processor(steering_vector_array, max_speed))
 
 
 func steering_move(final_velocity: Vector2):
