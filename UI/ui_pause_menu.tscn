@@ -20,6 +20,7 @@ script = ExtResource("1_1ubhc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+layer = 2
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 unique_name_in_owner = true

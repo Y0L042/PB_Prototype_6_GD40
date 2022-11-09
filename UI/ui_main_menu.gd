@@ -32,5 +32,6 @@ func start_new_game():
 func quit():
 	get_tree().quit()
 
-
+func keep_pause_disabled():
+	pass
 

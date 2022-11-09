@@ -11,7 +11,7 @@ var level_list: Array
 var current_level
 
 var pause_menu = SceneLib.spawn_child(SceneLib.UI_PAUSE_MENU, self)
-var current_menu
+var current_ui_menu
 
 
 
@@ -19,14 +19,16 @@ var current_menu
 # Initialisation
 #-------------------------------------------------------------------------------
 func _ready():
-	current_menu = spawn_MainMenu()
+	current_ui_menu = spawn_MainMenu()
 	
 
 func _on_ui_main_menu_start_new_game() -> void:
 	var first_level = SceneLib.leveled_list_maps[0]
 	var starting_level = spawn_first_level(first_level)
 	spawn_player_manager()
-	current_menu.queue_free()
+	current_ui_menu.queue_free()
+	current_ui_menu = null
+	
 	
 	
 func spawn_first_level(new_level):
