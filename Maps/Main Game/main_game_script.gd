@@ -8,6 +8,8 @@ class_name  MainGame
 enum DOCKS {E, S, W, N}
 
 var player_party_manager: PlayerPartyManager
+@export var player_starting_actors := 1
+
 var level_list: Array
 var current_map
 var pause_menu = SceneLib.spawn_child(SceneLib.UI_PAUSE_MENU, self)
@@ -35,7 +37,7 @@ func spawn_first_level():
 
 func spawn_player_manager():
 	player_party_manager = SceneLib.spawn_child(SceneLib.PLAYER_PARTY, self)
-	player_party_manager.spawn(level_list[0].player_spawn_pos, 10)
+	player_party_manager.spawn(level_list[0].player_spawn_pos, player_starting_actors)
 
 #-------------------------------------------------------------------------------
 # Events

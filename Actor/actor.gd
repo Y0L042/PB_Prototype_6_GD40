@@ -24,12 +24,12 @@ var arrivedAtTarget: bool = false
 #-------------------------------------------------------------------------------
 # Actor Variables
 #-------------------------------------------------------------------------------
-@export @onready var body_sprite: Sprite2D
-@export @onready var actor_anim_tree: AnimationTree
+@onready var body_sprite: Sprite2D = $Pivot/BodySprite
+@onready var actor_anim_tree: AnimationTree = $AnimationPlayer/AnimationTree
 @export @onready var weapon_scene: PackedScene
-@export @onready var FOV_area: Area2D
-@export @onready var pivot_marker: Marker2D
-@export @onready var weapon_marker: Marker2D
+@onready var FOV_area: Area2D = $Pivot/FOV_Area
+@onready var pivot_marker: Marker2D = $Pivot
+@onready var weapon_marker: Marker2D = $Pivot/WeaponMarker
 @onready var actor_anim_tree_mode = actor_anim_tree["parameters/playback"]
 
 
@@ -42,12 +42,13 @@ var pb: Dictionary # party blackboard
 #-------------------------------------------------------------------------------
 # SetGet
 #-------------------------------------------------------------------------------
-func set_max_speed(max_speed):
-	max_speed *= GlobalSettings.UNIT
+func set_max_speed(new_max_speed):
+	max_speed = new_max_speed * GlobalSettings.UNIT
 
-func set_view_distance(view_distance):
-	view_distance *= GlobalSettings.UNIT
-	FOV_area.scale = view_distance
+func set_view_distance(new_view_distance):
+	view_distance = new_view_distance
+func get_view_distance() -> float:
+	return view_distance
 
 #-------------------------------------------------------------------------------
 # Initialization
@@ -57,6 +58,7 @@ func spawn(spawn_data):
 	pb = spawn_data.party_blackboard
 	set_global_position(spawn_data.spawn_pos)
 	add_to_group(pb.party_group)
+	FOV_area.scale = Vector2(get_view_distance(), get_view_distance())
 
 #-------------------------------------------------------------------------------
 # Runtime

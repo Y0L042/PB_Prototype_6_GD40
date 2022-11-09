@@ -10,14 +10,14 @@
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_artbc"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cn7x7"]
-radius = 217.083
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1vlk"]
+radius = 214.033
 
 [node name="Knight" instance=ExtResource("1_55pwg")]
 script = ExtResource("2_fx46o")
 max_speed = 5
 fov = 5
-view_distance = 5
+view_distance = 5.0
 health = 3
 turn_force = 0.2
 
@@ -35,8 +35,5 @@ position = Vector2(-3, -1)
 texture = ExtResource("3_6gs1s")
 offset = Vector2(0, -108)
 
-[node name="FoV" parent="Pivot" index="2"]
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2d" parent="Pivot/FoV" index="0"]
-shape = SubResource("CircleShape2D_cn7x7")
+[node name="CollisionShape2D" parent="Pivot/FOV_Area" index="0"]
+shape = SubResource("CircleShape2D_b1vlk")

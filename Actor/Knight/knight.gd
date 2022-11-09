@@ -40,7 +40,7 @@ func state_process_passive():
 
 	var seek_arrive_weight: float = 1.0
 	var stopdist: float = 15
-	var dropoff: float = 25
+	var dropoff: float = 0.1
 
 	var target_dist = get_global_position().distance_to(pb.party_target_pos)
 	var collidingAgainstPersonNextToTarget: bool = false

@@ -6,13 +6,8 @@
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_fio7w"]
 
-[node name="Actor" type="CharacterBody2D" node_paths=PackedStringArray("body_sprite", "actor_anim_tree", "FOV_area", "pivot_marker", "weapon_marker")]
+[node name="Actor" type="CharacterBody2D"]
 script = ExtResource("1_gq7sa")
-body_sprite = NodePath("Pivot/BodySprite")
-actor_anim_tree = NodePath("AnimationPlayer/AnimationTree")
-FOV_area = NodePath("Pivot/FoV")
-pivot_marker = NodePath("Pivot")
-weapon_marker = NodePath("Pivot/WeaponMarker")
 
 [node name="CollBody" type="CollisionShape2D" parent="."]
 
@@ -31,7 +26,6 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_fio7w")
 
 [node name="WeaponMarker" type="Marker2D" parent="Pivot"]
 
-[node name="FoV" type="Area2D" parent="Pivot"]
-unique_name_in_owner = true
+[node name="FOV_Area" type="Area2D" parent="Pivot"]
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="Pivot/FoV"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/FOV_Area"]
