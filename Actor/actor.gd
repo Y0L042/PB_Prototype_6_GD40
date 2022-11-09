@@ -32,6 +32,7 @@ var arrivedAtTarget: bool = false
 @onready var weapon_marker: Marker2D = $Pivot/WeaponMarker
 @onready var actor_anim_tree_mode = actor_anim_tree["parameters/playback"]
 
+var actor_target_velocity: Vector2
 
 #-------------------------------------------------------------------------------
 # Party Variables
@@ -68,7 +69,8 @@ func _physics_process(delta):
 
 func managed_process():
 	state_process()
-	steering_move(SBL.steering_vectors_processor(steering_vector_array, max_speed))
+	steering_move(actor_target_velocity)
+#	steering_move(SBL.steering_vectors_processor(steering_vector_array, max_speed))
 
 
 func steering_move(final_velocity: Vector2):

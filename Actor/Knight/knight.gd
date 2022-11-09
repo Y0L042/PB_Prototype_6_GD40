@@ -35,9 +35,6 @@ func state_process():
 # State Functions
 #-------------------------------------------------------------------------------
 func state_process_passive():
-	if pb.party_target_pos == Vector2.ZERO:
-		return
-
 	var seek_arrive_weight: float = 1.0
 	var stopdist: float = 15
 	var dropoff: float = 0.1
