@@ -1,5 +1,7 @@
 extends BaseMapScript
 
+@export var enemy_actors = 1 # make markers with this property
+
 func _ready():
 	await get_tree().create_timer(0.5).timeout
 	for spawn_marker in enemy_spawns.get_children():
@@ -7,4 +9,4 @@ func _ready():
 
 func spawn_enemies(spawn_location):
 	var enemy_party_manager = SceneLib.spawn_child(SceneLib.ENEMY_PARTY, get_parent())#self)
-	enemy_party_manager.spawn(spawn_location, 10)
+	enemy_party_manager.spawn(spawn_location, enemy_actors)

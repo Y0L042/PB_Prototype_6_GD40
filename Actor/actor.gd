@@ -5,10 +5,10 @@ class_name Actor
 #-------------------------------------------------------------------------------
 # Properties
 #-------------------------------------------------------------------------------
-@export var max_speed: int : set = set_max_speed
+@export var max_speed: int = GlobalSettings.UNIT * 1 : set = set_max_speed
 @export var friction: float
 @export var fov: int
-@export var view_distance: float : set = set_view_distance
+@export var view_distance: float = GlobalSettings.UNIT * 1 : set = set_view_distance
 @export var health: int : set = set_health
 @export var turn_force: float
 @export var myself = self
@@ -37,6 +37,7 @@ signal EnemySpotted
 
 var actor_target_velocity: Vector2
 var FOV_enemy_list: Array
+var target_enemy
 var weapon_array: Array
 
 #-------------------------------------------------------------------------------
@@ -99,7 +100,7 @@ func steering_move(final_velocity: Vector2):
 # Events
 #-------------------------------------------------------------------------------
 func take_damage(damage: float):
-	modify_health(damage)
+	modify_health(-damage)
 	# play damage effect/move to damage state or something
 
 #-------------------------------------------------------------------------------

@@ -216,7 +216,7 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_7pa16")
 
 [node name="SlashEffectSprite" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(19, -8)
+position = Vector2(2.33333, -0.666667)
 rotation = 0.0778937
 texture = ExtResource("2_sauha")
 hframes = 3
@@ -232,7 +232,6 @@ texture = ExtResource("1_4xppp")
 
 [node name="Hitbox" type="Area2D" parent="Marker2d"]
 unique_name_in_owner = true
-visible = false
 position = Vector2(6.64352, -7.18245)
 rotation = 0.833043
 collision_layer = 0

@@ -4,8 +4,8 @@ extends Marker2D
 # Properties
 #-------------------------------------------------------------------------------
 var group: String
-var damage: float = 1.0
-var attack_range: int = 35
+@export var damage: float = 1.0
+@export var attack_range: int = 1 * GlobalSettings.UNIT : set = set_attack_range
 
 #-------------------------------------------------------------------------------
 # Variables
@@ -16,8 +16,11 @@ var attack_range: int = 35
 
 
 #-------------------------------------------------------------------------------
-# Lambda Functions
+# SetGets
 #-------------------------------------------------------------------------------
+func set_attack_range(new_attack_range):
+	attack_range = new_attack_range * GlobalSettings.UNIT
+
 
 #-------------------------------------------------------------------------------
 # Variables
@@ -36,12 +39,13 @@ func _ready() -> void:
 # Events
 #-------------------------------------------------------------------------------
 func attack():
-	weapon_anim_tree_mode.walk("Attack")
+	weapon_anim_tree_mode.travel("Attack")
 
 #-------------------------------------------------------------------------------
 # Signals
 #-------------------------------------------------------------------------------
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if is_instance_valid(body):
-		if !body.pb.party_group == group:
+		if body.pb.party_group != group:
 			body.take_damage(damage)
+

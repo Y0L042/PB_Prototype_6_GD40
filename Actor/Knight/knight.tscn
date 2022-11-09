@@ -23,9 +23,10 @@ health = 3
 turn_force = 0.2
 
 [node name="CollBody" parent="." index="0"]
-position = Vector2(0, -71)
-scale = Vector2(5, 5)
+position = Vector2(1, -71)
+scale = Vector2(10, 10)
 shape = SubResource("CircleShape2D_looq6")
+debug_color = Color(0.807843, 0.00392157, 0.992157, 0.419608)
 
 [node name="AnimationTree" parent="AnimationPlayer" index="0"]
 tree_root = SubResource("AnimationNodeStateMachine_jqgor")
