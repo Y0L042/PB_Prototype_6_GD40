@@ -51,7 +51,7 @@ func spawn(new_spawn_pos: Vector2 = Vector2.ZERO, new_actor_count: int = 0):
 
 func spawn_party_actors():
 	for index in pb.active_actors_count:
-		spawn_actor(SceneLib.KNIGHT, Tools.random_offset(pb.party_pos, GlobalSettings.UNIT))
+		spawn_actor(SceneLib.KNIGHT, Tools.random_offset(pb.party_pos, GlobalSettings.UNIT * 5))
 
 
 

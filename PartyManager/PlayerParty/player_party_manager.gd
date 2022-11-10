@@ -15,4 +15,10 @@ func move_party_target(delta: float):
 	pb.party_target_pos += vel * delta
 	pb.party_target_vel = vel
 
+func party_process(delta: float):
+	if pb.active_actors.is_empty():
+		allActorsDead.emit(self)
+
+		#temp
+
 

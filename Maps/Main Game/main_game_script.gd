@@ -39,10 +39,21 @@ func spawn_first_level():
 func spawn_player_manager():
 	player_party_manager = SceneLib.spawn_child(SceneLib.PLAYER_PARTY, self)
 	player_party_manager.spawn(level_list[0].player_spawn_pos, player_starting_actors)
+	player_party_manager.allActorsDead.connect(_all_player_actors_dead, CONNECT_ONE_SHOT)
+
+
 
 #-------------------------------------------------------------------------------
 # Events
 #-------------------------------------------------------------------------------
+func _all_player_actors_dead(player):
+	var defeat := "Defeat"
+	end_game(defeat)
+
+func end_game(end_state):
+	var ui_game_end = SceneLib.spawn_child(SceneLib.UI_GAME_END, self)
+	ui_game_end.condition_label.set_text(end_state)
+
 
 #level condition signal emits and triggers choice for next levels
 func _level_ConditionSignal():

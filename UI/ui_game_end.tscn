@@ -17,7 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 1, 0)
+color = Color(1, 1, 1, 0.294118)
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
 anchors_preset = 15
@@ -27,31 +27,27 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/CenterContainer"]
-layout_mode = 2
 offset_left = 1772.0
 offset_top = 1033.0
 offset_right = 1868.0
 offset_bottom = 1126.0
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer"]
-layout_mode = 2
 offset_right = 96.0
 offset_bottom = 93.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
 offset_right = 96.0
 offset_bottom = 93.0
 
 [node name="Condition" type="Label" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 2
+process_mode = 3
 offset_right = 96.0
 offset_bottom = 23.0
 
 [node name="Restart" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_top = 27.0
 offset_right = 96.0
 offset_bottom = 58.0
@@ -59,7 +55,6 @@ text = "Restart"
 
 [node name="Main Menu" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_top = 62.0
 offset_right = 96.0
 offset_bottom = 93.0
