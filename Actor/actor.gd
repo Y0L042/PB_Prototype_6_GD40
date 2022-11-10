@@ -37,7 +37,6 @@ signal EnemySpotted
 
 var actor_target_velocity: Vector2
 var FOV_enemy_list: Array
-var target_enemy
 var weapon_array: Array
 
 #-------------------------------------------------------------------------------

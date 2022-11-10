@@ -60,19 +60,25 @@ func state_process_passive():
 
 func state_process_aggressive():
 	var stopdist: float = GlobalSettings.UNIT * 0.9
-
+	var target_enemy
 	if FOV_enemy_list.is_empty():
 		change_state(states.PASSIVE)
+	elif !FOV_enemy_list.is_empty():
+		target_enemy = FOV_enemy_list[0]
+		var dist_to_nearest_target: float = self.get_global_position().distance_squared_to(target_enemy.get_global_position())
+		for enemy in FOV_enemy_list:
+			var dist_to_enemy: float = self.get_global_position().distance_squared_to(enemy.get_global_position())
+			if dist_to_enemy < dist_to_nearest_target :
+				target_enemy = enemy
+				dist_to_nearest_target = dist_to_enemy
 
+		var target_pos: Vector2 = target_enemy.get_global_position()
+		var seek_target = SBL.arrive(get_global_position(), target_pos, stopdist)
+		steering_vector_array.append(seek_target)
 
-#	if target_enemy:
-	var target_pos: Vector2 = target_enemy.get_global_position()
-	var seek_target = SBL.arrive(get_global_position(), enemy_target, stopdist)
-	steering_vector_array.append(seek_target)
-
-	for weapon in weapon_array:
-		if enemy_distance_squared <= (weapon.attack_range*weapon.attack_range):
-			weapon.attack()
+		for weapon in weapon_array:
+			if dist_to_nearest_target <= (weapon.attack_range*weapon.attack_range):
+				weapon.attack()
 
 	if !isAlive:
 		change_state(states.DEAD)
