@@ -6,12 +6,13 @@ class_name  MainGame
 # Variables
 #-------------------------------------------------------------------------------
 enum DOCKS {E, S, W, N}
+var level_list: Array
+var current_map
 
 var player_party_manager: PlayerPartyManager
 @export var player_starting_actors := 1
 
-var level_list: Array
-var current_map
+
 var pause_menu = SceneLib.spawn_child(SceneLib.UI_PAUSE_MENU, self)
 var current_ui_menu
 var choice_menu
@@ -58,18 +59,15 @@ func _process_choice(choice):
 		place_new_map(SceneLib.leveled_list_maps[1], DOCKS.S)
 	choice_menu.queue_free()
 
+
 # next chosen level is placed on map
 func place_new_map(new_map, location):
 	new_map = SceneLib.spawn_child(new_map, self)
-
-	var old_map_dock_pos: Vector2 = current_map.docks[location]
-	var new_map_dock_pos: Vector2 = new_map.docks[get_opposite_dock(location)]
+	var current_map_dock_pos: Vector2 = current_map.docks[location].get_global_position()
+	var new_map_dock_pos: Vector2 = new_map.docks[get_opposite_dock(location)].get_global_position()
 	var new_map_dock_offset: Vector2 = new_map.get_global_position() - new_map_dock_pos
-	var new_map_pos: Vector2 = old_map_dock_pos + new_map_dock_offset
+	var new_map_pos: Vector2 = current_map_dock_pos + new_map_dock_offset
 	new_map.set_global_position(new_map_pos)
-
-
-	new_map.set_global_position
 	new_map.ConditionSignal.connect(_level_ConditionSignal)
 	level_list.append(new_map)
 	current_map = new_map

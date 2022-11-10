@@ -1,14 +1,20 @@
 extends Node
 
 #-------------------------------------------------------------------------------
-# Scenes
+# Actor Scenes
 #-------------------------------------------------------------------------------
 var ENEMY_PARTY: PackedScene = load("res://PartyManager/EnemyParty/enemy_party.tscn")
 var PLAYER_PARTY: PackedScene = load("res://PartyManager/PlayerParty/player_party.tscn")
 
+# Make it a list or dictionary or something
 var KNIGHT: PackedScene = load("res://Actor/Knight/knight.tscn")
 
 
+#-------------------------------------------------------------------------------
+# Weapons
+#-------------------------------------------------------------------------------
+# Make it a list or dictionary or something
+var WPN_SWORD: PackedScene = load("res://Weapons/Sword/sword.tscn")
 
 #-------------------------------------------------------------------------------
 # Maps
@@ -17,6 +23,7 @@ var KNIGHT: PackedScene = load("res://Actor/Knight/knight.tscn")
 var MAIN_MENU_c: PackedScene = load("res://Maps/Main Menu/main_menu.tscn")
 var MAIN_GAME_c: PackedScene = load("res://Maps/Main Game/main_game.tscn")
 
+# Make it a list or dictionary or something
 var leveled_list_maps: Array = [
 	load("res://Maps/Level 0/level_000.tscn"),
 	load("res://Maps/Level 1/Level 1.1/level_101.tscn"),

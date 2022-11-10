@@ -43,7 +43,7 @@ func state_process_passive():
 	var collidingAgainstPersonNextToTarget: bool = false
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i).get_collider()
-		if collision.is_in_group(pb.party_group):
+		if collision and collision.is_in_group(pb.party_group):
 			collidingAgainstPersonNextToTarget = collision.arrivedAtTarget or collidingAgainstPersonNextToTarget
 
 	var isColliding: bool = get_slide_collision_count() > 0
@@ -97,7 +97,8 @@ func state_process_hurt():
 
 func state_process_dead():
 	print("I am now ded :'(")
-#	self.queue_free()
+	pb.active_actors.erase(self)
+	self.queue_free()
 
 
 

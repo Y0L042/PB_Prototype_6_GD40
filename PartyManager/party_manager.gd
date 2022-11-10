@@ -9,6 +9,8 @@ class_name PartyManager
 @export var actor_amount: int
 @export var party_speed: int : set = set_party_speed
 
+signal allActorsDead
+
 var pb = {
 	"party_group": null,
 	"all_actors": [],
@@ -57,12 +59,13 @@ func spawn_party_actors():
 # Runtime
 #-------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
-	pass
+	party_process(delta)
 	move_party_target(delta)
 #	for actor in pb.active_actors:
 #		actor.managed_process()
 
-
+func party_process(delta: float):
+	pass
 
 func move_party_target(delta: float):
 	pass
@@ -72,6 +75,7 @@ func move_party_target(delta: float):
 func spawn_actor(actor_type, spawn_location: Vector2 = Vector2.ZERO):
 		var actor = SceneLib.spawn_child(actor_type, self)
 		pb.active_actors.append(actor)
+		pb.all_actors.append(actor)
 		var spawn_data := ActorSpawnData.new()
 		spawn_data.party_manager = self
 		spawn_data.party_blackboard = pb

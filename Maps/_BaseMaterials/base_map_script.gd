@@ -13,10 +13,10 @@ signal ConditionSignal
 @onready var condition := %Condition
 
 @onready var docks: Array = [
-	%East.get_global_position(),
-	%South.get_global_position(),
-	%West.get_global_position(),
-	%North.get_global_position()
+	%East,
+	%South,
+	%West,
+	%North
 ]
 
 
