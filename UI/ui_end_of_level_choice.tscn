@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1gfg50mjgo8u"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://UI/end_of_level_choice_script.gd" id="1_pkl6t"]
+[ext_resource type="Script" path="res://UI/ui_end_of_level_choice_script.gd" id="1_pkl6t"]
 
 [node name="EndOfLevel_Choice" type="Control"]
 layout_mode = 3

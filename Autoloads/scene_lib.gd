@@ -58,8 +58,8 @@ var TINYKEEP_ROOM: PackedScene = load("res://Procedural Map Worlds/TinyKeep Worl
 #-------------------------------------------------------------------------------
 var UI_MAIN_MENU: PackedScene = load("res://UI/ui_main_menu.tscn")
 var UI_PAUSE_MENU: PackedScene = load("res://UI/ui_pause_menu.tscn")
-var UI_ENDOFLEVELCHOICE: PackedScene = load("res://UI/end_of_level_choice.tscn")
-
+var UI_ENDOFLEVELCHOICE: PackedScene = load("res://UI/ui_end_of_level_choice.tscn")
+var UI_GAME_END: PackedScene = load("res://UI/ui_end_of_level_choice.tscn")
 
 #-------------------------------------------------------------------------------
 # Scene Tools

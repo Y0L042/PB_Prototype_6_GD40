@@ -11,7 +11,7 @@ var isPaused: bool = false
 
 func _ready() -> void:
 	canvas_layer.set_visible(false)
-	
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -19,11 +19,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			print("pause")
 			pause()
 
-		
+
 
 
 func _on_main_menu_pressed() -> void:
-	pass
+	get_tree().change_scene_to_packed(SceneLib.MAIN_MENU_c)
 
 
 func _on_resume_pressed() -> void:
