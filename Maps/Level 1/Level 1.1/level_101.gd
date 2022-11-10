@@ -4,6 +4,8 @@ extends BaseMapScript
 
 var enemy_parties_array: Array
 
+
+
 func _ready():
 	await get_tree().create_timer(0.5).timeout
 	for spawn_marker in enemy_spawns.get_children():

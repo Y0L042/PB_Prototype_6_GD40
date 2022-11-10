@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://c11ceyajpvbf2"]
 
 [ext_resource type="Script" path="res://UI/ui_end_of_level_choice_script.gd" id="1_pkl6t"]
 
@@ -30,18 +30,19 @@ offset_bottom = 1095.0
 offset_right = 99.0
 offset_bottom = 31.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer"]
+[node name="Btn_Ref" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
 offset_right = 99.0
 offset_bottom = 31.0
 
-[node name="Choice 1" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="Choice 1" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/Btn_Ref"]
 unique_name_in_owner = true
 offset_right = 41.0
 offset_bottom = 31.0
 size_flags_horizontal = 0
 text = "East"
 
-[node name="Choice 2" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="Choice 2" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/Btn_Ref"]
 unique_name_in_owner = true
 offset_left = 45.0
 offset_right = 99.0
@@ -49,5 +50,5 @@ offset_bottom = 31.0
 text = "South
 "
 
-[connection signal="pressed" from="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/Choice 1" to="." method="_on_choice_1_pressed"]
-[connection signal="pressed" from="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/Choice 2" to="." method="_on_choice_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/Btn_Ref/Choice 1" to="." method="_on_choice_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/Btn_Ref/Choice 2" to="." method="_on_choice_2_pressed"]

@@ -6,7 +6,8 @@ class_name  MainGame
 # Variables
 #-------------------------------------------------------------------------------
 enum DOCKS {E, S, W, N}
-var level_list: Array
+var spawned_level_list: Array
+var future_level_list: Array
 var current_map
 
 var player_party_manager: PlayerPartyManager
@@ -23,22 +24,26 @@ var choice_menu
 func _ready():
 	# Load saved data
 	SceneLib.load_game()
+	generate_future_level_list()
 	spawn_first_level()
 	spawn_player_manager()
 
+func generate_future_level_list():
+	for i in 5:
+		future_level_list.append(SceneLib.leveled_list_maps[randi() % SceneLib.leveled_list_maps.size()])
 
 func spawn_first_level():
 	var first_level = SceneLib.leveled_list_maps[0]
 	first_level = SceneLib.spawn_child(first_level, self)
-	first_level.ConditionSignal.connect(_level_ConditionSignal)
-	level_list.append(first_level)
+	first_level.ConditionSignal.connect(_level_ConditionSignal, CONNECT_ONE_SHOT)
+	spawned_level_list.append(first_level)
 	current_map = first_level
 
 
 
 func spawn_player_manager():
 	player_party_manager = SceneLib.spawn_child(SceneLib.PLAYER_PARTY, self)
-	player_party_manager.spawn(level_list[0].player_spawn_pos, player_starting_actors)
+	player_party_manager.spawn(spawned_level_list[0].player_spawn_pos, player_starting_actors)
 	player_party_manager.allActorsDead.connect(_all_player_actors_dead, CONNECT_ONE_SHOT)
 
 
@@ -58,10 +63,31 @@ func end_game(end_state):
 #level condition signal emits and triggers choice for next levels
 func _level_ConditionSignal():
 	print("Condition met")
-	current_map.ConditionSignal.disconnect(_level_ConditionSignal)
+#	current_map.ConditionSignal.disconnect(_level_ConditionSignal)
+	# load next level in list, otherwise victory
+	if !future_level_list.is_empty():
+		load_next_level(future_level_list)
+	else:
+		var victory := "Victory"
+		end_game(victory)
+
+
+func load_next_level(new_future_level_list: Array):
+#	var choice1 = new_future_level_list.pop_front().instantiate()
+#
+#	var choice2 = null
+#	if !new_future_level_list.is_empty():
+#		choice2 = new_future_level_list.pop_front()
+
 	choice_menu = SceneLib.spawn_child(SceneLib.UI_ENDOFLEVELCHOICE, self)
+#	choice_menu.add_level_choice_button(choice1.level_meta_data)
+#	if choice2:
+#		choice_menu.add_level_choice_button(choice2.level_meta_data)
+
 	# enable circle portals or whatever
 	choice_menu.EoL_choice.connect(_process_choice)
+	await choice_menu.EoL_choice
+
 
 func _process_choice(choice):
 	if choice == 1:
@@ -80,7 +106,7 @@ func place_new_map(new_map, location):
 	var new_map_pos: Vector2 = current_map_dock_pos + new_map_dock_offset
 	new_map.set_global_position(new_map_pos)
 	new_map.ConditionSignal.connect(_level_ConditionSignal)
-	level_list.append(new_map)
+	spawned_level_list.append(new_map)
 	current_map = new_map
 
 

@@ -11,7 +11,7 @@ class_name PartyManager
 
 signal allActorsDead
 
-var pb = {
+var pb: Dictionary = {
 	"party_group": null,
 	"all_actors": [],
 	"active_actors": [],
