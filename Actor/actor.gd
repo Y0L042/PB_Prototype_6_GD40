@@ -26,7 +26,7 @@ var arrivedAtTarget: bool = false
 #-------------------------------------------------------------------------------
 # Actor Variables
 #-------------------------------------------------------------------------------
-@onready var body_sprite: Sprite2D = $Pivot/BodySprite
+@onready var body_sprite: Sprite2D = %BodySprite
 @onready var actor_anim_tree: AnimationTree = $AnimationPlayer/AnimationTree
 @onready var FOV_area: Area2D = $Pivot/FOV_Area
 @onready var pivot_marker: Marker2D = $Pivot
@@ -70,6 +70,7 @@ func modify_health(health_modifier):
 func spawn(spawn_data):
 	party_manager = spawn_data.party_manager
 	pb = spawn_data.party_blackboard
+	set_actor_faction_outline()
 	set_global_position(spawn_data.spawn_pos)
 	add_to_group(pb.party_group)
 	FOV_area.scale = Vector2(get_view_distance(), get_view_distance())
@@ -78,6 +79,15 @@ func spawn(spawn_data):
 		var weapon_offset: int = 75
 		weapon.set_position(Vector2(randi_range(-weapon_offset, weapon_offset), randi_range(-weapon_offset, weapon_offset)))
 		weapon_array.append(weapon)
+
+
+
+
+
+
+func set_actor_faction_outline():
+	body_sprite.get_material().set_shader_parameter("Color", pb.party_shader_colour)
+
 
 #-------------------------------------------------------------------------------
 # Runtime

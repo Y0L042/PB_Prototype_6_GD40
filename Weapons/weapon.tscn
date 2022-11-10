@@ -1,0 +1,247 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="Script" path="res://Weapons/Sword/sword.gd" id="1_1xgmp"]
+[ext_resource type="Texture2D" uid="uid://kprqswpacgmt" path="res://Assets/v1.1 dungeon crawler 16X16 pixel pack/heroes/knight/weapon_sword_1.png" id="1_4xppp"]
+[ext_resource type="Texture2D" uid="uid://dtgxg8ehqjj0m" path="res://Assets/v1.1 dungeon crawler 16X16 pixel pack/effects (new)/slash_effect_anim_spritesheet.png" id="2_sauha"]
+
+[sub_resource type="Animation" id="Animation_fwh4i"]
+resource_name = "Attack"
+length = 1.25
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2d:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.65, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-2.24684, -1.31972, 2.85436, 2.85436, -2.24684]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2d:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.65, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, -11), Vector2(2, -12), Vector2(1, 6), Vector2(1, 6), Vector2(-1, -11)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SlashEffectSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.075, 0.65),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SlashEffectSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.075, 0.3, 0.475)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SlashEffectSprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.075, 0.1, 0.15, 0.225, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(19, -8), Vector2(25, -8), Vector2(26, -8), Vector2(28, -8), Vector2(28, -8)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Marker2d/Hitbox:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.05, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_xm62m"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2d:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-3, -4), Vector2(-3, -7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2d:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5708, -1.74533]
+}
+
+[sub_resource type="Animation" id="Animation_itev5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2d/Hitbox:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2d:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker2d:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.85436]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SlashEffectSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8gp3v"]
+_data = {
+"Attack": SubResource("Animation_fwh4i"),
+"Idle": SubResource("Animation_xm62m"),
+"RESET": SubResource("Animation_itev5")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ubr3w"]
+animation = &"Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kgly3"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t73et"]
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m7u5f"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_olbxd"]
+xfade_time = 0.2
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3jgrw"]
+states/Attack/node = SubResource("AnimationNodeAnimation_ubr3w")
+states/Attack/position = Vector2(380, 1)
+states/Idle/node = SubResource("AnimationNodeAnimation_kgly3")
+states/Idle/position = Vector2(380, 80)
+states/Start/position = Vector2(249, 80)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_t73et"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_m7u5f"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_olbxd")]
+graph_offset = Vector2(-83, -42)
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_7pa16"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jeooo"]
+radius = 1.51988
+height = 11.2046
+
+[node name="Sword" type="Marker2D"]
+scale = Vector2(10, 10)
+z_index = 1
+gizmo_extents = 25.0
+script = ExtResource("1_1xgmp")
+
+[node name="SwordAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8gp3v")
+}
+
+[node name="SwordAnimationTree" type="AnimationTree" parent="SwordAnimationPlayer"]
+unique_name_in_owner = true
+tree_root = SubResource("AnimationNodeStateMachine_3jgrw")
+anim_player = NodePath("..")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_7pa16")
+
+[node name="SlashEffectSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2.33333, -0.666667)
+rotation = 0.0778937
+texture = ExtResource("2_sauha")
+hframes = 3
+
+[node name="Marker2d" type="Marker2D" parent="."]
+position = Vector2(1, 6)
+rotation = 2.85436
+metadata/_edit_group_ = true
+
+[node name="WeaponSprite" type="Sprite2D" parent="Marker2d"]
+position = Vector2(5, -4)
+texture = ExtResource("1_4xppp")
+
+[node name="Hitbox" type="Area2D" parent="Marker2d"]
+unique_name_in_owner = true
+position = Vector2(6.64352, -7.18245)
+rotation = 0.833043
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Marker2d/Hitbox"]
+position = Vector2(0.675363, 1.27173)
+scale = Vector2(6.8, 3.1)
+shape = SubResource("CapsuleShape2D_jeooo")
+
+[connection signal="body_entered" from="Marker2d/Hitbox" to="." method="_on_hitbox_body_entered" flags=3]

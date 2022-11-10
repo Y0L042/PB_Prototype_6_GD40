@@ -8,6 +8,7 @@ class_name PartyManager
 @export var spawn_actors_manually: bool = false
 @export var actor_amount: int
 @export var party_speed: int : set = set_party_speed
+@export_color_no_alpha var party_colour: Color
 
 signal allActorsDead
 
@@ -20,7 +21,7 @@ var pb: Dictionary = {
 	"party_target_vel": Vector2.ZERO,
 	"active_actors_count": 0,
 	"party_max_speed": Vector2.ZERO,
-	"party_shader_color": null,
+	"party_shader_colour": null,
 }
 
 
@@ -46,6 +47,7 @@ func spawn(new_spawn_pos: Vector2 = Vector2.ZERO, new_actor_count: int = 0):
 	pb.party_target_pos = pb.party_pos # temp
 	pb.active_actors_count = new_actor_count
 	pb.party_group = get_groups()[0]
+	pb.party_shader_colour = party_colour
 	spawn_party_actors()
 
 

@@ -5,6 +5,7 @@ extends Node
 #-------------------------------------------------------------------------------
 var ENEMY_PARTY: PackedScene = load("res://PartyManager/EnemyParty/enemy_party.tscn")
 var PLAYER_PARTY: PackedScene = load("res://PartyManager/PlayerParty/player_party.tscn")
+var PARTY_MATERIAL: Resource = load("res://PartyManager/party_shader_material.tres")
 
 # Make it a list or dictionary or something
 var KNIGHT: PackedScene = load("res://Actor/Knight/knight.tscn")
