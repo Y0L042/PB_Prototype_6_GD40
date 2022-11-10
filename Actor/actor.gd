@@ -81,12 +81,8 @@ func spawn(spawn_data):
 		weapon_array.append(weapon)
 
 
-
-
-
-
 func set_actor_faction_outline():
-	body_sprite.get_material().set_shader_parameter("Color", pb.party_shader_colour)
+	body_sprite.get_material().set_shader_parameter("color", pb.party_shader_colour)
 
 
 #-------------------------------------------------------------------------------
@@ -94,6 +90,7 @@ func set_actor_faction_outline():
 #-------------------------------------------------------------------------------
 func _physics_process(delta):
 	managed_process()
+	set_actor_faction_outline()
 
 func managed_process():
 	state_process()

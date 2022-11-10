@@ -43,3 +43,5 @@ unique_name_in_owner = true
 
 [node name="North" type="Marker2D" parent="Docks"]
 unique_name_in_owner = true
+
+[node name="Lighting" type="Node2D" parent="."]

@@ -233,6 +233,7 @@ texture = ExtResource("1_4xppp")
 
 [node name="Hitbox" type="Area2D" parent="Marker2d"]
 unique_name_in_owner = true
+visible = false
 position = Vector2(6.64352, -7.18245)
 rotation = 0.833043
 collision_layer = 0

@@ -23,6 +23,7 @@ health = 3
 turn_force = 0.2
 
 [node name="CollBody" parent="." index="0"]
+visible = false
 position = Vector2(1, -71)
 scale = Vector2(10, 10)
 shape = SubResource("CircleShape2D_looq6")
@@ -38,6 +39,9 @@ texture = ExtResource("3_6gs1s")
 offset = Vector2(0, -108)
 
 [node name="Sword1" parent="Pivot/WeaponMarker" index="0" instance=ExtResource("3_v57ja")]
+
+[node name="FOV_Area" parent="Pivot" index="2"]
+visible = false
 
 [node name="CollisionShape2D" parent="Pivot/FOV_Area" index="0"]
 shape = SubResource("CircleShape2D_b1vlk")
