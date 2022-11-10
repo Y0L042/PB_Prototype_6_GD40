@@ -27,6 +27,7 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_fio7w")
 [node name="BodySprite" type="Sprite2D" parent="Pivot"]
 
 [node name="WeaponMarker" type="Marker2D" parent="Pivot"]
+unique_name_in_owner = true
 
 [node name="FOV_Area" type="Area2D" parent="Pivot"]
 collision_layer = 0

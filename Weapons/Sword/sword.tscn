@@ -199,6 +199,7 @@ height = 11.2046
 
 [node name="Sword" type="Marker2D"]
 scale = Vector2(10, 10)
+z_index = 1
 gizmo_extents = 25.0
 script = ExtResource("1_1xgmp")
 

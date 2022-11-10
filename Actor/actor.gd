@@ -30,7 +30,7 @@ var arrivedAtTarget: bool = false
 @onready var actor_anim_tree: AnimationTree = $AnimationPlayer/AnimationTree
 @onready var FOV_area: Area2D = $Pivot/FOV_Area
 @onready var pivot_marker: Marker2D = $Pivot
-@onready var weapon_marker: Marker2D = $Pivot/WeaponMarker
+@onready var weapon_marker: Marker2D = %WeaponMarker
 @onready var actor_anim_tree_mode = actor_anim_tree["parameters/playback"]
 
 signal EnemySpotted
