@@ -63,6 +63,7 @@ func end_game(end_state):
 #level condition signal emits and triggers choice for next levels
 func _level_ConditionSignal():
 	print("Condition met")
+	give_reward(SceneLib.WPN_SWORD)
 #	current_map.ConditionSignal.disconnect(_level_ConditionSignal)
 	# load next level in list, otherwise victory
 	if !future_level_list.is_empty():
@@ -70,6 +71,9 @@ func _level_ConditionSignal():
 	else:
 		var victory := "Victory"
 		end_game(victory)
+
+func give_reward(new_weapon):
+	player_party_manager.give_actors_more_weapons(new_weapon)
 
 
 func load_next_level(new_future_level_list: Array):

@@ -25,10 +25,6 @@ unique_name_in_owner = true
 [node name="ItemSpawns" type="Node2D" parent="Spawns"]
 unique_name_in_owner = true
 
-[node name="Condition" type="Node2D" parent="."]
-unique_name_in_owner = true
-script = ExtResource("3_1mcuf")
-
 [node name="Docks" type="Node2D" parent="."]
 script = ExtResource("3_gf41w")
 
@@ -45,3 +41,9 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Lighting" type="Node2D" parent="."]
+
+[node name="Conditions" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_1mcuf")
+
+[node name="Rewards" type="Node2D" parent="."]

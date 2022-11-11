@@ -77,7 +77,7 @@ func spawn(spawn_data):
 	for weapon in weapon_marker.get_children():
 		weapon.group = pb.party_group
 		var weapon_offset: int = 75
-		weapon.set_position(Vector2(randi_range(-weapon_offset, weapon_offset), randi_range(-weapon_offset, weapon_offset)))
+		weapon.set_position(Tools.random_offset(weapon_marker.get_global_position(), weapon_offset))
 		weapon_array.append(weapon)
 
 
@@ -109,6 +109,17 @@ func take_damage(damage: float):
 	modify_health(-damage)
 	# play damage effect/move to damage state or something
 
+
+func spawn_weapon(new_weapon):
+	var weapon = SceneLib.spawn_child(new_weapon, weapon_marker)
+	var radius: int = GlobalSettings.UNIT / 3
+	weapon.set_position(Tools.random_offset(weapon_marker.get_global_position(), radius))
+	weapon.group = pb.party_group
+	weapon_array.append(weapon)
+
+func remove_weapon(weapon):
+	weapon_array.erase(weapon)
+	weapon.queue_free()
 #-------------------------------------------------------------------------------
 # States
 #-------------------------------------------------------------------------------
