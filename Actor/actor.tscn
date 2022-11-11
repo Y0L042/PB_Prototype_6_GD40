@@ -14,7 +14,7 @@ shader_parameter/add_margins = null
 shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/inside = true
 shader_parameter/pattern = null
-shader_parameter/width = 10.0
+shader_parameter/width = 1.0
 
 [node name="Actor" type="CharacterBody2D"]
 collision_layer = 2

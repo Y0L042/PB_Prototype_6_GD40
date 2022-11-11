@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://bb52gs5k12t1u"]
+[gd_scene load_steps=17 format=3 uid="uid://bb52gs5k12t1u"]
 
 [ext_resource type="Script" path="res://Weapons/Sword/sword.gd" id="1_1xgmp"]
 [ext_resource type="Texture2D" uid="uid://kprqswpacgmt" path="res://Assets/v1.1 dungeon crawler 16X16 pixel pack/heroes/knight/weapon_sword_1.png" id="1_4xppp"]
 [ext_resource type="Texture2D" uid="uid://dtgxg8ehqjj0m" path="res://Assets/v1.1 dungeon crawler 16X16 pixel pack/effects (new)/slash_effect_anim_spritesheet.png" id="2_sauha"]
+[ext_resource type="AudioStream" uid="uid://b2gftdq62cxjl" path="res://SoundFx/77611__joelaudio__sfx-attack-sword-001.wav" id="4_dcuxa"]
 
 [sub_resource type="Animation" id="Animation_fwh4i"]
 resource_name = "Attack"
@@ -78,6 +79,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.05, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_xm62m"]
@@ -158,6 +171,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8gp3v"]
 _data = {
@@ -217,10 +242,11 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_7pa16")
 
 [node name="SlashEffectSprite" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(2.33333, -0.666667)
+position = Vector2(28, -8)
 rotation = 0.0778937
 texture = ExtResource("2_sauha")
 hframes = 3
+frame = 2
 
 [node name="Marker2d" type="Marker2D" parent="."]
 position = Vector2(1, 6)
@@ -244,5 +270,11 @@ monitorable = false
 position = Vector2(0.675363, 1.27173)
 scale = Vector2(6.8, 3.1)
 shape = SubResource("CapsuleShape2D_jeooo")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0.1, 0)
+stream = ExtResource("4_dcuxa")
+volume_db = -15.0
+attenuation = 0.5
 
 [connection signal="body_entered" from="Marker2d/Hitbox" to="." method="_on_hitbox_body_entered" flags=3]
