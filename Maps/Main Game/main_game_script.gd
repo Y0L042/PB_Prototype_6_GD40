@@ -29,7 +29,7 @@ func _ready():
 	spawn_player_manager()
 
 func generate_future_level_list():
-	for i in 5:
+	for i in 3:
 		future_level_list.append(SceneLib.leveled_list_maps[randi() % SceneLib.leveled_list_maps.size()])
 
 func spawn_first_level():
