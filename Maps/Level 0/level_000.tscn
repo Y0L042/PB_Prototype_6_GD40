@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bamq5emjevwn0"]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="PackedScene" uid="uid://ca62o65ibtuhx" path="res://Maps/_BaseMaterials/base_map.tscn" id="1_e862l"]
+[ext_resource type="PackedScene" uid="uid://ca62o65ibtuhx" path="res://Maps/_BaseMap/base_map.tscn" id="1_e862l"]
 [ext_resource type="Script" path="res://Maps/Level 0/level_000.gd" id="2_qaqmt"]
 [ext_resource type="PackedScene" uid="uid://cokppfentoyb" path="res://Assets/Lights/basic_light.tscn" id="3_1ddxe"]
+[ext_resource type="Resource" path="res://Maps/Level 0/level_000.tres" id="3_nl8cb"]
 
 [node name="Level 000" instance=ExtResource("1_e862l")]
 script = ExtResource("2_qaqmt")
+map_meta_data = ExtResource("3_nl8cb")
 level_name = "Starting Level"
 
 [node name="CommonTileMap" parent="." index="0"]

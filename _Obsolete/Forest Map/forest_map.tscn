@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://Maps/_Obsolete/Forest Map/forest_map.gd" id="1_u6fgs"]
+[ext_resource type="Script" path="res://_Obsolete/Forest Map/forest_map.gd" id="1_u6fgs"]
 [ext_resource type="TileSet" path="res://Procedural Map Worlds/BWtileset.tres" id="2_t3v0m"]
 
 

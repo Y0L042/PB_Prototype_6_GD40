@@ -17,12 +17,12 @@ _global_script_classes=[{
 "base": "Node2D",
 "class": &"BaseCondition",
 "language": &"GDScript",
-"path": "res://Maps/_BaseMaterials/condition_script.gd"
+"path": "res://Maps/_BaseMap/condition_script.gd"
 }, {
 "base": "Node2D",
 "class": &"BaseMapScript",
 "language": &"GDScript",
-"path": "res://Maps/_BaseMaterials/base_map_script.gd"
+"path": "res://Maps/_BaseMap/base_map_script.gd"
 }, {
 "base": "Node2D",
 "class": &"BetterLight2D",
@@ -42,7 +42,7 @@ _global_script_classes=[{
 "base": "Node2D",
 "class": &"DockScript",
 "language": &"GDScript",
-"path": "res://Maps/_BaseMaterials/docks.gd"
+"path": "res://Maps/_BaseMap/docks.gd"
 }, {
 "base": "PartyManager",
 "class": &"EnemyPartyManager",
@@ -77,17 +77,22 @@ _global_script_classes=[{
 "base": "Node",
 "class": &"MapDataObject",
 "language": &"GDScript",
-"path": "res://Maps/_Obsolete/mapdata_object.gd"
+"path": "res://_Obsolete/mapdata_object.gd"
 }, {
 "base": "Node",
 "class": &"MapGeneratorManager",
 "language": &"GDScript",
 "path": "res://Procedural Map Worlds/map_generator_manager.gd"
 }, {
+"base": "MetaData",
+"class": &"MapMetaData",
+"language": &"GDScript",
+"path": "res://Maps/_BaseMap/map_meta_data.gd"
+}, {
 "base": "Resource",
 "class": &"MetaData",
 "language": &"GDScript",
-"path": "res://meta_data.gd"
+"path": "res://base_meta_data.gd"
 }, {
 "base": "Node2D",
 "class": &"NoiseWorldGenerator",
@@ -150,6 +155,7 @@ _global_script_class_icons={
 "MainMenu": "",
 "MapDataObject": "",
 "MapGeneratorManager": "",
+"MapMetaData": "",
 "MetaData": "",
 "NoiseWorldGenerator": "",
 "PartyManager": "",

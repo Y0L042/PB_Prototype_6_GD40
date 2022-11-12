@@ -7,6 +7,8 @@ class_name BaseMapScript
 #-------------------------------------------------------------------------------
 signal ConditionSignal
 
+@export var map_meta_data: Resource
+
 @onready var player_spawn_pos: Vector2 = %PlayerSpawn.get_global_position()
 @onready var enemy_spawns := %EnemySpawns
 @onready var item_spawns := %ItemSpawns

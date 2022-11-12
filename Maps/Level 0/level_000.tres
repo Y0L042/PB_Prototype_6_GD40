@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Maps/_BaseMap/map_meta_data.gd" id="1_vv4wt"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_vv4wt")
+map_name = "Starting Map"
+map_stage = 1
+map_type = null

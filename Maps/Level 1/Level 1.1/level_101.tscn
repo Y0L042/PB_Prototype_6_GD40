@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2gkj7fgnyde0"]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="PackedScene" uid="uid://ca62o65ibtuhx" path="res://Maps/_BaseMaterials/base_map.tscn" id="1_ysjnb"]
+[ext_resource type="PackedScene" uid="uid://ca62o65ibtuhx" path="res://Maps/_BaseMap/base_map.tscn" id="1_ysjnb"]
 [ext_resource type="Script" path="res://Maps/Level 1/Level 1.1/level_101.gd" id="2_sfei0"]
 [ext_resource type="PackedScene" uid="uid://ccpj6227586rr" path="res://Assets/Decor/Achitecture/pillar.tscn" id="3_66503"]
 [ext_resource type="PackedScene" uid="uid://cokppfentoyb" path="res://Assets/Lights/basic_light.tscn" id="4_kelc6"]

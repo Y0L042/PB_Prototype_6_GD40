@@ -1,17 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca62o65ibtuhx"]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://Maps/_BaseMaterials/base_map_script.gd" id="1_eqlwx"]
-[ext_resource type="PackedScene" uid="uid://d8pna4apkoj2" path="res://Maps/_BaseMaterials/common_tilemap.tscn" id="2_epktx"]
-[ext_resource type="Script" path="res://Maps/_BaseMaterials/condition_script.gd" id="3_1mcuf"]
-[ext_resource type="Script" path="res://Maps/_BaseMaterials/docks.gd" id="3_gf41w"]
+[ext_resource type="Script" path="res://Maps/_BaseMaterials/base_map_script.gd" id="1_vrw3f"]
+[ext_resource type="Resource" uid="uid://cb0odcljc3nh3" path="res://Maps/_BaseMap/map_meta_data.tres" id="2_h28o7"]
+[ext_resource type="PackedScene" uid="uid://d8pna4apkoj2" path="res://Maps/_BaseMap/common_tilemap.tscn" id="3_t21tl"]
+[ext_resource type="Script" path="res://Maps/_BaseMaterials/docks.gd" id="4_trbxc"]
+[ext_resource type="Script" path="res://Maps/_BaseMaterials/condition_script.gd" id="5_eiku4"]
 
 [node name="BaseMap" type="Node2D"]
 z_index = -1
 z_as_relative = false
 y_sort_enabled = true
-script = ExtResource("1_eqlwx")
+script = ExtResource("1_vrw3f")
+map_meta_data = ExtResource("2_h28o7")
 
-[node name="CommonTileMap" parent="." instance=ExtResource("2_epktx")]
+[node name="CommonTileMap" parent="." instance=ExtResource("3_t21tl")]
 
 [node name="Spawns" type="Node2D" parent="."]
 
@@ -26,7 +28,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Docks" type="Node2D" parent="."]
-script = ExtResource("3_gf41w")
+script = ExtResource("4_trbxc")
 
 [node name="East" type="Marker2D" parent="Docks"]
 unique_name_in_owner = true
@@ -44,6 +46,6 @@ unique_name_in_owner = true
 
 [node name="Conditions" type="Node2D" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3_1mcuf")
+script = ExtResource("5_eiku4")
 
 [node name="Rewards" type="Node2D" parent="."]

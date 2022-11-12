@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Maps/_BaseMap/map_meta_data.gd" id="1_0ntot"]
+
+[sub_resource type="Resource" id="Resource_2f6cm"]
+resource_local_to_scene = true
+script = ExtResource("1_0ntot")
+map_name = "Base Map"
+map_stage = null
+map_type = null
+
+[node name="Std Battle Map"]
+map_meta_data = SubResource("Resource_2f6cm")
