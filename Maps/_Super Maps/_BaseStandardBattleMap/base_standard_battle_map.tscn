@@ -1,5 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bs8u5mxwodghj"]
+[gd_scene load_steps=3 format=3 uid="uid://bs8u5mxwodghj"]
 
-[ext_resource type="PackedScene" path="res://Maps/_Super Maps/_BaseMap/base_map.tscn" id="1_hwe44"]
+[ext_resource type="PackedScene" uid="uid://b3vfeo8a0hxhj" path="res://Maps/_Super Maps/_BaseMap/base_map.tscn" id="1_hwe44"]
+[ext_resource type="Script" path="res://Maps/_Super Maps/_BaseStandardBattleMap/base_standard_battle_map.gd" id="2_e8idi"]
 
 [node name="BaseStandardBattleMap" instance=ExtResource("1_hwe44")]
+script = ExtResource("2_e8idi")

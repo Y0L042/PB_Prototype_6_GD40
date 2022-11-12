@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://b3vfeo8a0hxhj"]
 
-[ext_resource type="Script" path="res://Maps/_BaseMaterials/base_map_script.gd" id="1_vrw3f"]
-[ext_resource type="Resource" uid="uid://cb0odcljc3nh3" path="res://Maps/_Super Maps/_BaseMap/map_meta_data.tres" id="2_h28o7"]
+[ext_resource type="Script" path="res://Maps/_Super Maps/_BaseMap/base_map_script.gd" id="1_vw551"]
 [ext_resource type="PackedScene" uid="uid://d8pna4apkoj2" path="res://Maps/_Super Maps/_BaseMap/common_tilemap.tscn" id="3_t21tl"]
 [ext_resource type="Script" path="res://Maps/_BaseMaterials/docks.gd" id="4_trbxc"]
 [ext_resource type="Script" path="res://Maps/_BaseMaterials/condition_script.gd" id="5_eiku4"]
@@ -10,8 +9,7 @@
 z_index = -1
 z_as_relative = false
 y_sort_enabled = true
-script = ExtResource("1_vrw3f")
-map_meta_data = ExtResource("2_h28o7")
+script = ExtResource("1_vw551")
 
 [node name="CommonTileMap" parent="." instance=ExtResource("3_t21tl")]
 
