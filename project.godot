@@ -17,12 +17,12 @@ _global_script_classes=[{
 "base": "Node2D",
 "class": &"BaseCondition",
 "language": &"GDScript",
-"path": "res://Maps/_BaseMap/condition_script.gd"
+"path": "res://Maps/_Super Maps/_BaseMap/condition_script.gd"
 }, {
 "base": "Node2D",
 "class": &"BaseMapScript",
 "language": &"GDScript",
-"path": "res://Maps/_BaseMap/base_map_script.gd"
+"path": "res://Maps/_Super Maps/_BaseMap/base_map_script.gd"
 }, {
 "base": "Node2D",
 "class": &"BetterLight2D",
@@ -42,7 +42,7 @@ _global_script_classes=[{
 "base": "Node2D",
 "class": &"DockScript",
 "language": &"GDScript",
-"path": "res://Maps/_BaseMap/docks.gd"
+"path": "res://Maps/_Super Maps/_BaseMap/docks.gd"
 }, {
 "base": "PartyManager",
 "class": &"EnemyPartyManager",
@@ -87,7 +87,7 @@ _global_script_classes=[{
 "base": "MetaData",
 "class": &"MapMetaData",
 "language": &"GDScript",
-"path": "res://Maps/_BaseMap/map_meta_data.gd"
+"path": "res://Maps/_Super Maps/_BaseMap/map_meta_data.gd"
 }, {
 "base": "Resource",
 "class": &"MetaData",
