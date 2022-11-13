@@ -24,13 +24,23 @@ var WPN_SWORD: PackedScene = load("res://Weapons/Sword/sword.tscn")
 var MAIN_MENU_c: PackedScene = load("res://Maps/Main Menu/main_menu.tscn")
 var MAIN_GAME_c: PackedScene = load("res://Maps/Main Game/main_game.tscn")
 
-# Make it a list or dictionary or something
-var leveled_list_maps: Array = [
-	load("res://Maps/Level 0/level_000.tscn"),
-	load("res://Maps/Level 1/Level 1.1/level_101.tscn"),
-]
+# Dictionary of Worlds
+var WORLD = {
+	"WASTELAND" : WRLD_WASTELAND,
+}
 
+# Wasteland World Dictionary
+var WRLD_WASTELAND = {
+	"LVL_ORDER" : [
+		"STD_BATTLE_MAPS",
+		"STD_BATTLE_MAPS",
+		"STD_BATTLE_MAPS",
+	],
 
+	"STD_BATTLE_MAPS" : [
+		load("res://Maps/World_Desert/Standard Battle Maps/Variant 1/std_battle_map_variant_1.tscn"),
+	]
+}
 
 
 const TILES =  {

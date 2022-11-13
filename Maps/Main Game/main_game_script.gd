@@ -8,7 +8,10 @@ class_name  MainGame
 enum DOCKS {E, S, W, N}
 var spawned_level_list: Array
 var future_level_list: Array
-var current_map
+
+@onready var STARTING_WORLD = SceneLib.WORLD.WASTELAND
+@onready var current_world = STARTING_WORLD
+@onready var current_map
 
 var player_party_manager: PlayerPartyManager
 @export var player_starting_actors := 1
@@ -29,11 +32,13 @@ func _ready():
 	spawn_player_manager()
 
 func generate_future_level_list():
-	for i in 3:
-		future_level_list.append(SceneLib.leveled_list_maps[randi() % SceneLib.leveled_list_maps.size()])
+	pass
 
 func spawn_first_level():
-	var first_level = SceneLib.leveled_list_maps[0]
+	STARTING_WORLD = SceneLib.WORLD.WASTELAND
+	current_world = STARTING_WORLD
+	current_map = current_world.LVL_ORDER[0]
+	var first_level = current_map
 	first_level = SceneLib.spawn_child(first_level, self)
 	first_level.ConditionSignal.connect(_level_ConditionSignal, CONNECT_ONE_SHOT)
 	spawned_level_list.append(first_level)

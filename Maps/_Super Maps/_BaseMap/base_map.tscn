@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3vfeo8a0hxhj"]
+[gd_scene load_steps=3 format=3 uid="uid://b3vfeo8a0hxhj"]
 
 [ext_resource type="Script" path="res://Maps/_Super Maps/_BaseMap/base_map_script.gd" id="1_vw551"]
 [ext_resource type="PackedScene" uid="uid://d8pna4apkoj2" path="res://Maps/_Super Maps/_BaseMap/common_tilemap.tscn" id="3_t21tl"]
-[ext_resource type="Script" path="res://Maps/_BaseMaterials/docks.gd" id="4_trbxc"]
-[ext_resource type="Script" path="res://Maps/_BaseMaterials/condition_script.gd" id="5_eiku4"]
 
 [node name="BaseMap" type="Node2D"]
 z_index = -1
@@ -26,7 +24,6 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Docks" type="Node2D" parent="."]
-script = ExtResource("4_trbxc")
 
 [node name="East" type="Marker2D" parent="Docks"]
 unique_name_in_owner = true
@@ -44,6 +41,5 @@ unique_name_in_owner = true
 
 [node name="Conditions" type="Node2D" parent="."]
 unique_name_in_owner = true
-script = ExtResource("5_eiku4")
 
 [node name="Rewards" type="Node2D" parent="."]
