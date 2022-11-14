@@ -39,6 +39,7 @@ func _init(new_main_game) -> void:
 func spawn_first_level():
 		current_map = current_world.LEVEL_ORDER[map_index]
 		current_map = SceneLib.spawn_child(current_map, main_game)
+		current_map.erase_disabled_docks()
 		map_index += 1
 		current_map.ConditionSignal.connect(_level_ConditionSignal, CONNECT_ONE_SHOT)
 		spawned_level_list.append(current_map)
@@ -56,8 +57,11 @@ func spawn_next_level():
 	if map_index <= current_world.LEVEL_ORDER.size() - 1:
 		var new_map = current_world.LEVEL_ORDER[map_index]
 		new_map = SceneLib.spawn_child(new_map, main_game)
-		var random_dock = choose_random_dock(new_map)
+		var random_dock = choose_random_dock(current_map)
 		place_new_map(new_map, random_dock)
+		new_map.docks[get_opposite_dock(random_dock)].queue_free()
+		new_map.docks.remove_at(get_opposite_dock(random_dock))
+		new_map.erase_disabled_docks()
 		new_map.ConditionSignal.connect(_level_ConditionSignal, CONNECT_ONE_SHOT)
 		current_map = new_map
 		spawned_level_list.append(current_map)
@@ -65,6 +69,7 @@ func spawn_next_level():
 	else:
 		print("end of world, load next one")
 		#signal end of world, or something
+
 
 func choose_random_dock(map):
 	var docks: Array = map.docks.duplicate()
@@ -77,6 +82,8 @@ func choose_random_dock(map):
 		docks.erase(dock)
 	for dock_index in map.docks.size():
 		if docks[0] == map.docks[dock_index]:
+			randomize()
+			docks.shuffle()
 			return dock_index
 	return -1
 

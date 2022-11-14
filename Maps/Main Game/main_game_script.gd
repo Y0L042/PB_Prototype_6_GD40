@@ -20,7 +20,7 @@ var choice_menu
 func _ready():
 	randomize()
 	map_manager = MapManager.new(self)
-	self.map_manager.ConditionSignal.connect(_level_ConditionSignal, CONNECT_ONE_SHOT)
+	self.map_manager.ConditionSignal.connect(_level_ConditionSignal)
 	map_manager.spawn_first_level()
 	spawn_player_manager()
 

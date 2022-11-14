@@ -11,13 +11,13 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608,
 position = Vector2(2160, 2160)
 
 [node name="East" parent="Docks" index="0"]
-visible = false
 position = Vector2(4320, 2160)
 
 [node name="South" parent="Docks" index="1"]
 position = Vector2(2160, 4320)
 
 [node name="West" parent="Docks" index="2"]
+visible = false
 position = Vector2(0, 2160)
 
 [node name="North" parent="Docks" index="3"]

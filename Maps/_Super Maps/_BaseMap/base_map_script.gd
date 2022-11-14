@@ -48,3 +48,15 @@ func _init() -> void:
 
 func spawn_player_party(player_party_manager, player_starting_actors: int):
 	player_party_manager.spawn(player_spawn.get_global_position(), player_starting_actors)
+
+#-------------------------------------------------------------------------------
+# Map Functions
+#-------------------------------------------------------------------------------
+func erase_disabled_docks():
+	var erase_docks: Array
+	for dock in docks:
+		if !dock.visible:
+			erase_docks.append(dock)
+	for dock in erase_docks:
+		dock.queue_free()
+		docks.erase(dock)
