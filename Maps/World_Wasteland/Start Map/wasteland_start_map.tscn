@@ -12,14 +12,18 @@ position = Vector2(2160, 2160)
 
 [node name="East" parent="Docks" index="0"]
 visible = false
-position = Vector2(0, 2160)
+position = Vector2(4320, 2160)
 
 [node name="South" parent="Docks" index="1"]
 position = Vector2(2160, 4320)
 
 [node name="West" parent="Docks" index="2"]
-position = Vector2(4320, 2160)
+position = Vector2(0, 2160)
 
 [node name="North" parent="Docks" index="3"]
 visible = false
 position = Vector2(2160, 0)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Lighting" index="0"]
+visible = false
+color = Color(0.521569, 0.521569, 0.521569, 1)

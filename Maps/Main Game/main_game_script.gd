@@ -18,7 +18,9 @@ var choice_menu
 # Initialization
 #-------------------------------------------------------------------------------
 func _ready():
+	randomize()
 	map_manager = MapManager.new(self)
+	self.map_manager.ConditionSignal.connect(_level_ConditionSignal, CONNECT_ONE_SHOT)
 	map_manager.spawn_first_level()
 	spawn_player_manager()
 
@@ -43,9 +45,10 @@ func end_game(end_state):
 #level condition signal emits and triggers choice for next levels
 func _level_ConditionSignal():
 	print("Condition met")
-	give_reward(SceneLib.WPN_SWORD)
-#	current_map.ConditionSignal.disconnect(_level_ConditionSignal)
-	# load next level in list, otherwise victory
+	map_manager.spawn_next_level()
+#	give_reward(SceneLib.WPN_SWORD)
+	# load next map
+
 #	end_game(victory)
 
 func give_reward(new_weapon):
