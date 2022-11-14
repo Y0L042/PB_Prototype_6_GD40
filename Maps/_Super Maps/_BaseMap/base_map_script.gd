@@ -55,8 +55,18 @@ func spawn_player_party(player_party_manager, player_starting_actors: int):
 func erase_disabled_docks():
 	var erase_docks: Array
 	for dock in docks:
-		if !dock.visible:
-			erase_docks.append(dock)
-	for dock in erase_docks:
-		dock.queue_free()
-		docks.erase(dock)
+		if dock and !dock.visible:
+			dock.queue_free()
+			dock = null
+
+
+func get_opposite_dock(current_dock):
+	if current_dock == %East:
+		return %West
+	if current_dock == %South:
+		return %North
+	if current_dock == %West:
+		return %East
+	if current_dock == %North:
+		return %South
+	return -1

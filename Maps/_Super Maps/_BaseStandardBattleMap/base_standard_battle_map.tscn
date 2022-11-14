@@ -5,3 +5,5 @@
 
 [node name="BaseStandardBattleMap" instance=ExtResource("1_hwe44")]
 script = ExtResource("2_e8idi")
+enemy_actors_min = 1
+enemy_actors_max = 2

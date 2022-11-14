@@ -54,37 +54,48 @@ func _level_ConditionSignal():
 	ConditionSignal.emit()
 
 func spawn_next_level():
+	#get random valid dock from current map
+	#place new dock there
+	#remove "used" dock, and disabled docks, from new map
+	#connect signals and append to array, update map_index and set as current map
+
 	if map_index <= current_world.LEVEL_ORDER.size() - 1:
 		var new_map = current_world.LEVEL_ORDER[map_index]
 		new_map = SceneLib.spawn_child(new_map, main_game)
+
 		var random_dock = choose_random_dock(current_map)
 		place_new_map(new_map, random_dock)
 		new_map.docks[get_opposite_dock(random_dock)].queue_free()
-		new_map.docks.remove_at(get_opposite_dock(random_dock))
+		new_map.docks[get_opposite_dock(random_dock)] = null
 		new_map.erase_disabled_docks()
+
 		new_map.ConditionSignal.connect(_level_ConditionSignal, CONNECT_ONE_SHOT)
 		current_map = new_map
 		spawned_level_list.append(current_map)
 		map_index += 1
+
 	else:
 		print("end of world, load next one")
 		#signal end of world, or something
 
 
+
+
 func choose_random_dock(map):
-	var docks: Array = map.docks.duplicate()
-	var erase_docks: Array
-	docks.shuffle()
-	for dock in docks:
-		if !dock.visible:
-			erase_docks.append(dock)
-	for dock in erase_docks:
-		docks.erase(dock)
-	for dock_index in map.docks.size():
-		if docks[0] == map.docks[dock_index]:
-			randomize()
-			docks.shuffle()
-			return dock_index
+#	for dock_index in map.docks.size():
+#		if map.docks[dock_index] != null:
+#			return dock_index
+
+	var docks_copy: Array = map.docks.duplicate()
+	var return_dock
+	docks_copy.shuffle()
+	for dock in docks_copy:
+		if dock != null:
+			return_dock = dock
+			break
+	for dock in map.docks:
+		if return_dock == dock:
+			return map.docks.find(dock)
 	return -1
 
 
@@ -103,7 +114,6 @@ func place_new_map(new_map, dock_index):
 
 
 
-
 func get_opposite_dock(current_dock: int) -> int:
 	if current_dock == 0:
 		return 2
@@ -114,3 +124,4 @@ func get_opposite_dock(current_dock: int) -> int:
 	if current_dock == 3:
 		return 1
 	return -1
+
