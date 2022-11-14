@@ -9,7 +9,7 @@ signal ConditionSignal
 
 @export var map_meta_data: Resource
 
-@onready var player_spawn_pos: Vector2 = %PlayerSpawn.get_global_position()
+@onready var player_spawn := %PlayerSpawn
 @onready var enemy_spawns := %EnemySpawns
 @onready var item_spawns := %ItemSpawns
 @onready var condition := %Conditions
@@ -46,3 +46,5 @@ class LevelMetaData:
 func _init() -> void:
 	level_meta_data = LevelMetaData.new(level_name, level_rating)
 
+func spawn_player_party(player_party_manager, player_starting_actors: int):
+	player_party_manager.spawn(player_spawn.get_global_position(), player_starting_actors)

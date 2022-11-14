@@ -19,11 +19,12 @@ func _ready():
 # Events
 #-------------------------------------------------------------------------------
 func _on_ui_main_menu_start_new_game() -> void:
+	SceneLib.CONTINUE_GAME = false
 	get_tree().change_scene_to_packed(SceneLib.MAIN_GAME_c)
 
 
 func _on_ui_main_menu_continue_game_pressed():
-	pass
+	SceneLib.CONTINUE_GAME = true
 	#load saved game scene and change scene to that
 #-------------------------------------------------------------------------------
 # UI Main Menu

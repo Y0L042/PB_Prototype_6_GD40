@@ -20,21 +20,18 @@ var choice_menu
 # Initialization
 #-------------------------------------------------------------------------------
 func _ready():
-	# Load saved data
-	SceneLib.load_game()
-	map_manager = MapManager.new()
+	if SceneLib.CONTINUE_GAME:
+		SceneLib.load_game()
+	else:
+		map_manager = MapManager.new()
+		map_manager.spawn_first_level()
 	spawn_player_manager()
-
-
-
 
 
 func spawn_player_manager():
 	player_party_manager = SceneLib.spawn_child(SceneLib.PLAYER_PARTY, self)
-	player_party_manager.spawn(spawned_level_list[0].player_spawn_pos, player_starting_actors)
+	map_manager.current_map.spawn_player_party(player_party_manager, player_starting_actors)
 	player_party_manager.allActorsDead.connect(_all_player_actors_dead, CONNECT_ONE_SHOT)
-
-
 
 #-------------------------------------------------------------------------------
 # Events
@@ -54,11 +51,7 @@ func _level_ConditionSignal():
 	give_reward(SceneLib.WPN_SWORD)
 #	current_map.ConditionSignal.disconnect(_level_ConditionSignal)
 	# load next level in list, otherwise victory
-	if !future_level_list.is_empty():
-		load_next_level(future_level_list)
-	else:
-		var victory := "Victory"
-		end_game(victory)
+#	end_game(victory)
 
 func give_reward(new_weapon):
 	player_party_manager.give_actors_more_weapons(new_weapon)
@@ -68,10 +61,7 @@ func give_reward(new_weapon):
 
 
 func _process_choice(choice):
-	if choice == 1:
-		place_new_map(SceneLib.leveled_list_maps[1], DOCKS.E)
-	if choice == 2:
-		place_new_map(SceneLib.leveled_list_maps[1], DOCKS.S)
+
 	choice_menu.queue_free()
 
 

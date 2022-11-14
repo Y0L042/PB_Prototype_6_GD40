@@ -43,26 +43,6 @@ var WRLD_WASTELAND = {
 }
 
 
-const TILES =  {
-	"WHITE": Vector2i(0,0),
-	"BLACK": Vector2i(1,0),
-}
-
-#var STARTING_MAP: PackedScene =  load("res://Maps/Starting Map/starting_map.tscn")
-#var FOREST_MAP: PackedScene = load("res://Maps/Forest Map/forest_map.tscn")
-#var DUNGEON_MAP: PackedScene = load("res://Maps/Dungeon Map/dungeon_map.tscn")
-#var CASTLE_MAP: PackedScene = load("res://Maps/Castle Map/castle_map.tscn")
-#var TINYKEEP_WORLDGEN: PackedScene = load("res://Procedural Map Worlds/TinyKeep World/tiny_keep_world.tscn")
-
-var map_generator: Dictionary = {
-	"noise_map": NoiseWorldGenerator,
-	"walker_map": WalkerWorldGenerator,
-	"tinykeep_map": TinyKeepWorldGenerator
-}
-
-var TINYKEEP_ROOM: PackedScene = load("res://Procedural Map Worlds/TinyKeep World/room.tscn")
-
-
 
 #-------------------------------------------------------------------------------
 # UI
@@ -85,7 +65,53 @@ func spawn_child(child: PackedScene, parent, new_global_position: Vector2 = Vect
 func change_scene():
 	pass
 
+var CONTINUE_GAME: bool
 func save_game():
 	print("TBI - Save Game")
 func load_game():
 	print("TBI = Load Game")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#-------------------------------------------------------------------------------
+# Obsolete
+#-------------------------------------------------------------------------------
+
+const TILES =  {
+	"WHITE": Vector2i(0,0),
+	"BLACK": Vector2i(1,0),
+}
+
+#var STARTING_MAP: PackedScene =  load("res://Maps/Starting Map/starting_map.tscn")
+#var FOREST_MAP: PackedScene = load("res://Maps/Forest Map/forest_map.tscn")
+#var DUNGEON_MAP: PackedScene = load("res://Maps/Dungeon Map/dungeon_map.tscn")
+#var CASTLE_MAP: PackedScene = load("res://Maps/Castle Map/castle_map.tscn")
+#var TINYKEEP_WORLDGEN: PackedScene = load("res://Procedural Map Worlds/TinyKeep World/tiny_keep_world.tscn")
+
+var map_generator: Dictionary = {
+	"noise_map": NoiseWorldGenerator,
+	"walker_map": WalkerWorldGenerator,
+	"tinykeep_map": TinyKeepWorldGenerator
+}
+
+var TINYKEEP_ROOM: PackedScene = load("res://Procedural Map Worlds/TinyKeep World/room.tscn")
+
