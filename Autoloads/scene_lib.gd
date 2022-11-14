@@ -24,26 +24,19 @@ var WPN_SWORD: PackedScene = load("res://Weapons/Sword/sword.tscn")
 var MAIN_MENU_c: PackedScene = load("res://Maps/Main Menu/main_menu.tscn")
 var MAIN_GAME_c: PackedScene = load("res://Maps/Main Game/main_game.tscn")
 
-# Dictionary of Worlds
-var WORLD = {
-	"WASTELAND" : WRLD_WASTELAND,
-}
+
 
 # Wasteland World Dictionary
-var WRLD_WASTELAND = {
-	"LVL_ORDER" : [
-		"STD_BATTLE_MAPS",
-		"STD_BATTLE_MAPS",
-		"STD_BATTLE_MAPS",
-	],
 
-	"STD_BATTLE_MAPS" : [
-		load("res://Maps/World_Desert/Standard Battle Maps/Variant 1/std_battle_map_variant_1.tscn"),
-	]
+var WORLD_WASTELAND := "res://Maps/World_Wasteland/wasteland_world.tscn"
+
+
+
+
+# Dictionary of Worlds , Place last, otherwise vars like WRLD_WASTELAND would still be null
+var WORLD = {
+	"WASTELAND" : WORLD_WASTELAND,
 }
-
-
-
 #-------------------------------------------------------------------------------
 # UI
 #-------------------------------------------------------------------------------
@@ -60,6 +53,11 @@ func spawn_child(child: PackedScene, parent, new_global_position: Vector2 = Vect
 	parent.add_child(child_instance)
 	child_instance.set_global_position(new_global_position)
 	return child_instance
+
+
+func return_random_scene(new_array: Array):
+	var rand_index = randi_range(0, new_array.size() - 1)
+	return new_array[rand_index]
 
 
 func change_scene():

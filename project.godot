@@ -30,6 +30,11 @@ _global_script_classes=[{
 "path": "res://Maps/_Super Maps/_BaseStandardBattleMap/base_standard_battle_map.gd"
 }, {
 "base": "Node2D",
+"class": &"BaseWorld",
+"language": &"GDScript",
+"path": "res://Maps/_Super Maps/_BaseWorld/base_world.gd"
+}, {
+"base": "Node2D",
 "class": &"BetterLight2D",
 "language": &"GDScript",
 "path": "res://addons/better_2d_shadows/better_2d_light.gd"
@@ -154,6 +159,7 @@ _global_script_class_icons={
 "BaseCondition": "",
 "BaseMapScript": "",
 "BaseStandardBattleMapScript": "",
+"BaseWorld": "",
 "BetterLight2D": "",
 "BetterShadow2D": "",
 "Delaunay": "",

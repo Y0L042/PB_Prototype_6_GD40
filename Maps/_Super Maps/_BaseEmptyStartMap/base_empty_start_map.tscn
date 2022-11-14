@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqi2un3t0bttv"]
+
+[ext_resource type="PackedScene" uid="uid://b3vfeo8a0hxhj" path="res://Maps/_Super Maps/_BaseMap/base_map.tscn" id="1_qxnc5"]
+[ext_resource type="Script" path="res://Maps/_Super Maps/_BaseEmptyStartMap/base_empty_start_map.gd" id="2_0v0ib"]
+
+[node name="BaseEmptyStartMap" instance=ExtResource("1_qxnc5")]
+script = ExtResource("2_0v0ib")

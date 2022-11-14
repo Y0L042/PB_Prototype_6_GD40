@@ -12,6 +12,7 @@ var future_level_list: Array
 var STARTING_WORLD = SceneLib.WORLD.WASTELAND
 var current_world = STARTING_WORLD
 var current_map
+var map_index := 0
 
 #-------------------------------------------------------------------------------
 # Properties
@@ -27,7 +28,7 @@ var current_map
 # New Game
 #-------------------------------------------------------------------------------
 func spawn_first_level():
-	current_map = current_world.LVL_ORDER[0]
+	current_map = current_world.LVL_ORDER[map_index]
 	current_map = SceneLib.spawn_child(current_map, self)
 #	current_map.ConditionSignal.connect(_level_ConditionSignal, CONNECT_ONE_SHOT)
 	spawned_level_list.append(current_map)
