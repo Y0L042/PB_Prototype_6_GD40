@@ -1,6 +1,7 @@
 extends Control
 
 signal startNewGame
+signal continueGame
 
 @onready var btn_ContinueGame = %ContinueGame
 @onready var btn_StartNewGame = %StartNewGame
@@ -15,18 +16,17 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_start_new_game_pressed() -> void:
-	start_new_game()
+#	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) disabled for debugging because it is annoying
+	startNewGame.emit(self)
 
 func _on_quit_pressed() -> void:
 	quit()
 
 func _on_continue_game_pressed() -> void:
-	pass # Replace with function body.
+	continueGame.emit(self)
 
 
-func start_new_game():
-#	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) disabled for debugging because it is annoying
-	startNewGame.emit(self)
+
 
 
 func quit():
