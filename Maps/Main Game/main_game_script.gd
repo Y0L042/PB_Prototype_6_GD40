@@ -7,10 +7,8 @@ class_name  MainGame
 #-------------------------------------------------------------------------------
 var map_manager: MapManager
 
-
 var player_party_manager: PlayerPartyManager
 @export var player_starting_actors := 1
-
 
 var pause_menu = SceneLib.spawn_child(SceneLib.UI_PAUSE_MENU, self)
 var current_ui_menu
@@ -20,11 +18,8 @@ var choice_menu
 # Initialization
 #-------------------------------------------------------------------------------
 func _ready():
-	if SceneLib.CONTINUE_GAME:
-		SceneLib.load_game()
-	else:
-		map_manager = MapManager.new()
-		map_manager.spawn_first_level()
+	map_manager = MapManager.new(self)
+	map_manager.spawn_first_level()
 	spawn_player_manager()
 
 
@@ -38,7 +33,7 @@ func spawn_player_manager():
 #-------------------------------------------------------------------------------
 func _all_player_actors_dead(player):
 	var defeat := "Defeat"
-	end_game(defeat)
+#	end_game(defeat)
 
 func end_game(end_state):
 	var ui_game_end = SceneLib.spawn_child(SceneLib.UI_GAME_END, self)

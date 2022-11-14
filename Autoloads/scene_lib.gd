@@ -26,9 +26,8 @@ var MAIN_GAME_c: PackedScene = load("res://Maps/Main Game/main_game.tscn")
 
 
 
-# Wasteland World Dictionary
-
-var WORLD_WASTELAND := "res://Maps/World_Wasteland/wasteland_world.tscn"
+# Wasteland
+var WORLD_WASTELAND := WorldWasteland.new()
 
 
 

@@ -5,6 +5,8 @@ class_name MapManager
 #-------------------------------------------------------------------------------
 # Variables
 #-------------------------------------------------------------------------------
+var main_game: MainGame
+
 enum DOCKS {E, S, W, N}
 var spawned_level_list: Array
 var future_level_list: Array
@@ -18,6 +20,11 @@ var map_index := 0
 # Properties
 #-------------------------------------------------------------------------------
 
+#-------------------------------------------------------------------------------
+# Initialize
+#-------------------------------------------------------------------------------
+func _init(new_main_game) -> void:
+	main_game = new_main_game
 
 #-------------------------------------------------------------------------------
 # Continue Game
@@ -28,10 +35,12 @@ var map_index := 0
 # New Game
 #-------------------------------------------------------------------------------
 func spawn_first_level():
-	current_map = current_world.LVL_ORDER[map_index]
-	current_map = SceneLib.spawn_child(current_map, self)
+	current_map = current_world.LEVEL_ORDER[map_index]
+	current_map = SceneLib.spawn_child(current_map, main_game)
+	map_index += 1
 #	current_map.ConditionSignal.connect(_level_ConditionSignal, CONNECT_ONE_SHOT)
 	spawned_level_list.append(current_map)
+
 
 
 
@@ -39,7 +48,7 @@ func spawn_first_level():
 #-------------------------------------------------------------------------------
 # Events
 #-------------------------------------------------------------------------------
-func load_next_level():
+func load_level():
 	pass
 
 

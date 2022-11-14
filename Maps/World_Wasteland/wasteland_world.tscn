@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://d00vntlqyus8u"]
-
-[ext_resource type="PackedScene" uid="uid://d14hije8ti8h5" path="res://Maps/_Super Maps/_BaseWorld/base_world.tscn" id="1_vcj7h"]
-
-[node name="WastelandWorld" instance=ExtResource("1_vcj7h")]
