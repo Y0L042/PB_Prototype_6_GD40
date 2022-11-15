@@ -13,7 +13,9 @@ class_name PartyManager
 signal allActorsDead
 
 var pb: Dictionary = {
+	"main_game": null,
 	"party_group": null,
+	"party_id": null,
 	"all_actors": [],
 	"active_actors": [],
 	"party_pos": Vector2.ZERO,
@@ -43,10 +45,12 @@ func set_party_speed(party_speed):
 # Initialization
 #-------------------------------------------------------------------------------
 func spawn(new_spawn_pos: Vector2 = Vector2.ZERO, new_actor_count: int = 0):
+	pb.main_game = null # make it main_game
 	pb.party_pos = new_spawn_pos
 	pb.party_target_pos = pb.party_pos # temp
 	pb.active_actors_count = new_actor_count
-	pb.party_group = str(self.get_instance_id())
+	pb.party_group = get_groups()[0]
+	pb.party_id = str(self.get_instance_id())
 	pb.party_shader_colour = party_colour
 	spawn_party_actors()
 

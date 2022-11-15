@@ -5,5 +5,6 @@
 [node name="EnemyParty" type="Node2D" groups=["Enemy"]]
 y_sort_enabled = true
 script = ExtResource("1_c5pk3")
+spawn_actors_manually = null
 party_speed = 5
 party_colour = Color(0.607843, 0, 0, 1)

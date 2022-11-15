@@ -15,7 +15,7 @@ var rand_wave_map := load("res://Maps/_Super Maps/_BaseRandWaveAttackMap/base_ra
 
 func _init() -> void:
 	LEVEL_ORDER = [
-		start_map,
+#		start_map,
 		rand_wave_map,
 		random_std_battle_map,
 		random_std_battle_map,

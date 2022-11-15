@@ -2,13 +2,13 @@ extends PartyManager
 
 class_name EnemyPartyManager
 
-var change_direction_timer
+var vec
 
 #-------------------------------------------------------------------------------
 # Initialization
 #-------------------------------------------------------------------------------
 func _ready() -> void:
-	pass
+	vec = choose_initial_direction()
 #	if spawn_actors_manually:
 #		var spawn_pos: Vector2 = get_node("SpawnPos").get_global_position()
 #		spawn(spawn_pos, actor_amount)
@@ -16,18 +16,23 @@ func _ready() -> void:
 func party_process(delta: float):
 	if pb.active_actors.is_empty():
 		allActorsDead.emit(self)
+		self.queue_free() #temp
 
-		#temp
-		self.queue_free()
 	move_party_target(move_target(delta))
+
+func choose_initial_direction():
+	var range: int = 10
+	var px: int = randi_range(-range, range)
+	var py: int = randi_range(-range, range)
+	var vec = Vector2(px, py).normalized()
+	return vec
 
 
 func move_target(delta: float):
-	var party_target_pos: Vector2
-	var range: int = 100000
-	var px: int = randi_range(-range, range)
-	var py: int = randi_range(-range, range)
-	party_target_pos = Vector2(px, py)
+	var vel: Vector2 = vec * party_speed
+	var party_target_pos = pb.party_target_pos + (vel * delta)
 	return party_target_pos
 
-
+func move_party_target(position: Vector2):
+	pb.party_target_pos = position
+	pb.party_target_vel = pb.party_pos.direction_to(pb.party_target_pos) * party_speed

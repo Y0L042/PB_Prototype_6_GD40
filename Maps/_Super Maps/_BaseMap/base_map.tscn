@@ -43,3 +43,5 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Rewards" type="Node2D" parent="."]
+
+[node name="Borders" type="Node2D" parent="."]
