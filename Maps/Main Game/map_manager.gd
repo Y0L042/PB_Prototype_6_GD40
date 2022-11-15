@@ -39,7 +39,7 @@ func _init(new_main_game) -> void:
 func spawn_first_level():
 		current_map = current_world.LEVEL_ORDER[map_index]
 		current_map = SceneLib.spawn_child(current_map, main_game)
-		current_map.erase_disabled_docks()
+		current_map.erase_disabled_docks()l
 		map_index += 1
 		current_map.ConditionSignal.connect(_level_ConditionSignal, CONNECT_ONE_SHOT)
 		spawned_level_list.append(current_map)
