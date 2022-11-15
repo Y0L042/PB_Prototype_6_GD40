@@ -212,6 +212,7 @@ Tools="*res://Autoloads/tools.gd"
 FactionLib="*res://Autoloads/faction_lib.gd"
 SBL="*res://Autoloads/steering_behaviour_lib.gd"
 GlobalSettings="*res://Autoloads/global_settings.gd"
+GlobalVariables="*res://Autoloads/global_variables.gd"
 
 [display]
 

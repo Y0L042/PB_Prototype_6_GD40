@@ -163,19 +163,6 @@ func state_process_dead():
 #-------------------------------------------------------------------------------
 # Animation
 #-------------------------------------------------------------------------------
-func flip_sprite(look_dir: Vector2 = velocity): #please improve this
-	# var flip_buffer: float = 25
-	# var flipped: bool = false
-	# if look_dir.x < -flip_buffer: flipped = true
-	# if look_dir.x > flip_buffer: flipped = false
-	# # Flip pivot
-	# if flipped and (pivot.scale.x == 1):
-	# 	pivot.set_scale(Vector2(-1, 1))
-	# if !flipped and (pivot.scale.x == -1):
-	# 	pivot.set_scale(Vector2(1, 1))
-	pass
-
-
 func rotate_weapon():
 	var angle: float = get_global_position().angle_to(velocity)
 	for weapon in weapon_array:

@@ -37,22 +37,17 @@ func state_process():
 #-------------------------------------------------------------------------------
 func state_process_passive():
 	var stopdist: float = GlobalSettings.UNIT * 0.9
-
-
-
 	var target_dist = get_global_position().distance_to(pb.party_target_pos)
 	var collidingAgainstPersonNextToTarget: bool = false
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i).get_collider()
 		if collision and collision.is_in_group(pb.party_group):
 			collidingAgainstPersonNextToTarget = collision.arrivedAtTarget or collidingAgainstPersonNextToTarget
-
 	var isColliding: bool = get_slide_collision_count() > 0
 	var targetNotMoving: bool = pb.party_target_vel.length() <= 5
 	var withinRadius: bool = target_dist <= pb.active_actors_count*10
 	var nextToTarget: bool = target_dist <= 25
 	arrivedAtTarget = nextToTarget or (targetNotMoving and withinRadius and isColliding and collidingAgainstPersonNextToTarget)
-
 	if !arrivedAtTarget:
 		var seek_target = SBL.arrive(get_global_position(), pb.party_target_pos, stopdist)
 		steering_vector_array.append(seek_target)
@@ -60,7 +55,6 @@ func state_process_passive():
 
 
 func state_process_aggressive():
-	state_process_passive()
 	## If no enemies is in sight (FOV_enemy_list.is_empty()), go to passive
 	## If there is enemy in sight (!FOV_enemy_list.is_empty()), sort through list to erase dead enemies
 	## If there is alive enemies left over, sort by distance and get the nearest enemy
@@ -88,9 +82,9 @@ func state_process_aggressive():
 			for weapon in weapon_array:
 				if is_instance_valid(weapon) and dist_to_nearest_target <= (weapon.attack_range*weapon.attack_range):
 					weapon.attack()
-
 	if !isAlive:
 		change_state(states.DEAD)
+
 
 func state_process_hurt():
 	pass
@@ -107,13 +101,14 @@ func state_process_dead():
 
 
 
+#-------------------------------------------------------------------------------
+# Events
+#-------------------------------------------------------------------------------
 func _on_fov_area_body_entered(body: Node2D) -> void:
 	if body != self and body.pb.party_group != self.pb.party_group and body.isAlive:
 		if FOV_enemy_list.is_empty():
 			EnemySpotted.emit(body)
 		FOV_enemy_list.append(body)
-
-
 		var enemy_distance_squared: float = get_global_position().distance_squared_to(body.get_global_position())
 		for enemy in FOV_enemy_list:
 			var dist: float = get_global_position().distance_squared_to(enemy.get_global_position())

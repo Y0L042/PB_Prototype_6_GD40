@@ -65,21 +65,19 @@ func spawn_party_actors():
 # Runtime
 #-------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
+	pb.party_pos = calc_actor_array_center(pb.active_actors)
 	party_process(delta)
-#	move_party_target(delta)
-#	for actor in pb.active_actors:
-#		actor.managed_process()
+
 
 
 func move_party_target(position: Vector2):
 	pb.party_target_pos = position
 	pb.party_target_vel = pb.party_pos.direction_to(pb.party_target_pos) * party_speed
 
+
 func party_process(delta: float):
 	pass
 
-#func move_party_target(delta: float):
-#	pass
 
 #-------------------------------------------------------------------------------
 # Events

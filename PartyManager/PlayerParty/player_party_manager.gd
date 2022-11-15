@@ -28,12 +28,79 @@ func party_process(delta: float):
 		necromance()
 
 
+
 #-------------------------------------------------------------------------------
 # Events
 #-------------------------------------------------------------------------------
 func add_defeated_party_actors(new_party_actors):
-	necromance_queue.append_array(new_party_actors)
+	necromance_queue.append(new_party_actors)
 
 func necromance():
-	for actor in necromance_queue:
-		spawn_actor(actor.self_scene, Tools.random_offset(pb.party_pos, GlobalSettings.UNIT * 5))
+	var erase_queue: Array
+	for party in necromance_queue:
+		for actor in party:
+			spawn_actor(actor.self_scene, Tools.random_offset(pb.party_pos, GlobalSettings.UNIT * 5))
+			party.erase(actor)
+		necromance_queue.erase(party)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

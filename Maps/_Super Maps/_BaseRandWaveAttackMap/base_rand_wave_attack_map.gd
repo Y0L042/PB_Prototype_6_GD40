@@ -2,6 +2,9 @@ extends BaseMapScript
 
 class_name BaseRandWaveAttackMapScript
 
+#-------------------------------------------------------------------------------
+# Properties
+#-------------------------------------------------------------------------------
 @onready var OpenTheGates = %OpenTheGates
 @onready var spawn_shape = %SpawnShape
 
@@ -14,17 +17,29 @@ var spawn_timer
 
 var open_the_gates: bool = false
 
+
+
+#-------------------------------------------------------------------------------
+# Initialize
+#-------------------------------------------------------------------------------
 func _ready() -> void:
 	randomize()
 
+
+#-------------------------------------------------------------------------------
+# Runitme
+#-------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
 	if !open_the_gates:
 		return
 	rand_wave_spawner()
 
+
+#-------------------------------------------------------------------------------
+# Events
+#-------------------------------------------------------------------------------
 func rand_wave_spawner():
 	if enemy_parties_array.size() < 10 and (spawn_timer == null or spawn_timer.get_time_left() < 1):
-
 		var rand_pos_x: int
 		var rand_pos_y: int
 		var shape_pos: Vector2 = spawn_shape.get_shape().get_rect().position + spawn_shape.get_global_position()
@@ -36,20 +51,23 @@ func rand_wave_spawner():
 			var limit: int = GlobalSettings.UNIT * GlobalSettings.UNIT * 15 * 15
 			if  limit < dist_squared:
 				break
-		spawn_enemy_party(Vector2(rand_pos_x, rand_pos_y))
+		var player_party_size = main_game.player_party_manager.pb.active_actors.size() #-Determine enemy party size based on player party size
+		var size: int = clampi(randi_range(enemy_actors_min, enemy_actors_max), 1, 50)
+		spawn_enemy_party(Vector2(rand_pos_x, rand_pos_y), size)
 		spawn_timer = get_tree().create_timer(2)
 
-func spawn_enemy_party(location: Vector2):
-	var party: Variant = spawn_enemies(location)
+
+func spawn_enemy_party(location: Vector2, size):
+	var party: Variant = spawn_enemies(location, size)
 	party.allActorsDead.connect(_all_actors_dead)
 	enemy_parties_array.append(party)
 
-func spawn_enemies(spawn_location):
-	var player_party_size = main_game.player_party_manager.pb.active_actors.size()
-	var enemy_actors: int = clampi(randi_range(player_party_size - enemy_actors_min, player_party_size + enemy_actors_max), 1, 50)
+
+func spawn_enemies(spawn_location, size):
 	var enemy_party_manager = SceneLib.spawn_child(SceneLib.ENEMY_PARTY, get_parent())#self)
-	enemy_party_manager.spawn(spawn_location, enemy_actors, main_game)
+	enemy_party_manager.spawn(spawn_location, size, main_game)
 	return enemy_party_manager
+
 
 func _all_actors_dead(party):
 	if enemy_parties_array.has(party):
