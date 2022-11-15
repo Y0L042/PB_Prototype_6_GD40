@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Weapons/Sword/sword.gd" id="1_1xgmp"]
 [ext_resource type="Texture2D" uid="uid://kprqswpacgmt" path="res://Assets/v1.1 dungeon crawler 16X16 pixel pack/heroes/knight/weapon_sword_1.png" id="1_4xppp"]
 [ext_resource type="Texture2D" uid="uid://dtgxg8ehqjj0m" path="res://Assets/v1.1 dungeon crawler 16X16 pixel pack/effects (new)/slash_effect_anim_spritesheet.png" id="2_sauha"]
-[ext_resource type="AudioStream" uid="uid://b2gftdq62cxjl" path="res://SoundFx/77611__joelaudio__sfx-attack-sword-001.wav" id="4_dcuxa"]
+[ext_resource type="AudioStream" uid="uid://b2gftdq62cxjl" path="res://Audio/SoundFx/77611__joelaudio__sfx-attack-sword-001.wav" id="4_dcuxa"]
 
 [sub_resource type="Animation" id="Animation_fwh4i"]
 resource_name = "Attack"

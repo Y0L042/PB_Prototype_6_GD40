@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://2b0fiptfgaku"]
+[gd_scene load_steps=3 format=3 uid="uid://2b0fiptfgaku"]
 
 [ext_resource type="Script" path="res://Maps/Main Game/main_game_script.gd" id="1_0qpaf"]
+[ext_resource type="AudioStream" uid="uid://57c6o6cfa25" path="res://Audio/Music/BGM07battle1.wav" id="2_0gwn8"]
 
 [node name="MainGame" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_0qpaf")
 player_starting_actors = 30
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0gwn8")
+volume_db = -25.0
+autoplay = true

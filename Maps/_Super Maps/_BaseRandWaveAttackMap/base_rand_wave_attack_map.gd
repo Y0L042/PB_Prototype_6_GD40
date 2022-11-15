@@ -3,6 +3,7 @@ extends BaseMapScript
 class_name BaseRandWaveAttackMapScript
 
 @onready var OpenTheGates = %OpenTheGates
+@onready var spawn_shape = %SpawnShape
 
 @export var enemy_actors_min: int = 1 # make markers with this property
 @export var enemy_actors_max: int = 2
@@ -24,11 +25,15 @@ func _physics_process(delta: float) -> void:
 func rand_wave_spawner():
 
 	if enemy_parties_array.size() < 10 and (spawn_timer == null or spawn_timer.get_time_left() < 1):
-		enemy_spawns.get_children().shuffle()
 		if enemy_actors_min < 40: enemy_actors_min += enemy_actor_increment
 		if enemy_actors_max < 50: enemy_actors_max += enemy_actor_increment
-		spawn_enemy_party(enemy_spawns.get_children()[randi()%enemy_spawns.get_children().size()].get_global_position())
-		spawn_timer = get_tree().create_timer(10)
+		var rand_pos_x: int
+		var rand_pos_y: int
+		while Vector2(rand_pos_x, rand_pos_y).distance_squared_to(main_game.player_party_manager.pb.party_pos) < 150*150:
+			rand_pos_x = randi_range(spawn_shape.get_shape().get_rect().position.x, spawn_shape.get_shape().get_rect().end.x)
+			rand_pos_y = randi_range(spawn_shape.get_shape().get_rect().position.y, spawn_shape.get_shape().get_rect().end.y)
+		spawn_enemy_party(Vector2(rand_pos_x, rand_pos_y))
+		spawn_timer = get_tree().create_timer(2)
 
 func spawn_enemy_party(location: Vector2):
 	var party: Variant = spawn_enemies(location)

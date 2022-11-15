@@ -61,7 +61,7 @@ func spawn_next_level():
 
 	if map_index <= current_world.LEVEL_ORDER.size() - 1:
 		var new_map = current_world.LEVEL_ORDER[map_index]
-		new_map = SceneLib.spawn_child(new_map, main_game)
+		new_map = SceneLib.spawn_child(new_map, main_game, Vector2.ZERO, main_game)
 
 		var random_dock = choose_random_dock(current_map)
 		place_new_map(new_map, random_dock)

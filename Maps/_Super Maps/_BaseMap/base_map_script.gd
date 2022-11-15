@@ -7,6 +7,8 @@ class_name BaseMapScript
 #-------------------------------------------------------------------------------
 signal ConditionSignal
 
+var main_game
+
 @export var map_meta_data: Resource
 
 @onready var player_spawn := %PlayerSpawn
@@ -43,8 +45,9 @@ class LevelMetaData:
 #-------------------------------------------------------------------------------
 # Initialization
 #-------------------------------------------------------------------------------
-func _init() -> void:
+func _init(new_main_game) -> void:
 	level_meta_data = LevelMetaData.new(level_name, level_rating)
+	main_game = new_main_game
 
 func spawn_player_party(player_party_manager, player_starting_actors: int):
 	player_party_manager.spawn(player_spawn.get_global_position(), player_starting_actors)

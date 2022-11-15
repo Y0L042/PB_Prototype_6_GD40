@@ -47,10 +47,14 @@ var UI_GAME_END: PackedScene = load("res://UI/ui_game_end.tscn")
 #-------------------------------------------------------------------------------
 # Scene Tools
 #-------------------------------------------------------------------------------
-func spawn_child(child: PackedScene, parent, new_global_position: Vector2 = Vector2.ZERO):
-	var child_instance = child.instantiate()
+func spawn_child(child: PackedScene, parent, new_global_position: Vector2 = Vector2.ZERO, variant: Variant = null):
+	var child_instance
+	if variant != null:
+		child_instance = child.instantiate(variant)
+	else:
+		child_instance = child.instantiate()
 	parent.add_child(child_instance)
-	child_instance.set_global_position(new_global_position)
+	child_instance.set_global_position(Vector2.ZERO)
 	return child_instance
 
 
