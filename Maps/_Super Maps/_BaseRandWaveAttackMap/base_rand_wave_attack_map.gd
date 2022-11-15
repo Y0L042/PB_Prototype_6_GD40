@@ -29,9 +29,15 @@ func rand_wave_spawner():
 		if enemy_actors_max < 50: enemy_actors_max += enemy_actor_increment
 		var rand_pos_x: int
 		var rand_pos_y: int
-		while Vector2(rand_pos_x, rand_pos_y).distance_squared_to(main_game.player_party_manager.pb.party_pos) < 150*150:
-			rand_pos_x = randi_range(spawn_shape.get_shape().get_rect().position.x, spawn_shape.get_shape().get_rect().end.x)
-			rand_pos_y = randi_range(spawn_shape.get_shape().get_rect().position.y, spawn_shape.get_shape().get_rect().end.y)
+		var shape_pos: Vector2 = spawn_shape.get_shape().get_rect().position + spawn_shape.get_global_position()
+		var shape_end: Vector2 = spawn_shape.get_shape().get_rect().end + spawn_shape.get_global_position()
+		while true:
+			rand_pos_x = randi_range(shape_pos.x, shape_end.x)
+			rand_pos_y = randi_range(shape_pos.y, shape_end.y)
+			var dist_squared: int = Vector2(rand_pos_x, rand_pos_y).distance_squared_to(main_game.player_party_manager.pb.party_pos)
+			var limit: int = GlobalSettings.UNIT * GlobalSettings.UNIT * 15 * 15
+			if  limit < dist_squared:
+				break
 		spawn_enemy_party(Vector2(rand_pos_x, rand_pos_y))
 		spawn_timer = get_tree().create_timer(2)
 

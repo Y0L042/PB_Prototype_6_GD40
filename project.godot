@@ -99,6 +99,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Procedural Map Worlds/map_generator_manager.gd"
 }, {
+"base": "Node",
+"class": &"MapManager",
+"language": &"GDScript",
+"path": "res://Maps/Main Game/map_manager.gd"
+}, {
 "base": "MetaData",
 "class": &"MapMetaData",
 "language": &"GDScript",
@@ -178,6 +183,7 @@ _global_script_class_icons={
 "MainMenu": "",
 "MapDataObject": "",
 "MapGeneratorManager": "",
+"MapManager": "",
 "MapMetaData": "",
 "MetaData": "",
 "NoiseWorldGenerator": "",

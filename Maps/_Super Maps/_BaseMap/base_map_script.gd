@@ -7,7 +7,7 @@ class_name BaseMapScript
 #-------------------------------------------------------------------------------
 signal ConditionSignal
 
-var main_game
+var main_game : set = set_main_game
 
 @export var map_meta_data: Resource
 
@@ -45,8 +45,11 @@ class LevelMetaData:
 #-------------------------------------------------------------------------------
 # Initialization
 #-------------------------------------------------------------------------------
-func _init(new_main_game) -> void:
+func _init() -> void:
 	level_meta_data = LevelMetaData.new(level_name, level_rating)
+
+
+func set_main_game(new_main_game):
 	main_game = new_main_game
 
 func spawn_player_party(player_party_manager, player_starting_actors: int):
@@ -73,3 +76,6 @@ func get_opposite_dock(current_dock):
 	if current_dock == %North:
 		return %South
 	return -1
+
+func debug():
+	print("base map function is found")

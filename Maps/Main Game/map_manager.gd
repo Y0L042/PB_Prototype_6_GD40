@@ -39,7 +39,8 @@ func _init(new_main_game) -> void:
 func spawn_first_level():
 		current_map = current_world.LEVEL_ORDER[map_index]
 		current_map = SceneLib.spawn_child(current_map, main_game)
-		current_map.erase_disabled_docks()l
+		current_map.set_main_game(main_game)
+		current_map.debug() #erase_disabled_docks()
 		map_index += 1
 		current_map.ConditionSignal.connect(_level_ConditionSignal, CONNECT_ONE_SHOT)
 		spawned_level_list.append(current_map)
@@ -61,8 +62,8 @@ func spawn_next_level():
 
 	if map_index <= current_world.LEVEL_ORDER.size() - 1:
 		var new_map = current_world.LEVEL_ORDER[map_index]
-		new_map = SceneLib.spawn_child(new_map, main_game, Vector2.ZERO, main_game)
-
+		new_map = SceneLib.spawn_child(new_map, main_game)
+		new_map.set_main_game(main_game)
 		var random_dock = choose_random_dock(current_map)
 		place_new_map(new_map, random_dock)
 		new_map.docks[get_opposite_dock(random_dock)].queue_free()

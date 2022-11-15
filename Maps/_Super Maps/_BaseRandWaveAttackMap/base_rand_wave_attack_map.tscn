@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Maps/_Super Maps/_BaseRandWaveAttackMap/base_rand_wave_attack_map.gd" id="2_h6mus"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u8v42"]
-size = Vector2(66.16, 61.84)
+size = Vector2(17712, 17928)
 
 [node name="BaseRandWaveAttackMap" instance=ExtResource("1_8abtk")]
 script = ExtResource("2_h6mus")
@@ -18,6 +18,7 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608,
 
 [node name="OpenTheGates" type="Area2D" parent="Spawns/EnemySpawns" index="0"]
 unique_name_in_owner = true
+visible = false
 position = Vector2(9720, 9936)
 collision_layer = 0
 collision_mask = 2
@@ -30,8 +31,7 @@ shape = SubResource("RectangleShape2D_u8v42")
 
 [node name="SpawnShape" type="CollisionShape2D" parent="Spawns/EnemySpawns" index="1"]
 unique_name_in_owner = true
-position = Vector2(9720, 9936)
-scale = Vector2(250, 250)
+position = Vector2(9720, 9828)
 shape = SubResource("RectangleShape2D_u8v42")
 
 [node name="East" parent="Docks" index="0"]
