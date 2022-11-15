@@ -2,23 +2,32 @@ extends BaseMapScript
 
 class_name BaseRandWaveAttackMapScript
 
+@onready var OpenTheGates = %OpenTheGates
+
 @export var enemy_actors_min: int = 1 # make markers with this property
 @export var enemy_actors_max: int = 2
-@export var enemy_actor_increment: int = 5
+@export var enemy_actor_increment: int = 1
 
 var enemy_parties_array: Array
 var spawn_timer
 
+var open_the_gates: bool = false
 
-func _ready():
-	await get_tree().create_timer(0.5).timeout
-	for spawn_marker in enemy_spawns.get_children():
-		spawn_enemy_party(spawn_marker.get_global_position())
+func _ready() -> void:
+	randomize()
+
+func _physics_process(delta: float) -> void:
+	if !open_the_gates:
+		return
+	rand_wave_spawner()
 
 func rand_wave_spawner():
-	if enemy_parties_array.size() < 10 and spawn_timer.get_time_left() < 1:
+
+	if enemy_parties_array.size() < 10 and (spawn_timer == null or spawn_timer.get_time_left() < 1):
 		enemy_spawns.get_children().shuffle()
-		spawn_enemy_party(enemy_spawns.get_children()[0].get_global_position())
+		if enemy_actors_min < 40: enemy_actors_min += enemy_actor_increment
+		if enemy_actors_max < 50: enemy_actors_max += enemy_actor_increment
+		spawn_enemy_party(enemy_spawns.get_children()[randi()%enemy_spawns.get_children().size()].get_global_position())
 		spawn_timer = get_tree().create_timer(10)
 
 func spawn_enemy_party(location: Vector2):
@@ -36,4 +45,12 @@ func _all_actors_dead(party):
 	if enemy_parties_array.has(party):
 		enemy_parties_array.erase(party)
 		if enemy_parties_array.is_empty():
-			ConditionSignal.emit()
+#			ConditionSignal.emit()
+			pass
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.pb.party_group == "Player":
+		open_the_gates = true
+		OpenTheGates.queue_free()
+
