@@ -7,8 +7,8 @@ class_name  MainGame
 #-------------------------------------------------------------------------------
 var map_manager: MapManager
 
-var player_party_manager: PlayerPartyManager
-@export var player_starting_actors := 1
+var player_party_manager: PlayerPartyManager #change
+@export var player_starting_actors := 1 #change
 
 var pause_menu = SceneLib.spawn_child(SceneLib.UI_PAUSE_MENU, self)
 var current_ui_menu
@@ -22,10 +22,10 @@ func _ready():
 	map_manager = MapManager.new(self)
 	self.map_manager.ConditionSignal.connect(_level_ConditionSignal)
 	map_manager.spawn_first_level()
-	spawn_player_manager()
+	spawn_player_manager() #change
 
 
-func spawn_player_manager():
+func spawn_player_manager():#change
 	player_party_manager = SceneLib.spawn_child(SceneLib.PLAYER_PARTY, self)
 	map_manager.current_map.spawn_player_party(player_party_manager, player_starting_actors)
 	player_party_manager.allActorsDead.connect(_all_player_actors_dead, CONNECT_ONE_SHOT)
@@ -55,11 +55,7 @@ func give_reward(new_weapon):
 	player_party_manager.give_actors_more_weapons(new_weapon)
 
 
-
-
-
 func _process_choice(choice):
-
 	choice_menu.queue_free()
 
 
