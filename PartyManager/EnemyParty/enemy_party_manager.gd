@@ -36,3 +36,7 @@ func move_target(delta: float):
 func move_party_target(position: Vector2):
 	pb.party_target_pos = position
 	pb.party_target_vel = pb.party_pos.direction_to(pb.party_target_pos) * party_speed
+
+func party_defeated():
+	if !pb.all_actors.is_empty() and pb.active_actors.is_empty():
+		pb.main_game.player_party_manager.add_defeated_party_actors(pb.all_actors)

@@ -27,6 +27,7 @@ var arrivedAtTarget: bool = false
 # Actor Variables
 #-------------------------------------------------------------------------------
 @onready var body_sprite: Sprite2D = %BodySprite
+@onready var collbody := %CollBody
 @onready var actor_anim_tree: AnimationTree = $AnimationPlayer/AnimationTree
 @onready var FOV_area: Area2D = $Pivot/FOV_Area
 @onready var pivot_marker: Marker2D = $Pivot
@@ -70,6 +71,7 @@ func modify_health(health_modifier):
 func spawn(spawn_data):
 	party_manager = spawn_data.party_manager
 	pb = spawn_data.party_blackboard
+	add_to_group(pb.party_id)
 	set_actor_faction_outline()
 	set_global_position(spawn_data.spawn_pos)
 	add_to_group(pb.party_group)

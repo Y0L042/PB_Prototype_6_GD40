@@ -11,8 +11,8 @@ size = Vector2(21395, 21395)
 
 [node name="BaseRandWaveAttackMap" instance=ExtResource("1_8abtk")]
 script = ExtResource("2_h6mus")
-enemy_actors_min = 1
-enemy_actors_max = 2
+enemy_actors_min = 10
+enemy_actors_max = -5
 enemy_actor_increment = 1
 metadata/_edit_vertical_guides_ = [-13392.0]
 

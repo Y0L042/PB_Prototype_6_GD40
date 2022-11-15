@@ -53,7 +53,7 @@ func set_main_game(new_main_game):
 	main_game = new_main_game
 
 func spawn_player_party(player_party_manager, player_starting_actors: int):
-	player_party_manager.spawn(player_spawn.get_global_position(), player_starting_actors)
+	player_party_manager.spawn(player_spawn.get_global_position(), player_starting_actors, main_game)
 
 #-------------------------------------------------------------------------------
 # Map Functions

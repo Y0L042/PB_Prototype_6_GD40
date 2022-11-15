@@ -2,6 +2,7 @@ extends Actor
 
 class_name KnightActor
 
+var self_scene := SceneLib.KNIGHT
 
 #-------------------------------------------------------------------------------
 # States
@@ -59,6 +60,7 @@ func state_process_passive():
 
 
 func state_process_aggressive():
+	state_process_passive()
 	## If no enemies is in sight (FOV_enemy_list.is_empty()), go to passive
 	## If there is enemy in sight (!FOV_enemy_list.is_empty()), sort through list to erase dead enemies
 	## If there is alive enemies left over, sort by distance and get the nearest enemy
@@ -84,7 +86,7 @@ func state_process_aggressive():
 			var seek_target = SBL.arrive(get_global_position(), target_pos, stopdist)
 			steering_vector_array.append(seek_target)
 			for weapon in weapon_array:
-				if dist_to_nearest_target <= (weapon.attack_range*weapon.attack_range):
+				if is_instance_valid(weapon) and dist_to_nearest_target <= (weapon.attack_range*weapon.attack_range):
 					weapon.attack()
 
 	if !isAlive:
@@ -96,9 +98,11 @@ func state_process_hurt():
 
 
 func state_process_dead():
-	print("I am now ded :'(")
 	pb.active_actors.erase(self)
-	self.queue_free()
+	collbody.set_disabled(true)
+	if is_instance_valid(weapon_marker):
+		weapon_marker.queue_free()
+#	self.queue_free()
 
 
 
@@ -106,8 +110,9 @@ func state_process_dead():
 func _on_fov_area_body_entered(body: Node2D) -> void:
 	if body != self and body.pb.party_group != self.pb.party_group and body.isAlive:
 		if FOV_enemy_list.is_empty():
-			EnemySpotted.emit()
+			EnemySpotted.emit(body)
 		FOV_enemy_list.append(body)
+
 
 		var enemy_distance_squared: float = get_global_position().distance_squared_to(body.get_global_position())
 		for enemy in FOV_enemy_list:
@@ -123,5 +128,7 @@ func _on_fov_area_body_exited(body: Node2D) -> void:
 
 
 
-func _on_enemy_spotted() -> void:
-	change_state(states.AGGRESSIVE)
+func _on_enemy_spotted(body) -> void:
+	if current_state != states.AGGRESSIVE:
+		change_state(states.AGGRESSIVE)
+		get_tree().call_group(pb.party_id, "_on_fov_area_body_entered", body)

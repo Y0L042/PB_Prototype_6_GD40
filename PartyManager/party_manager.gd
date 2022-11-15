@@ -44,8 +44,8 @@ func set_party_speed(party_speed):
 #-------------------------------------------------------------------------------
 # Initialization
 #-------------------------------------------------------------------------------
-func spawn(new_spawn_pos: Vector2 = Vector2.ZERO, new_actor_count: int = 0):
-	pb.main_game = null # make it main_game
+func spawn(new_spawn_pos: Vector2 = Vector2.ZERO, new_actor_count: int = 0, new_main_game = null):
+	pb.main_game = new_main_game
 	pb.party_pos = new_spawn_pos
 	pb.party_target_pos = pb.party_pos # temp
 	pb.active_actors_count = new_actor_count
