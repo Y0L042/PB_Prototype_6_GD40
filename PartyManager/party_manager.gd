@@ -46,7 +46,7 @@ func spawn(new_spawn_pos: Vector2 = Vector2.ZERO, new_actor_count: int = 0):
 	pb.party_pos = new_spawn_pos
 	pb.party_target_pos = pb.party_pos # temp
 	pb.active_actors_count = new_actor_count
-	pb.party_group = get_groups()[0]
+	pb.party_group = str(self.get_instance_id())
 	pb.party_shader_colour = party_colour
 	spawn_party_actors()
 
@@ -62,15 +62,20 @@ func spawn_party_actors():
 #-------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
 	party_process(delta)
-	move_party_target(delta)
+#	move_party_target(delta)
 #	for actor in pb.active_actors:
 #		actor.managed_process()
+
+
+func move_party_target(position: Vector2):
+	pb.party_target_pos = position
+	pb.party_target_vel = pb.party_pos.direction_to(pb.party_target_pos) * party_speed
 
 func party_process(delta: float):
 	pass
 
-func move_party_target(delta: float):
-	pass
+#func move_party_target(delta: float):
+#	pass
 
 #-------------------------------------------------------------------------------
 # Events

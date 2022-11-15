@@ -10,15 +10,15 @@ class_name PlayerPartyManager
 #-------------------------------------------------------------------------------
 # Runtime
 #-------------------------------------------------------------------------------
-func move_party_target(delta: float):
+func move_target(delta: float):
 	var vel: Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down", 0.5).normalized() * party_speed
-	pb.party_target_pos += vel * delta
-	pb.party_target_vel = vel
+	var party_target_pos = pb.party_target_pos + (vel * delta)
+	return party_target_pos
 
 func party_process(delta: float):
 	if pb.active_actors.is_empty():
 		allActorsDead.emit(self)
+	move_party_target(move_target(delta))
 
-		#temp
 
 

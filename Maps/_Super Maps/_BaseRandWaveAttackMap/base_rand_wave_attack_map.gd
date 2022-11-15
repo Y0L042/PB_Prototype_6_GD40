@@ -61,7 +61,7 @@ func _all_actors_dead(party):
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.pb.party_group == "Player":
+	if body.pb.party_group == main_game.player_party_manager.pb.party_group:
 		open_the_gates = true
 		OpenTheGates.queue_free()
 

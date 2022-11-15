@@ -2,7 +2,7 @@ extends PartyManager
 
 class_name EnemyPartyManager
 
-
+var change_direction_timer
 
 #-------------------------------------------------------------------------------
 # Initialization
@@ -19,5 +19,15 @@ func party_process(delta: float):
 
 		#temp
 		self.queue_free()
+	move_party_target(move_target(delta))
+
+
+func move_target(delta: float):
+	var party_target_pos: Vector2
+	var range: int = 100000
+	var px: int = randi_range(-range, range)
+	var py: int = randi_range(-range, range)
+	party_target_pos = Vector2(px, py)
+	return party_target_pos
 
 
