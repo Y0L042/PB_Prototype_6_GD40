@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2ak08thwdbvn"]
+
+[ext_resource type="PackedScene" uid="uid://b3vfeo8a0hxhj" path="res://Maps/_Super Maps/_BaseMap/base_map.tscn" id="1_8abtk"]
+[ext_resource type="Script" path="res://Maps/_Super Maps/_BaseRandWaveAttackMap/base_rand_wave_attack_map.gd" id="2_h6mus"]
+
+[node name="BaseRandWaveAttackMap" instance=ExtResource("1_8abtk")]
+script = ExtResource("2_h6mus")
+enemy_actors_min = 1
+enemy_actors_max = 2
+enemy_actor_increment = 5

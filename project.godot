@@ -25,6 +25,11 @@ _global_script_classes=[{
 "path": "res://Maps/_Super Maps/_BaseMap/base_map_script.gd"
 }, {
 "base": "BaseMapScript",
+"class": &"BaseRandWaveAttackMapScript",
+"language": &"GDScript",
+"path": "res://Maps/_Super Maps/_BaseRandWaveAttackMap/base_rand_wave_attack_map.gd"
+}, {
+"base": "BaseMapScript",
 "class": &"BaseStandardBattleMapScript",
 "language": &"GDScript",
 "path": "res://Maps/_Super Maps/_BaseStandardBattleMap/base_standard_battle_map.gd"
@@ -163,6 +168,7 @@ _global_script_class_icons={
 "Actor": "",
 "BaseCondition": "",
 "BaseMapScript": "",
+"BaseRandWaveAttackMapScript": "",
 "BaseStandardBattleMapScript": "",
 "BaseWorld": "",
 "BetterLight2D": "",
