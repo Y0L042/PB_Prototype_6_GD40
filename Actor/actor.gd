@@ -33,8 +33,8 @@ var arrivedAtTarget: bool = false
 @onready var pivot_marker: Marker2D = $Pivot
 @onready var weapon_marker: Marker2D = %WeaponMarker
 @onready var actor_anim_tree_mode = actor_anim_tree["parameters/playback"]
-
 signal EnemySpotted
+var isPlayer: bool = false
 
 var actor_target_velocity: Vector2
 var FOV_enemy_list: Array
@@ -75,6 +75,8 @@ func spawn(spawn_data):
 	set_actor_faction_outline()
 	set_global_position(spawn_data.spawn_pos)
 	add_to_group(pb.party_group)
+	if pb.party_group == "Player":
+		isPlayer = true
 	FOV_area.scale = Vector2(get_view_distance(), get_view_distance())
 	for weapon in weapon_marker.get_children():
 		weapon.group = pb.party_group
@@ -95,7 +97,10 @@ func _physics_process(delta):
 	set_actor_faction_outline()
 
 func managed_process():
-	state_process()
+	if isPlayer:
+		player_state_process()
+	elif !isPlayer:
+		enemy_state_process()
 #	steering_move(actor_target_velocity)
 	steering_move(SBL.steering_vectors_processor(steering_vector_array, max_speed))
 
@@ -134,7 +139,10 @@ var steering_vector_array: PackedVector2Array
 func change_state(NEW_STATE: int):
 	current_state = NEW_STATE
 
-func state_process():
+func player_state_process():
+	pass
+
+func enemy_state_process():
 	pass
 
 #-------------------------------------------------------------------------------

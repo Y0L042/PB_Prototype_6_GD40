@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://j4hka2r61joq"]
+
+[ext_resource type="Texture2D" uid="uid://c04tddic656vg" path="res://Architecture/Buildings/Large Desert Voxel Building/largebuilding1render.png" id="1_dya8h"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wcf4g"]
+radius = 332.11
+height = 1350.0
+
+[node name="LargeBuildingDesert1" type="Node2D"]
+
+[node name="Largebuilding1Render" type="Sprite2D" parent="."]
+texture = ExtResource("1_dya8h")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -138)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wcf4g")

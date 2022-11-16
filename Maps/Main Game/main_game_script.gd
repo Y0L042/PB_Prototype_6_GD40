@@ -35,7 +35,7 @@ func spawn_player_manager():#change
 #-------------------------------------------------------------------------------
 func _all_player_actors_dead(player):
 	var defeat := "Defeat"
-#	end_game(defeat)
+	end_game(defeat)
 
 func end_game(end_state):
 	var ui_game_end = SceneLib.spawn_child(SceneLib.UI_GAME_END, self)

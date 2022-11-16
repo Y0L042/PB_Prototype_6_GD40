@@ -1,5 +1,5 @@
 shader_type canvas_item;
-render_mode unshaded;
+//render_mode unshaded;
 
 uniform vec4 color : source_color = vec4(1.0);
 uniform float width : hint_range(0, 25) = 1.0;

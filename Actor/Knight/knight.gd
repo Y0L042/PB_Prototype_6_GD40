@@ -21,7 +21,17 @@ enum states {
 func change_state(NEW_STATE: int):
 	current_state = NEW_STATE
 
-func state_process():
+func player_state_process():
+	if current_state == states.PASSIVE:
+		state_process_passive()
+	if current_state == states.AGGRESSIVE:
+		state_process_aggressive()
+	if current_state == states.HURT:
+		state_process_hurt()
+	if current_state == states.DEAD:
+		state_process_dead()
+
+func enemy_state_process():
 	if current_state == states.PASSIVE:
 		state_process_passive()
 	if current_state == states.AGGRESSIVE:
