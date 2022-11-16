@@ -9,8 +9,8 @@ class_name PartyManager
 @export var actor_amount: int
 @export var party_speed: int : set = set_party_speed
 @export_color_no_alpha var party_colour: Color
-@export var grid_width: int = 5
-
+@export var formation_width: int = 5
+var formation: GridObject = GridObject.new()
 signal allActorsDead
 
 var pb: Dictionary = {
@@ -25,6 +25,7 @@ var pb: Dictionary = {
 	"active_actors_count": 0,
 	"party_max_speed": Vector2.ZERO,
 	"party_shader_colour": null,
+	"party_formation": formation,
 }
 
 
@@ -42,6 +43,18 @@ class ActorSpawnData:
 func set_party_speed(party_speed):
 	party_speed *= GlobalSettings.UNIT
 
+func set_formation(width, num_of_pos, new_position, spacing = 1):
+	formation.width = width
+	formation.number_of_positions = num_of_pos
+	formation.vector_array = GridObject.generate_box_grid(formation)
+	GridObject.set_grid_spacing(formation.vector_array, spacing)
+	GridObject.set_grid_center_position(formation.vector_array, new_position)
+
+
+
+func set_formation_width(width):
+	formation_width = width
+
 #-------------------------------------------------------------------------------
 # Initialization
 #-------------------------------------------------------------------------------
@@ -57,8 +70,11 @@ func spawn(new_spawn_pos: Vector2 = Vector2.ZERO, new_actor_count: int = 0, new_
 
 
 func spawn_party_actors():
+	var actor_type_array: Array
 	for index in pb.active_actors_count:
-		spawn_actor(SceneLib.KNIGHT, Tools.random_offset(pb.party_pos, GlobalSettings.UNIT * 5))
+		actor_type_array.append(SceneLib.KNIGHT)
+	spawn_actor_array(actor_type_array)
+#		spawn_actor(SceneLib.KNIGHT, Tools.random_offset(pb.party_pos, GlobalSettings.UNIT * 5))
 
 
 
@@ -74,6 +90,7 @@ func _physics_process(delta: float) -> void:
 func move_party_target(position: Vector2):
 	pb.party_target_pos = position
 	pb.party_target_vel = pb.party_pos.direction_to(pb.party_target_pos) * party_speed
+	pb.party_formation.set_grid_center_position(pb.party_formation.vector_array, pb.party_target_pos)
 
 
 func party_process(delta: float):
@@ -87,15 +104,14 @@ func give_actors_more_weapons(new_weapon):
 	for actor in pb.active_actors:
 		actor.spawn_weapon(new_weapon)
 
-func create_grid():
-	var grid_obj := GridObject.new()
-	grid_obj.width = grid_width
-	var grid = GridObject.generate_box_grid(grid_obj)
-	return grid
 #-------------------------------------------------------------------------------
 # Tools
 #-------------------------------------------------------------------------------
-func setup_array_actor_spawn(actor_spawn_array):
+func spawn_actor_array(actor_spawn_array):
+	var new_position: Vector2 = pb.party_pos
+	set_formation(formation_width, actor_spawn_array.size(), new_position, 1)
+	for actor_index in actor_spawn_array.size():
+		spawn_actor(actor_spawn_array[actor_index], formation.vector_array[actor_index])
 
 func spawn_actor(actor_type, spawn_location: Vector2 = Vector2.ZERO):
 		var actor = SceneLib.spawn_child(actor_type, self)

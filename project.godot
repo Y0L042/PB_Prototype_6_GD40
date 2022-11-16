@@ -124,6 +124,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Procedural Map Worlds/Perlin World/noise_world_generator.gd"
 }, {
+"base": "Node2D",
+"class": &"PartyManager",
+"language": &"GDScript",
+"path": "res://PartyManager/party_manager.gd"
+}, {
 "base": "PartyManager",
 "class": &"PlayerPartyManager",
 "language": &"GDScript",
@@ -188,6 +193,7 @@ _global_script_class_icons={
 "MapMetaData": "",
 "MetaData": "",
 "NoiseWorldGenerator": "",
+"PartyManager": "",
 "PlayerPartyManager": "",
 "TileMapDecorator": "",
 "TinyKeepRoom": "",

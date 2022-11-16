@@ -11,7 +11,7 @@ class_name Actor
 @export var view_distance: float = GlobalSettings.UNIT * 1 : set = set_view_distance
 @export var health: int : set = set_health
 @export var turn_force: float
-@export var myself = self
+#@export var myself = self
 @export var isAlive: bool = true
 
 
@@ -35,6 +35,9 @@ var arrivedAtTarget: bool = false
 @onready var actor_anim_tree_mode = actor_anim_tree["parameters/playback"]
 signal EnemySpotted
 var isPlayer: bool = false
+var actor_formation_index: int : set = set_actor_formation_index # player's position in formation
+
+var move_target: Vector2
 
 var actor_target_velocity: Vector2
 var FOV_enemy_list: Array
@@ -65,6 +68,10 @@ func modify_health(health_modifier):
 	if health <= 0:
 		isAlive = false
 
+func set_actor_formation_index(new_formation_index):
+	actor_formation_index = pb.active_actors.find(self)
+	move_target = pb.party_formation.vector_array[actor_formation_index]
+
 #-------------------------------------------------------------------------------
 # Initialization
 #-------------------------------------------------------------------------------
@@ -77,6 +84,7 @@ func spawn(spawn_data):
 	add_to_group(pb.party_group)
 	if pb.party_group == "Player":
 		isPlayer = true
+	move_target = pb.party_formation.vector_array[actor_formation_index]
 	FOV_area.scale = Vector2(get_view_distance(), get_view_distance())
 	for weapon in weapon_marker.get_children():
 		weapon.group = pb.party_group

@@ -36,11 +36,13 @@ func add_defeated_party_actors(new_party_actors):
 	necromance_queue.append(new_party_actors)
 
 func necromance():
+	var spawn_type_array: Array = []
 	var erase_queue: Array
 	for party in necromance_queue:
 		for actor in party:
-			spawn_actor(actor.self_scene, Tools.random_offset(pb.party_pos, GlobalSettings.UNIT * 5))
+			spawn_type_array.append(actor.self_scene)
 			party.erase(actor)
+		spawn_actor_array(spawn_type_array)
 		necromance_queue.erase(party)
 
 

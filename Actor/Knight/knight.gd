@@ -46,8 +46,9 @@ func enemy_state_process():
 # State Functions
 #-------------------------------------------------------------------------------
 func state_process_passive():
+	move_target = pb.party_formation.vector_array[actor_formation_index]
 	var stopdist: float = GlobalSettings.UNIT * 0.9
-	var target_dist = get_global_position().distance_to(pb.party_target_pos)
+	var target_dist = get_global_position().distance_to(move_target)
 	var collidingAgainstPersonNextToTarget: bool = false
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i).get_collider()
@@ -59,7 +60,7 @@ func state_process_passive():
 	var nextToTarget: bool = target_dist <= 25
 	arrivedAtTarget = nextToTarget or (targetNotMoving and withinRadius and isColliding and collidingAgainstPersonNextToTarget)
 	if !arrivedAtTarget:
-		var seek_target = SBL.arrive(get_global_position(), pb.party_target_pos, stopdist)
+		var seek_target = SBL.arrive(get_global_position(), move_target, stopdist)
 		steering_vector_array.append(seek_target)
 
 
