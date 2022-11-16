@@ -70,7 +70,7 @@ func modify_health(health_modifier):
 
 func set_actor_formation_index(new_formation_index):
 	actor_formation_index = pb.active_actors.find(self)
-	move_target = pb.party_formation.vector_array[actor_formation_index]
+
 
 #-------------------------------------------------------------------------------
 # Initialization

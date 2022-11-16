@@ -84,6 +84,7 @@ func spawn_party_actors():
 func _physics_process(delta: float) -> void:
 	pb.party_pos = calc_actor_array_center(pb.active_actors)
 	party_process(delta)
+	queue_redraw() #%debug
 
 
 
@@ -111,17 +112,19 @@ func spawn_actor_array(actor_spawn_array):
 	var new_position: Vector2 = pb.party_pos
 	set_formation(formation_width, actor_spawn_array.size(), new_position, 1)
 	for actor_index in actor_spawn_array.size():
-		spawn_actor(actor_spawn_array[actor_index], formation.vector_array[actor_index])
+		var actor = spawn_actor(actor_spawn_array[actor_index], pb.party_formation.vector_array[actor_index])
+		actor.actor_formation_index = actor_index
 
 func spawn_actor(actor_type, spawn_location: Vector2 = Vector2.ZERO):
-		var actor = SceneLib.spawn_child(actor_type, self)
-		pb.active_actors.append(actor)
-		pb.all_actors.append(actor)
-		var spawn_data := ActorSpawnData.new()
-		spawn_data.party_manager = self
-		spawn_data.party_blackboard = pb
-		spawn_data.spawn_pos = spawn_location
-		actor.spawn(spawn_data)
+	var actor = SceneLib.spawn_child(actor_type, self)
+	pb.active_actors.append(actor)
+	pb.all_actors.append(actor)
+	var spawn_data := ActorSpawnData.new()
+	spawn_data.party_manager = self
+	spawn_data.party_blackboard = pb
+	spawn_data.spawn_pos = spawn_location
+	actor.spawn(spawn_data)
+	return actor
 
 
 
@@ -132,3 +135,8 @@ func calc_actor_array_center(arr: Array):
 	avg /= arr.size()
 	return avg
 
+func _draw() -> void: #%Debug
+	var rad = GlobalSettings.UNIT/2
+	var col = Color(1, 0, 0)
+	for pos in pb.party_formation.vector_array:
+		draw_circle(pos, rad, col)
