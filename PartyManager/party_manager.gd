@@ -9,6 +9,7 @@ class_name PartyManager
 @export var actor_amount: int
 @export var party_speed: int : set = set_party_speed
 @export_color_no_alpha var party_colour: Color
+@export var grid_width: int = 5
 
 signal allActorsDead
 
@@ -86,10 +87,16 @@ func give_actors_more_weapons(new_weapon):
 	for actor in pb.active_actors:
 		actor.spawn_weapon(new_weapon)
 
-
+func create_grid():
+	var grid_obj := GridObject.new()
+	grid_obj.width = grid_width
+	var grid = GridObject.generate_box_grid(grid_obj)
+	return grid
 #-------------------------------------------------------------------------------
 # Tools
 #-------------------------------------------------------------------------------
+func setup_array_actor_spawn(actor_spawn_array):
+
 func spawn_actor(actor_type, spawn_location: Vector2 = Vector2.ZERO):
 		var actor = SceneLib.spawn_child(actor_type, self)
 		pb.active_actors.append(actor)
