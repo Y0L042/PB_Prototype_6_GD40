@@ -10,6 +10,7 @@ class_name PartyManager
 @export var party_speed: int : set = set_party_speed
 @export_color_no_alpha var party_colour: Color
 @export var formation_width: int = 5
+@export var isFormationActive: bool : set = set_isFormationActive
 var formation: GridObject = GridObject.new()
 signal allActorsDead
 
@@ -25,6 +26,7 @@ var pb: Dictionary = {
 	"active_actors_count": 0,
 	"party_max_speed": Vector2.ZERO,
 	"party_shader_colour": null,
+	"isFormationActive": false,
 	"party_formation": formation,
 }
 
@@ -42,6 +44,10 @@ class ActorSpawnData:
 #-------------------------------------------------------------------------------
 func set_party_speed(party_speed):
 	party_speed *= GlobalSettings.UNIT
+
+func set_isFormationActive(formation_active_bool):
+	isFormationActive = formation_active_bool
+	pb.isFormationActive = isFormationActive
 
 func set_formation(width, num_of_pos, new_position, spacing = 1):
 	formation.width = width
@@ -91,6 +97,9 @@ func _physics_process(delta: float) -> void:
 func move_party_target(position: Vector2):
 	pb.party_target_pos = position
 	pb.party_target_vel = pb.party_pos.direction_to(pb.party_target_pos) * party_speed
+	move_formation(pb.party_target_pos, 0)
+
+func move_formation(new_position: Vector2, new_rotation):
 	pb.party_formation.set_grid_center_position(pb.party_formation.vector_array, pb.party_target_pos)
 
 
@@ -110,10 +119,11 @@ func give_actors_more_weapons(new_weapon):
 #-------------------------------------------------------------------------------
 func spawn_actor_array(actor_spawn_array):
 	var new_position: Vector2 = pb.party_pos
-	set_formation(formation_width, actor_spawn_array.size(), new_position, 1)
+#	set_formation(formation_width, actor_spawn_array.size(), new_position, 1)
+#	new_position = pb.party_formation.vector_array[actor_index]
 	for actor_index in actor_spawn_array.size():
-		var actor = spawn_actor(actor_spawn_array[actor_index], pb.party_formation.vector_array[actor_index])
-		actor.actor_formation_index = actor_index
+		var actor = spawn_actor(actor_spawn_array[actor_index], new_position)
+#		actor.actor_formation_index = actor_index
 
 func spawn_actor(actor_type, spawn_location: Vector2 = Vector2.ZERO):
 	var actor = SceneLib.spawn_child(actor_type, self)

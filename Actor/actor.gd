@@ -84,7 +84,7 @@ func spawn(spawn_data):
 	add_to_group(pb.party_group)
 	if pb.party_group == "Player":
 		isPlayer = true
-	move_target = pb.party_formation.vector_array[actor_formation_index]
+#	move_target = pb.party_formation.vector_array[actor_formation_index]
 	FOV_area.scale = Vector2(get_view_distance(), get_view_distance())
 	for weapon in weapon_marker.get_children():
 		weapon.group = pb.party_group

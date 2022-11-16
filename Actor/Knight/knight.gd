@@ -46,7 +46,10 @@ func enemy_state_process():
 # State Functions
 #-------------------------------------------------------------------------------
 func state_process_passive():
-	move_target = pb.party_formation.vector_array[actor_formation_index]
+	if pb.isFormationActive:
+		move_target = pb.party_formation.vector_array[actor_formation_index]
+	else:
+		move_target = pb.party_target_pos
 	var stopdist: float = GlobalSettings.UNIT * 0.9
 	var target_dist = get_global_position().distance_to(move_target)
 	var collidingAgainstPersonNextToTarget: bool = false
