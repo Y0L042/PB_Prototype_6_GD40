@@ -48,6 +48,7 @@ func set_party_speed(party_speed):
 func set_isFormationActive(formation_active_bool):
 	isFormationActive = formation_active_bool
 	pb.isFormationActive = isFormationActive
+	set_formation(formation_width, pb.active_actors, pb.party_target_pos)
 
 func set_formation(width, num_of_pos, new_position, spacing = 1):
 	formation.width = width
@@ -55,11 +56,16 @@ func set_formation(width, num_of_pos, new_position, spacing = 1):
 	formation.vector_array = GridObject.generate_box_grid(formation)
 	GridObject.set_grid_spacing(formation.vector_array, spacing)
 	GridObject.set_grid_center_position(formation.vector_array, new_position)
-
+	set_actor_formation_index()
 
 
 func set_formation_width(width):
-	formation_width = width
+	if pb.isFormationActive:
+		set_formation(formation_width, pb.active_actors, pb.party_target_pos)
+
+func set_actor_formation_index():
+	for index in pb.active_actors.size():
+		pb.active_actors[index].actor_formation_index = pb.party_formation.vector_array[index]
 
 #-------------------------------------------------------------------------------
 # Initialization
