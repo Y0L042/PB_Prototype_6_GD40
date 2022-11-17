@@ -10,6 +10,7 @@ class_name PartyManager
 @export var party_speed: int : set = set_party_speed
 @export_color_no_alpha var party_colour: Color
 @export var formation_width: int = 5 : set = set_formation_width
+@export_range(0, 360) var formation_rotation: float = 0 : set = set_formation_rotation
 @export var isFormationActive: bool : set = set_isFormationActive
 var formation: GridObject = GridObject.new()
 signal allActorsDead
@@ -70,6 +71,10 @@ func set_actor_formation_index():
 	for index in pb.active_actors.size():
 		pb.active_actors[index].actor_formation_index = pb.party_formation.vector_array[index]
 
+
+func set_formation_rotation(new_rotation):
+	formation_rotation = deg_to_rad(new_rotation)
+	GridObject.set_grid_rotation(pb.party_formation.vector_array, formation_rotation)
 #-------------------------------------------------------------------------------
 # Initialization
 #-------------------------------------------------------------------------------
@@ -106,11 +111,12 @@ func _physics_process(delta: float) -> void:
 func move_party_target(position: Vector2):
 	pb.party_target_pos = position
 	pb.party_target_vel = pb.party_pos.direction_to(pb.party_target_pos) * party_speed
-	move_formation(pb.party_target_pos, 0)
+	move_formation(pb.party_target_pos, pb.party_target_vel.angle())
+
 
 func move_formation(new_position: Vector2, new_rotation):
-	pb.party_formation.set_grid_center_position(pb.party_formation.vector_array, pb.party_target_pos)
-
+	pb.party_formation.set_grid_center_position(pb.party_formation.vector_array, new_position)
+#	pb.party_formation.set_grid_rotation(pb.party_formation.vector_array, new_rotation)
 
 func party_process(delta: float):
 	pass
