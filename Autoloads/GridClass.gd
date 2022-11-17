@@ -79,11 +79,12 @@ static func generate_box_grid(grid_object: GridObject) -> PackedVector2Array:
 
 	for y in height:
 		for x in width:
-#	for x in width:
-#		for y in height:
 			# add hollow grid
-			var pos = Vector2(x, -y)
-
+			var pos: Vector2
+			if int(y) % 2 == 0:
+				pos = Vector2(width - x -1, -y)
+			else:
+				pos = Vector2(x, -y)
 			grid.append(pos)
 
 	trim_grid_to_volume(grid, volume)
