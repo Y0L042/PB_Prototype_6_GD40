@@ -56,6 +56,5 @@ visible = false
 [node name="CollisionShape2D" parent="Pivot/FOV_Area" index="0"]
 shape = SubResource("CircleShape2D_b1vlk")
 
-[connection signal="EnemySpotted" from="." to="." method="_on_enemy_spotted"]
 [connection signal="body_entered" from="Pivot/FOV_Area" to="." method="_on_fov_area_body_entered"]
 [connection signal="body_exited" from="Pivot/FOV_Area" to="." method="_on_fov_area_body_exited"]

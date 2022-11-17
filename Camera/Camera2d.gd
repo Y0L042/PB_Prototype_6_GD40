@@ -51,10 +51,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_zoomout"):
+	if Input.is_action_just_pressed("game_act_zoomout"):
 		zoom_level *= 2
 		zoom_out()
-	if Input.is_action_just_pressed("ui_zoomin"):
+	if Input.is_action_just_pressed("game_act_zoomin"):
 		zoom_level /= 2
 		zoom_in()
 

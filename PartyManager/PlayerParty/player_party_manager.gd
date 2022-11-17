@@ -13,7 +13,7 @@ var necromance_queue: Array
 # Runtime
 #-------------------------------------------------------------------------------
 func move_target(delta: float):
-	var vel: Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down", 0.5).normalized() * party_speed
+	var vel: Vector2 = Input.get_vector("game_act_left", "game_act_right", "game_act_up", "game_act_down", 0.5).normalized() * party_speed
 	var party_target_pos = pb.party_target_pos + (vel * delta)
 #	if party_target_pos.distance_to(pb.party_pos) > 1000:
 #		return pb.party_target_pos
@@ -48,10 +48,10 @@ func necromance():
 		necromance_queue.erase(party)
 
 func _input(_event: InputEvent) -> void:
-	var clk_pressed = Input.is_action_pressed("ui_rotate_clockwise")
+	var clk_pressed = Input.is_action_pressed("game_act_rotate_clockwise")
 #	var clk_released = Input.is_action_just_released("ui_rotate_clockwise")
 	rot_clk = clk_pressed# or clk_released
-	var anticlk_pressed = Input.is_action_pressed("ui_rotate_anticlockwise")
+	var anticlk_pressed = Input.is_action_pressed("game_act_rotate_anticlockwise")
 #	var anticlk_released = Input.is_action_just_released("ui_rotate_anticlockwise")
 	rot_anticlk = anticlk_pressed# or anticlk_released
 

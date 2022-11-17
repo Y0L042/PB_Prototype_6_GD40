@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c11ceyajpvbf2"]
+[gd_scene load_steps=3 format=3 uid="uid://c11ceyajpvbf2"]
 
 [ext_resource type="Script" path="res://UI/ui_end_of_level_choice_script.gd" id="1_pkl6t"]
+[ext_resource type="Script" path="res://UI/grab_focus.gd" id="2_hasv6"]
 
 [node name="EndOfLevel_Choice" type="Control"]
 layout_mode = 3
@@ -21,29 +22,35 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
 offset_left = 1770.0
 offset_top = 1064.0
 offset_right = 1869.0
 offset_bottom = 1095.0
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/CenterContainer/PanelContainer"]
+layout_mode = 2
 offset_right = 99.0
 offset_bottom = 31.0
 
 [node name="Btn_Ref" type="HBoxContainer" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_right = 99.0
 offset_bottom = 31.0
 
 [node name="Choice 1" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/Btn_Ref"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_right = 41.0
 offset_bottom = 31.0
 size_flags_horizontal = 0
 text = "East"
+script = ExtResource("2_hasv6")
 
 [node name="Choice 2" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/Btn_Ref"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 45.0
 offset_right = 99.0
 offset_bottom = 31.0

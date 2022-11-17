@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://culcx3at2htif"]
+[gd_scene load_steps=3 format=3 uid="uid://culcx3at2htif"]
 
 [ext_resource type="Script" path="res://UI/ui_main_menu.gd" id="1_8enq3"]
+[ext_resource type="Script" path="res://UI/grab_focus.gd" id="2_gid6b"]
 
 [node name="UI_Main Menu" type="Control"]
 process_mode = 3
@@ -73,6 +74,7 @@ offset_right = 135.0
 offset_bottom = 61.0
 text = "Start New Game
 "
+script = ExtResource("2_gid6b")
 
 [node name="Quit" type="Button" parent="CanvasLayer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true

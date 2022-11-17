@@ -39,6 +39,7 @@ func pause():
 	canvas_layer.set_visible(true)
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	btn_Resume.grab_focus()
 
 func unpause():
 	canvas_layer.set_visible(false)
