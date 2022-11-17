@@ -17,14 +17,17 @@ var number_of_positions: int : set = set_number_of_positions
 var offset: Vector2 : set = set_offset
 var spacing : set = set_spacing
 var rotation : set = set_rotation
+var center_position: Vector2 : set_center_position
 
 var vector_array: PackedVector2Array
+var ref_vector_array: PackedVector2Array
 
 #-------------------------------------------------------------------------------
 # SetGet
 #-------------------------------------------------------------------------------
 func set_width(new_width):
 	width = new_width
+
 
 func set_number_of_positions(new_number_of_positions: int):
 	number_of_positions = new_number_of_positions
@@ -37,9 +40,15 @@ func set_spacing(new_spacing):
 
 func set_rotation(new_rotation):
 	rotation = new_rotation
+	set_grid_rotation(vector_array, rotation)
 
+func increment_rotation(rotation_increment):
+	rotation += rotation_increment
+	set_grid_rotation(vector_array, rotation)
 
-
+func set_center_position(new_center_position: Vector2):
+	center_position = new_center_position
+	set_grid_center_position(vector_array, center_position)
 
 #-------------------------------------------------------------------------------
 # (Static) Grid Tools
@@ -58,24 +67,25 @@ static func set_grid_spacing(new_grid, new_spacing):
 		new_grid[index] *= new_spacing
 
 
-static func set_grid_center_position(new_grid: PackedVector2Array, new_position: Vector2):
+func set_grid_center_position(new_grid, new_position: Vector2):
 	var current_grid_center: Vector2 = get_grid_center(new_grid)
 	var offset: Vector2 = new_position - current_grid_center
 	for index in new_grid.size():
 		new_grid[index] += offset
 
 
-static func set_grid_rotation(new_grid: PackedVector2Array, new_rotation: float):
+func set_grid_rotation(new_grid, new_rotation: float):
+	#uses reference vector array
 	new_rotation = deg_to_rad(new_rotation)
 #	var current_grid_center: Vector2 = get_grid_center(new_grid)
 	for index in new_grid.size():
 #		var offset_length: float =  Vector2(current_grid_center - new_grid[index]).length()
-		var newX: float = new_grid[index].x*cos(new_rotation) - new_grid[index].y*sin(new_rotation)
-		var newY: float = new_grid[index].x*sin(new_rotation) + new_grid[index].y*cos(new_rotation)
+		var newX: float = ref_vector_array[index].x*cos(new_rotation) - ref_vector_array[index].y*sin(new_rotation)
+		var newY: float = ref_vector_array[index].x*sin(new_rotation) + ref_vector_array[index].y*cos(new_rotation)
 		new_grid[index] = Vector2(newX, newY)
 
 
-static func generate_box_grid(grid_object: GridObject) -> PackedVector2Array:
+func generate_box_grid(grid_object: GridObject) -> PackedVector2Array:
 	var grid: PackedVector2Array
 	var width: float = grid_object.width
 	var volume: float = grid_object.number_of_positions
@@ -91,6 +101,8 @@ static func generate_box_grid(grid_object: GridObject) -> PackedVector2Array:
 				pos = Vector2(x, -y)
 			grid.append(pos)
 	trim_grid_to_volume(grid, volume)
+	ref_vector_array = grid
+
 	return grid
 
 static func trim_grid_to_volume(new_grid, new_volume):

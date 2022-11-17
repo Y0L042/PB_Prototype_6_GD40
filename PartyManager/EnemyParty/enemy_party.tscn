@@ -7,3 +7,4 @@ y_sort_enabled = true
 script = ExtResource("1_c5pk3")
 party_speed = 5
 party_colour = Color(0.607843, 0, 0, 1)
+isFormationActive = true

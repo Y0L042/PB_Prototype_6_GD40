@@ -69,11 +69,6 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/fourbug/fourbug.gd"
 }, {
-"base": "Node",
-"class": &"GridObject",
-"language": &"GDScript",
-"path": "res://Autoloads/GridClass.gd"
-}, {
 "base": "Actor",
 "class": &"KnightActor",
 "language": &"GDScript",
@@ -182,7 +177,6 @@ _global_script_class_icons={
 "DockScript": "",
 "EnemyPartyManager": "",
 "FDB": "",
-"GridObject": "",
 "KnightActor": "",
 "Level000": "",
 "MainGame": "",
@@ -339,6 +333,16 @@ game_act_right={
 "deadzone": 0.5,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":1.0,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"unicode":0,"echo":false,"script":null)
+]
+}
+game_act_squash={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":-1.0,"script":null)
+]
+}
+game_act_stretch={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":1.0,"script":null)
 ]
 }
 

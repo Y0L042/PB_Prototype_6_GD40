@@ -10,7 +10,9 @@ var vec
 func _ready() -> void:
 	vec = choose_initial_direction()
 
-
+#-------------------------------------------------------------------------------
+# Runtime
+#-------------------------------------------------------------------------------
 func party_process(delta: float):
 	if pb.active_actors.is_empty():
 		party_defeated()
@@ -37,6 +39,11 @@ func move_party_target(position: Vector2):
 	pb.party_target_vel = pb.party_pos.direction_to(pb.party_target_pos) * party_speed
 
 
+func party_wander():
+	pass
+#-------------------------------------------------------------------------------
+# Events
+#-------------------------------------------------------------------------------
 func party_defeated():
 	if !pb.all_actors.is_empty() and pb.active_actors.is_empty():
 		pb.main_game.player_party_manager.add_defeated_party_actors(pb.all_actors)

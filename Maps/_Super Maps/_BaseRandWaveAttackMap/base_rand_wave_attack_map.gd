@@ -53,7 +53,7 @@ func rand_wave_spawner():
 				break
 		var player_party_size = main_game.player_party_manager.pb.active_actors.size() #-Determine enemy party size based on player party size
 		var size: int = clampi(randi_range(enemy_actors_min, enemy_actors_max), 1, 50)
-#		spawn_enemy_party(Vector2(rand_pos_x, rand_pos_y), size)
+		spawn_enemy_party(Vector2(rand_pos_x, rand_pos_y), size)
 		spawn_timer = get_tree().create_timer(2)
 
 

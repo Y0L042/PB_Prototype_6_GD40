@@ -55,16 +55,23 @@ func _input(_event: InputEvent) -> void:
 #	var anticlk_released = Input.is_action_just_released("ui_rotate_anticlockwise")
 	rot_anticlk = anticlk_pressed# or anticlk_released
 
+	var width_add: int = 1
+	if formation_width < pb.active_actors.size() and Input.is_action_just_pressed("game_act_stretch"):
+		set_formation_width(formation_width + width_add)
+	if formation_width >= 2 and Input.is_action_just_pressed("game_act_squash"):
+		set_formation_width(formation_width - width_add)
+
+
 
 
 func rotate_formation(delta: float):
 	var rotation_speed: float = 135
 #	rotation_speed = lerp(0.0, rotation_speed, 0.5)
-	rotation_speed *= delta
+#	rotation_speed *= delta
 	if rot_clk:
-		GridObject.set_grid_rotation(pb.party_formation.vector_array, rotation_speed)
+		set_formation_rotation(rotation_speed)
 	if rot_anticlk:
-		GridObject.set_grid_rotation(pb.party_formation.vector_array, -rotation_speed)
+		set_formation_rotation(-rotation_speed)
 
 
 
