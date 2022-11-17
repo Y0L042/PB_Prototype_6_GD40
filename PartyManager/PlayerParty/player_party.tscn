@@ -10,7 +10,6 @@ script = ExtResource("1_tkij5")
 party_speed = 5
 party_colour = Color(0, 0.713726, 0.803922, 1)
 formation_width = 2
-formation_rotation = 25.0
 isFormationActive = true
 
 [node name="Camera2d" type="Camera2D" parent="."]

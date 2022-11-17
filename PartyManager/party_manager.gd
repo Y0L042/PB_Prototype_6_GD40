@@ -10,7 +10,7 @@ class_name PartyManager
 @export var party_speed: int : set = set_party_speed
 @export_color_no_alpha var party_colour: Color
 @export var formation_width: int = 5 : set = set_formation_width
-@export_range(0, 360) var formation_rotation: float = 0 : set = set_formation_rotation
+#@export_range(0, 360) var formation_rotation: float = 0 : set = set_formation_rotation
 @export var isFormationActive: bool : set = set_isFormationActive
 var formation: GridObject = GridObject.new()
 signal allActorsDead
@@ -76,9 +76,10 @@ func set_actor_formation_index():
 		pb.active_actors[index].actor_formation_index = pb.party_formation.vector_array[index]
 
 
-func set_formation_rotation(new_rotation):
-	formation_rotation = deg_to_rad(new_rotation)
-	pb.party_formation.set_grid_rotation(pb.party_formation.vector_array, formation_rotation)
+#func set_formation_rotation(new_rotation):
+#	formation_rotation = deg_to_rad(new_rotation)
+#	pb.party_formation.increment_rotation(formation_rotation)
+
 #-------------------------------------------------------------------------------
 # Initialization
 #-------------------------------------------------------------------------------

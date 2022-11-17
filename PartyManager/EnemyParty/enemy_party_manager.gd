@@ -17,7 +17,8 @@ func party_process(delta: float):
 	if pb.active_actors.is_empty():
 		party_defeated()
 		set_physics_process(false)
-	move_party_target(move_target(delta))
+#	move_party_target(move_target(delta))
+	wander(delta)
 
 
 func choose_initial_direction():
@@ -39,8 +40,14 @@ func move_party_target(position: Vector2):
 	pb.party_target_vel = pb.party_pos.direction_to(pb.party_target_pos) * party_speed
 
 
-func party_wander():
-	pass
+func wander(delta: float):
+	if pb.party_target_vel == Vector2.ZERO:
+		pb.party_target_vel = Vector2(1,1)
+	var vel = SBL.wander(pb.party_target_pos, pb.party_target_vel) * party_speed * delta / 2
+	if true: # TODO: if inside map
+		pb.party_target_vel = vel
+		pb.party_target_pos += vel
+	move_formation(pb.party_target_pos, 0)
 #-------------------------------------------------------------------------------
 # Events
 #-------------------------------------------------------------------------------

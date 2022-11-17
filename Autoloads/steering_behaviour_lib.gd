@@ -30,10 +30,10 @@ func log_seek_arrive(current_pos: Vector2, seek_target: Vector2, current_vel: Ve
 
 
 
-func wander(current_pos: Vector2, current_vel: Vector2, weight: float = 1.0):
-	var wander_offset: float = 75.0
-	var wander_radius: float = 5000.0
-	var wander_theta_max_offset: float = 60
+func wander(current_pos: Vector2, current_vel: Vector2 = Vector2.ZERO, weight: float = 1.0):
+	var wander_offset: float = 750.0
+	var wander_radius: float = 50000.0
+	var wander_theta_max_offset: float = 15
 	var wander_pos: Vector2 = current_pos + (current_vel.normalized() * wander_offset)
 	var theta: float = 0 # zero ref is E, Clockwise
 	theta += randf_range(-wander_theta_max_offset, wander_theta_max_offset)
@@ -41,7 +41,7 @@ func wander(current_pos: Vector2, current_vel: Vector2, weight: float = 1.0):
 	var x: float = wander_radius * cos(theta)
 	var y: float = wander_radius * sin(theta)
 	var wander_target: Vector2 = wander_pos + Vector2(x, y)
-	var vel: Vector2 = log_seek_arrive(current_pos, wander_target, current_vel, weight)
+	var vel: Vector2 = seek(current_pos, wander_target, weight)
 	return vel # normalized, weighted
 
 

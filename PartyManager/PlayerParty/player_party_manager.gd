@@ -47,6 +47,7 @@ func necromance():
 		spawn_actor_array(spawn_type_array)
 		necromance_queue.erase(party)
 
+
 func _input(_event: InputEvent) -> void:
 	var clk_pressed = Input.is_action_pressed("game_act_rotate_clockwise")
 #	var clk_released = Input.is_action_just_released("ui_rotate_clockwise")
@@ -62,16 +63,16 @@ func _input(_event: InputEvent) -> void:
 		set_formation_width(formation_width - width_add)
 
 
-
-
 func rotate_formation(delta: float):
 	var rotation_speed: float = 135
 #	rotation_speed = lerp(0.0, rotation_speed, 0.5)
-#	rotation_speed *= delta
+	rotation_speed *= delta
 	if rot_clk:
-		set_formation_rotation(rotation_speed)
+#		pb.party_formation.increment_rotation(rotation_speed)
+		pb.party_formation.increment_grid_rotation(pb.party_formation.vector_array, rotation_speed)
+#		pb.party_formation.set_rotation(45)
 	if rot_anticlk:
-		set_formation_rotation(-rotation_speed)
+		pb.party_formation.increment_rotation(-rotation_speed)
 
 
 

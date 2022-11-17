@@ -48,7 +48,6 @@ func enemy_state_process():
 func state_process_passive():
 	if pb.isFormationActive:
 		move_target = pb.party_formation.vector_array[actor_formation_index]
-		pass
 	else:
 		move_target = pb.party_target_pos
 	var stopdist: float = GlobalSettings.UNIT * 0.9
