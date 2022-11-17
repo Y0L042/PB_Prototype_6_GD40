@@ -6,7 +6,7 @@
 [node name="MainGame" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_0qpaf")
-player_starting_actors = 11
+player_starting_actors = 30
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_0gwn8")

@@ -109,9 +109,11 @@ func _physics_process(delta: float) -> void:
 
 
 func move_party_target(position: Vector2):
+	var vel_angle_delta: float = pb.party_target_vel.angle()
 	pb.party_target_pos = position
 	pb.party_target_vel = pb.party_pos.direction_to(pb.party_target_pos) * party_speed
-	move_formation(pb.party_target_pos, pb.party_target_vel.angle())
+	vel_angle_delta -= pb.party_target_vel.angle()
+	move_formation(pb.party_target_pos, vel_angle_delta)
 
 
 func move_formation(new_position: Vector2, new_rotation):
