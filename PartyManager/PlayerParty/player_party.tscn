@@ -11,6 +11,7 @@ spawn_actors_manually = null
 party_speed = 5
 party_colour = Color(0, 0.713726, 0.803922, 1)
 formation_width = 10
+isFormationActive = true
 
 [node name="Camera2d" type="Camera2D" parent="."]
 current = true

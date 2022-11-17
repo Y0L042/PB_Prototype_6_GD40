@@ -9,7 +9,7 @@ class_name PartyManager
 @export var actor_amount: int
 @export var party_speed: int : set = set_party_speed
 @export_color_no_alpha var party_colour: Color
-@export var formation_width: int = 5
+@export var formation_width: int = 5 : set = set_formation_width
 @export var isFormationActive: bool : set = set_isFormationActive
 var formation: GridObject = GridObject.new()
 signal allActorsDead
@@ -48,21 +48,24 @@ func set_party_speed(party_speed):
 func set_isFormationActive(formation_active_bool):
 	isFormationActive = formation_active_bool
 	pb.isFormationActive = isFormationActive
-	set_formation(formation_width, pb.active_actors, pb.party_target_pos)
-
-func set_formation(width, num_of_pos, new_position, spacing = 1):
+	set_formation(formation_width, pb.active_actors.size(), pb.party_target_pos)
+# 8
+# 8
+func set_formation(width, num_of_pos: int, new_position, spacing = 1):
 	formation.width = width
 	formation.number_of_positions = num_of_pos
 	formation.vector_array = GridObject.generate_box_grid(formation)
 	GridObject.set_grid_spacing(formation.vector_array, spacing)
 	GridObject.set_grid_center_position(formation.vector_array, new_position)
 	set_actor_formation_index()
-
-
-func set_formation_width(width):
+# 8
+# 8
+func set_formation_width(new_width):
+	formation_width = new_width
 	if pb.isFormationActive:
-		set_formation(formation_width, pb.active_actors, pb.party_target_pos)
-
+		set_formation(formation_width, pb.active_actors.size(), pb.party_target_pos)
+# 8
+# 8
 func set_actor_formation_index():
 	for index in pb.active_actors.size():
 		pb.active_actors[index].actor_formation_index = pb.party_formation.vector_array[index]
@@ -124,12 +127,14 @@ func give_actors_more_weapons(new_weapon):
 # Tools
 #-------------------------------------------------------------------------------
 func spawn_actor_array(actor_spawn_array):
-	var new_position: Vector2 = pb.party_pos
+	var new_position: Vector2 = Tools.random_offset(pb.party_pos, GlobalSettings.UNIT * 5)
 #	set_formation(formation_width, actor_spawn_array.size(), new_position, 1)
 #	new_position = pb.party_formation.vector_array[actor_index]
 	for actor_index in actor_spawn_array.size():
 		var actor = spawn_actor(actor_spawn_array[actor_index], new_position)
 #		actor.actor_formation_index = actor_index
+	set_formation(formation_width, pb.active_actors.size(), pb.party_target_pos)
+
 
 func spawn_actor(actor_type, spawn_location: Vector2 = Vector2.ZERO):
 	var actor = SceneLib.spawn_child(actor_type, self)

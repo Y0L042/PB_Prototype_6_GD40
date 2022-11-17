@@ -26,7 +26,7 @@ var vector_array: PackedVector2Array
 func set_width(new_width):
 	width = new_width
 
-func set_number_of_positions(new_number_of_positions):
+func set_number_of_positions(new_number_of_positions: int):
 	number_of_positions = new_number_of_positions
 
 func set_offset(new_offset):
@@ -59,7 +59,8 @@ static func set_grid_spacing(new_grid, new_spacing):
 static func trim_grid_to_volume(new_grid, new_volume):
 	var offset = new_volume
 	for index in (new_grid.size() - new_volume):
-		new_grid.remove_at(index + offset)
+		new_grid.remove_at(offset)
+
 
 static func set_grid_center_position(new_grid: PackedVector2Array, new_position: Vector2):
 	var current_grid_center: Vector2 = get_grid_center(new_grid)
@@ -76,8 +77,10 @@ static func generate_box_grid(grid_object: GridObject) -> PackedVector2Array:
 	var temp: float = volume/width
 	var height: float = ceil(temp)
 
-	for x in width:
-		for y in height:
+	for y in height:
+		for x in width:
+#	for x in width:
+#		for y in height:
 			# add hollow grid
 			var pos = Vector2(x, -y)
 
