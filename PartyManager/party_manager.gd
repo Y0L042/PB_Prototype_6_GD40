@@ -30,7 +30,11 @@ var pb: Dictionary = {
 	"isFormationActive": false,
 	"party_formation": formation,
 }
-
+#-------------------------------------------------------------------------------
+# Variables
+#-------------------------------------------------------------------------------
+var rot_clk: bool = false
+var rot_anticlk: bool = false
 
 #-------------------------------------------------------------------------------
 # Custom Classes

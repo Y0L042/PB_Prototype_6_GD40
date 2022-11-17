@@ -7,11 +7,10 @@
 [node name="PlayerParty" type="Node2D" groups=["Player"]]
 y_sort_enabled = true
 script = ExtResource("1_tkij5")
-spawn_actors_manually = null
 party_speed = 5
 party_colour = Color(0, 0.713726, 0.803922, 1)
 formation_width = 10
-formation_rotation = 45.0
+formation_rotation = 25.0
 isFormationActive = true
 
 [node name="Camera2d" type="Camera2D" parent="."]
@@ -24,6 +23,6 @@ MIN_ZOOM = 0.5
 MAX_ZOOM = 0.1
 setMaster = true
 
-[node name="Sprite2d" type="Sprite2D" parent="Camera2d"]
+[node name="Target" type="Sprite2D" parent="Camera2d"]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_weqwt")

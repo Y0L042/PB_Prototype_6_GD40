@@ -17,6 +17,7 @@ func move_target(delta: float):
 	var party_target_pos = pb.party_target_pos + (vel * delta)
 #	if party_target_pos.distance_to(pb.party_pos) > 1000:
 #		return pb.party_target_pos
+	rotate_formation(delta)
 	return party_target_pos
 
 
@@ -26,6 +27,7 @@ func party_process(delta: float):
 	move_party_target(move_target(delta))
 	if !necromance_queue.is_empty():
 		necromance()
+
 
 
 
@@ -45,9 +47,24 @@ func necromance():
 		spawn_actor_array(spawn_type_array)
 		necromance_queue.erase(party)
 
+func _input(_event: InputEvent) -> void:
+	var clk_pressed = Input.is_action_pressed("ui_rotate_clockwise")
+#	var clk_released = Input.is_action_just_released("ui_rotate_clockwise")
+	rot_clk = clk_pressed# or clk_released
+	var anticlk_pressed = Input.is_action_pressed("ui_rotate_anticlockwise")
+#	var anticlk_released = Input.is_action_just_released("ui_rotate_anticlockwise")
+	rot_anticlk = anticlk_pressed# or anticlk_released
 
 
 
+func rotate_formation(delta: float):
+	var rotation_speed: float = 135
+#	rotation_speed = lerp(0.0, rotation_speed, 0.5)
+	rotation_speed *= delta
+	if rot_clk:
+		GridObject.set_grid_rotation(pb.party_formation.vector_array, rotation_speed)
+	if rot_anticlk:
+		GridObject.set_grid_rotation(pb.party_formation.vector_array, -rotation_speed)
 
 
 

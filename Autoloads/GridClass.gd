@@ -66,9 +66,10 @@ static func set_grid_center_position(new_grid: PackedVector2Array, new_position:
 
 
 static func set_grid_rotation(new_grid: PackedVector2Array, new_rotation: float):
-	var current_grid_center: Vector2 = get_grid_center(new_grid)
+	new_rotation = deg_to_rad(new_rotation)
+#	var current_grid_center: Vector2 = get_grid_center(new_grid)
 	for index in new_grid.size():
-		var offset_length: float =  Vector2(current_grid_center - new_grid[index]).length()
+#		var offset_length: float =  Vector2(current_grid_center - new_grid[index]).length()
 		var newX: float = new_grid[index].x*cos(new_rotation) - new_grid[index].y*sin(new_rotation)
 		var newY: float = new_grid[index].x*sin(new_rotation) + new_grid[index].y*cos(new_rotation)
 		new_grid[index] = Vector2(newX, newY)
