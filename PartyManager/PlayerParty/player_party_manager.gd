@@ -55,6 +55,8 @@ func _input(_event: InputEvent) -> void:
 	var anticlk_pressed = Input.is_action_pressed("game_act_rotate_anticlockwise")
 #	var anticlk_released = Input.is_action_just_released("ui_rotate_anticlockwise")
 	rot_anticlk = anticlk_pressed# or anticlk_released
+	if Input.is_action_pressed("debug_reset_rotation"): #%deubg%
+		pb.party_formation.set_rotation(0)
 
 	var width_add: int = 1
 	if formation_width < pb.active_actors.size() and Input.is_action_just_pressed("game_act_stretch"):
@@ -68,8 +70,8 @@ func rotate_formation(delta: float):
 #	rotation_speed = lerp(0.0, rotation_speed, 0.5)
 	rotation_speed *= delta
 	if rot_clk:
-#		pb.party_formation.increment_rotation(rotation_speed)
-		pb.party_formation.increment_grid_rotation(pb.party_formation.vector_array, rotation_speed)
+		pb.party_formation.increment_rotation(rotation_speed)
+#		pb.party_formation.increment_grid_rotation(pb.party_formation.vector_array, rotation_speed)
 #		pb.party_formation.set_rotation(45)
 	if rot_anticlk:
 		pb.party_formation.increment_rotation(-rotation_speed)

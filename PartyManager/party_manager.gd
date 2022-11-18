@@ -59,8 +59,8 @@ func set_isFormationActive(formation_active_bool):
 func set_formation(width, num_of_pos: int, new_position, spacing = 1):
 	formation.width = width
 	formation.number_of_positions = num_of_pos
+	formation.set_spacing(1)
 	formation.vector_array = pb.party_formation.generate_box_grid(formation)
-	pb.party_formation.set_grid_spacing(formation.vector_array, spacing)
 	pb.party_formation.set_grid_center_position(formation.vector_array, new_position)
 	set_actor_formation_index()
 # 8
