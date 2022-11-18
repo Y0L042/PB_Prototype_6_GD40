@@ -28,7 +28,17 @@ func party_process(delta: float):
 	if !necromance_queue.is_empty():
 		necromance()
 
+func move_party_target(position: Vector2):
+	var vel_angle_delta: float = pb.party_target_vel.angle()
+	pb.party_target_pos = position
+	pb.party_target_vel = pb.party_pos.direction_to(pb.party_target_pos) * party_speed
+	vel_angle_delta -= pb.party_target_vel.angle()
+	move_formation(pb.party_target_pos, vel_angle_delta)
 
+
+func move_formation(new_position: Vector2, new_rotation):
+	pb.party_formation.set_grid_center_position(pb.party_formation.vector_array, new_position)
+#	pb.party_formation.set_grid_rotation(pb.party_formation.vector_array, new_rotation)
 
 
 #-------------------------------------------------------------------------------

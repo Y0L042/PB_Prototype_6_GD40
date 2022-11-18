@@ -59,11 +59,6 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Maps/_Super Maps/_BaseMap/docks.gd"
 }, {
-"base": "PartyManager",
-"class": &"EnemyPartyManager",
-"language": &"GDScript",
-"path": "res://PartyManager/EnemyParty/enemy_party_manager.gd"
-}, {
 "base": "EditorPlugin",
 "class": &"FDB",
 "language": &"GDScript",
@@ -180,7 +175,6 @@ _global_script_class_icons={
 "BetterShadow2D": "",
 "Delaunay": "",
 "DockScript": "",
-"EnemyPartyManager": "",
 "FDB": "",
 "GridObject": "",
 "KnightActor": "",
@@ -342,12 +336,12 @@ game_act_right={
 ]
 }
 game_act_squash={
-"deadzone": 0.5,
+"deadzone": 0.9,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":-1.0,"script":null)
 ]
 }
 game_act_stretch={
-"deadzone": 0.5,
+"deadzone": 0.9,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":1.0,"script":null)
 ]
 }
