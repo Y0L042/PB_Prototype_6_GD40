@@ -79,23 +79,17 @@ func set_grid_rotation(new_grid, new_rotation: float):
 	#uses reference vector array
 	new_rotation = deg_to_rad(new_rotation)
 	for index in new_grid.size():
-		var newX: float = ref_vector_array[index].x*cos(new_rotation) - ref_vector_array[index].y*sin(new_rotation)
-		var newY: float = ref_vector_array[index].x*sin(new_rotation) + ref_vector_array[index].y*cos(new_rotation)
-#		var newX: float = new_grid[index].x*cos(new_rotation) - new_grid[index].y*sin(new_rotation)
-#		var newY: float = new_grid[index].x*sin(new_rotation) + new_grid[index].y*cos(new_rotation)
-		new_grid[index] = Vector2(newX, newY)
+		var new_vector: Vector2 = ref_vector_array[index].rotated(new_rotation)
+		new_grid[index] = new_vector
+
 
 func increment_grid_rotation(new_grid, new_rotation: float):
 	#uses reference vector array
-#	rotation += new_rotation
-#	new_rotation = rotation
 	new_rotation = deg_to_rad(new_rotation)
 	for index in new_grid.size():
-		var newX: float = ref_vector_array[index].x*cos(new_rotation) - ref_vector_array[index].y*sin(new_rotation)
-		var newY: float = ref_vector_array[index].x*sin(new_rotation) + ref_vector_array[index].y*cos(new_rotation)
-#		var newX: float = new_grid[index].x*cos(new_rotation) - new_grid[index].y*sin(new_rotation)
-#		var newY: float = new_grid[index].x*sin(new_rotation) + new_grid[index].y*cos(new_rotation)
-		new_grid[index] = Vector2(newX, newY)
+		var new_vector: Vector2 = ref_vector_array[index].rotated(new_rotation)
+		new_grid[index] = new_vector
+
 
 func generate_box_grid(grid_object: GridObject) -> PackedVector2Array:
 	var grid: PackedVector2Array
