@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 # Events
 #-------------------------------------------------------------------------------
 func rand_wave_spawner():
-	if enemy_parties_array.size() < 10 and (spawn_timer == null or spawn_timer.get_time_left() < 1):
+	if enemy_parties_array.size() < 20 and (spawn_timer == null or spawn_timer.get_time_left() < 1):
 		var rand_pos_x: int
 		var rand_pos_y: int
 		var shape_pos: Vector2 = spawn_shape.get_shape().get_rect().position + spawn_shape.get_global_position()

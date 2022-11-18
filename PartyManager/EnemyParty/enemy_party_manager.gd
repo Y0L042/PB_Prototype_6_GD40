@@ -8,7 +8,7 @@ var vec
 # Initialization
 #-------------------------------------------------------------------------------
 func _ready() -> void:
-	vec = choose_initial_direction()
+	pb.party_max_speed = 1 * GlobalSettings.UNIT
 
 #-------------------------------------------------------------------------------
 # Runtime
@@ -25,37 +25,30 @@ func party_process(delta: float):
 
 
 func move(delta: float):
-	var pb.party_target_pos = wander(delta)
+	var party_prev_pos = pb.party_target_pos
+	pb.party_target_pos = wander(delta)
+	pb.party_target_vel = pb.party_target_pos - party_prev_pos
+	pb.party_formation.set_grid_center_position(pb.party_formation.vector_array, pb.party_target_pos)
 
-
-func choose_initial_direction():
-	var range: int = 10
-	var px: int = randi_range(-range, range)
-	var py: int = randi_range(-range, range)
-	var vec = Vector2(px, py).normalized()
-	return vec
-
-
-func move_target(delta: float):
-	var vel: Vector2 = vec * party_speed
-	var party_target_pos = pb.party_target_pos + (vel * delta)
-	return party_target_pos
-
-
-func move_party_target(position: Vector2):
-	pb.party_target_pos = position
-	pb.party_target_vel = pb.party_pos.direction_to(pb.party_target_pos) * party_speed
 
 
 func wander(delta: float):
+	var pos: Vector2
 	if pb.party_target_vel == Vector2.ZERO:
 		pb.party_target_vel = Vector2(1,1)
 	var vel = SBL.wander(pb.party_target_pos, pb.party_target_vel) * party_speed * delta / 2
 	if true: # TODO: if inside map
-		pb.party_target_vel = vel
-		pb.party_target_pos += vel
-	move_formation(collision_avoidance(pb.party_target_pos,delta), 0)
+		pos = pb.party_target_pos + vel
+
+	var isRaycastIntersected = !do_line_raycast(self.pb.party_pos, pos, 0x1).is_empty()
+	var new_dir
+	if isRaycastIntersected:
+		new_dir = (pos - pb.party_pos).rotated(deg_to_rad(36))
+		pos = new_dir + pb.party_pos
+
+#	pos = collision_avoidance(pos, delta)
 #	move_formation(pb.party_target_pos, 0)
+	return pos
 
 
 func collision_avoidance(target, delta):
@@ -65,11 +58,11 @@ func collision_avoidance(target, delta):
 	var target_dir = pb.party_pos.direction_to(target)
 
 	# Calculate new position after moving in player direction
-	var new_pos = pb.party_target_pos + target_dir * pb.party_max_speed * delta
+	var new_pos = target
 
 	# do raycast towards target
 	# if it intersects, do one either side, expanding until it finds a clear path
-	var raycast_dir: Vector2 = new_pos.normalized()
+	var raycast_dir: Vector2 = target_dir
 	var raycast_rotation_offset = deg_to_rad(36)
 	var offset_raycast_dir: Vector2 = raycast_dir
 	var isRaycastIntersected = do_line_raycast(self.pb.party_pos, raycast_dir * RAY_LENGTH, collision_mask).is_empty()
@@ -85,7 +78,7 @@ func collision_avoidance(target, delta):
 				break
 		else:
 			break
-	var new_target_pos: Vector2 = pb.party_pos + offset_raycast_dir * pb.party_max_speed * delta
+	var new_target_pos: Vector2 = pb.party_pos + offset_raycast_dir * party_speed # * delta / 2
 	return new_target_pos
 
 
