@@ -108,7 +108,7 @@ func generate_box_grid(grid_object: GridObject) -> PackedVector2Array:
 			grid.append(pos)
 	trim_grid_to_volume(grid, volume)
 	set_grid_spacing(grid, spacing)
-	ref_vector_array = grid.duplicate()
+	ref_vector_array = grid.duplicate() # create ref grid to use for absolute rotations
 	set_grid_rotation(grid, rotation)
 	return grid
 
