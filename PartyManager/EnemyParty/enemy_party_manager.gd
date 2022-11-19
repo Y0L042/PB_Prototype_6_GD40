@@ -40,23 +40,42 @@ func wander(delta: float):
 	if true: # TODO: if inside map
 		pos = pb.party_target_pos + vel
 
-	var self_pos: Vector2 = self.pb.party_pos
-	var new_dir: Vector2
-	var offset: float = deg_to_rad(36)
-	var isRaycastIntersected: bool = !do_line_raycast(self_pos, pos, 0x1).is_empty()
-	while isRaycastIntersected:
-		new_dir = (pos - pb.party_pos).rotated(offset)
-		pos = new_dir + pb.party_pos
-		isRaycastIntersected = !do_line_raycast(self_pos, pos, 0x1).is_empty()
-		if isRaycastIntersected:
-			new_dir = (pos - pb.party_pos).rotated(-offset)
-			pos = new_dir + pb.party_pos
-			isRaycastIntersected = !do_line_raycast(self_pos, pos, 0x1).is_empty()
-			if isRaycastIntersected:
-				offset *= 2
+	pos = collision_avoidance_adjuster(pb.party_pos, pos)
+
+#	var target_pos: Vector2 = pos
+#	var self_pos: Vector2 = self.pb.party_pos
+#	var new_dir: Vector2
+#	var offset: float = deg_to_rad(36)
+#	var isRaycastIntersected: bool = !do_line_raycast(self_pos, target_pos, 0x1).is_empty()
+#	while isRaycastIntersected:
+#		new_dir = (target_pos - self_pos).rotated(offset)
+#		target_pos = new_dir + self_pos
+#		isRaycastIntersected = !do_line_raycast(self_pos, target_pos, 0x1).is_empty()
+#		if isRaycastIntersected:
+#			new_dir = (target_pos - self_pos).rotated(-offset)
+#			target_pos = new_dir + self_pos
+#			isRaycastIntersected = !do_line_raycast(self_pos, target_pos, 0x1).is_empty()
+#			if isRaycastIntersected:
+#				offset *= 2
 
 	return pos
 
+
+func collision_avoidance_adjuster(self_pos, target_pos):
+	var new_dir: Vector2
+	var offset: float = deg_to_rad(36)
+	var isRaycastIntersected: bool = !do_line_raycast(self_pos, target_pos, 0x1).is_empty()
+	while isRaycastIntersected:
+		new_dir = (target_pos - self_pos).rotated(offset)
+		target_pos = new_dir + self_pos
+		isRaycastIntersected = !do_line_raycast(self_pos, target_pos, 0x1).is_empty()
+		if isRaycastIntersected:
+			new_dir = (target_pos - self_pos).rotated(-offset)
+			target_pos = new_dir + self_pos
+			isRaycastIntersected = !do_line_raycast(self_pos, target_pos, 0x1).is_empty()
+			if isRaycastIntersected:
+				offset *= 2
+	return target_pos
 
 #func collision_avoidance(target, self_pos, delta):
 #	var RAY_LENGTH: int = GlobalSettings.UNIT * 10
