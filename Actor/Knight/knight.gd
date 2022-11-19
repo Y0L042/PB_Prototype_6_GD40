@@ -5,6 +5,22 @@ class_name KnightActor
 var self_scene := SceneLib.KNIGHT
 
 #-------------------------------------------------------------------------------
+# Action Functions
+#-------------------------------------------------------------------------------
+func move_to_target(weight: float = 0.5):
+	pass # add velocity to target to array
+
+func move_to_enemy(weight: float = 0.5):
+	pass # add velocity to target to array
+
+func move_away_from_enemy(weight: float = 0.5):
+	pass # add velocity to target to array
+
+func collision_avoidance_function(weight: float): #add target
+	pass
+
+
+#-------------------------------------------------------------------------------
 # States
 #-------------------------------------------------------------------------------
 enum states {
@@ -46,10 +62,22 @@ func enemy_state_process():
 # State Functions
 #-------------------------------------------------------------------------------
 func state_process_passive():
-	if pb.isFormationActive:
-		move_target = pb.party_formation.vector_array[actor_formation_index]
-	else:
-		move_target = pb.party_target_pos
+	# TODO: Rename state and write state logic here. Use action functions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	var stopdist: float = GlobalSettings.UNIT * 0.9
 	var target_dist = get_global_position().distance_to(move_target)
 	var collidingAgainstPersonNextToTarget: bool = false
@@ -64,11 +92,37 @@ func state_process_passive():
 	arrivedAtTarget = nextToTarget or (targetNotMoving and withinRadius and isColliding and collidingAgainstPersonNextToTarget)
 	if !arrivedAtTarget:
 		var seek_target = SBL.arrive(get_global_position(), move_target, stopdist)
+
 		steering_vector_array.append(seek_target)
 
 
 
 func state_process_aggressive():
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	## If no enemies is in sight (FOV_enemy_list.is_empty()), go to passive
 	## If there is enemy in sight (!FOV_enemy_list.is_empty()), sort through list to erase dead enemies
 	## If there is alive enemies left over, sort by distance and get the nearest enemy

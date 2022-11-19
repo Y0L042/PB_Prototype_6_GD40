@@ -360,7 +360,9 @@ debug_reset_rotation={
 [layer_names]
 
 2d_physics/layer_1="World"
-2d_physics/layer_2="Actors"
+2d_physics/layer_2="Player_Actors"
+2d_physics/layer_3="Enemy_Actor"
+2d_physics/layer_4="Mob_Entities"
 
 [physics]
 

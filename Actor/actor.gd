@@ -105,6 +105,7 @@ func _physics_process(delta):
 	set_actor_faction_outline()
 
 func managed_process():
+	set_actor_conditions()
 	if isPlayer:
 		player_state_process()
 	elif !isPlayer:
@@ -117,6 +118,16 @@ func steering_move(final_velocity: Vector2):
 	velocity += (final_velocity - velocity) * turn_force
 	move_and_slide()
 
+
+func set_actor_conditions():
+	set_move_target()
+
+
+func set_move_target():
+	if pb.isFormationActive:
+		move_target = pb.party_formation.vector_array[actor_formation_index]
+	else:
+		move_target = pb.party_target_pos
 
 #-------------------------------------------------------------------------------
 # Action functions
