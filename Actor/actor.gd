@@ -11,7 +11,7 @@ class_name Actor
 @export var view_distance: float = GlobalSettings.UNIT * 1 : set = set_view_distance
 @export var health: int : set = set_health
 @export var turn_force: float
-@export var myself = self
+#@export var myself = self
 @export var isAlive: bool = true
 
 
@@ -33,8 +33,11 @@ var arrivedAtTarget: bool = false
 @onready var pivot_marker: Marker2D = $Pivot
 @onready var weapon_marker: Marker2D = %WeaponMarker
 @onready var actor_anim_tree_mode = actor_anim_tree["parameters/playback"]
-
 signal EnemySpotted
+var isPlayer: bool = false
+var actor_formation_index: int : set = set_actor_formation_index # player's position in formation
+
+var move_target: Vector2
 
 var actor_target_velocity: Vector2
 var FOV_enemy_list: Array
@@ -65,6 +68,10 @@ func modify_health(health_modifier):
 	if health <= 0:
 		isAlive = false
 
+func set_actor_formation_index(new_formation_index):
+	actor_formation_index = pb.active_actors.find(self)
+
+
 #-------------------------------------------------------------------------------
 # Initialization
 #-------------------------------------------------------------------------------
@@ -75,6 +82,9 @@ func spawn(spawn_data):
 	set_actor_faction_outline()
 	set_global_position(spawn_data.spawn_pos)
 	add_to_group(pb.party_group)
+	if pb.party_group == "Player":
+		isPlayer = true
+#	move_target = pb.party_formation.vector_array[actor_formation_index]
 	FOV_area.scale = Vector2(get_view_distance(), get_view_distance())
 	for weapon in weapon_marker.get_children():
 		weapon.group = pb.party_group
@@ -95,7 +105,10 @@ func _physics_process(delta):
 	set_actor_faction_outline()
 
 func managed_process():
-	state_process()
+	if isPlayer:
+		player_state_process()
+	elif !isPlayer:
+		enemy_state_process()
 #	steering_move(actor_target_velocity)
 	steering_move(SBL.steering_vectors_processor(steering_vector_array, max_speed))
 
@@ -103,6 +116,20 @@ func managed_process():
 func steering_move(final_velocity: Vector2):
 	velocity += (final_velocity - velocity) * turn_force
 	move_and_slide()
+
+
+#-------------------------------------------------------------------------------
+# Action functions
+#-------------------------------------------------------------------------------
+func move_to_target(weight: float = 0.5):
+	pass # add velocity to target to array
+
+func move_to_enemy(weight: float = 0.5):
+	pass # add velocity to target to array
+
+func move_away_from_enemy(weight: float = 0.5):
+	pass # add velocity to target to array
+
 
 #-------------------------------------------------------------------------------
 # Events
@@ -134,7 +161,10 @@ var steering_vector_array: PackedVector2Array
 func change_state(NEW_STATE: int):
 	current_state = NEW_STATE
 
-func state_process():
+func player_state_process():
+	pass
+
+func enemy_state_process():
 	pass
 
 #-------------------------------------------------------------------------------
@@ -163,19 +193,6 @@ func state_process_dead():
 #-------------------------------------------------------------------------------
 # Animation
 #-------------------------------------------------------------------------------
-func flip_sprite(look_dir: Vector2 = velocity): #please improve this
-	# var flip_buffer: float = 25
-	# var flipped: bool = false
-	# if look_dir.x < -flip_buffer: flipped = true
-	# if look_dir.x > flip_buffer: flipped = false
-	# # Flip pivot
-	# if flipped and (pivot.scale.x == 1):
-	# 	pivot.set_scale(Vector2(-1, 1))
-	# if !flipped and (pivot.scale.x == -1):
-	# 	pivot.set_scale(Vector2(1, 1))
-	pass
-
-
 func rotate_weapon():
 	var angle: float = get_global_position().angle_to(velocity)
 	for weapon in weapon_array:
