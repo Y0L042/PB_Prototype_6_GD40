@@ -117,6 +117,18 @@ func steering_move(final_velocity: Vector2):
 	velocity += (final_velocity - velocity) * turn_force
 	move_and_slide()
 
+
+#-------------------------------------------------------------------------------
+# Action functions
+#-------------------------------------------------------------------------------
+func move_to_target(weight: float = 0.5):
+	pass # add velocity to target to array
+
+func move_to_enemy(weight: float = 0.5):
+	pass # add velocity to target to array
+
+func move_away_from_enemy(weight: float = 0.5):
+	pass # add velocity to target to array
 #-------------------------------------------------------------------------------
 # Events
 #-------------------------------------------------------------------------------
