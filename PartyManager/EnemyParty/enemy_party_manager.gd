@@ -51,8 +51,8 @@ func wander(delta: float):
 	return pos
 
 
-func collision_avoidance(target, delta):
-	var RAY_LENGTH: int = 150
+func collision_avoidance(target, self_pos, delta):
+	var RAY_LENGTH: int = GlobalSettings.UNIT * 10
 	var collision_mask: int = 0x1
 	# Calculate direction to target
 	var target_dir = pb.party_pos.direction_to(target)

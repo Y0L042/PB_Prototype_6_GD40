@@ -140,4 +140,5 @@ func _on_fov_area_body_exited(body: Node2D) -> void:
 func _on_enemy_spotted(body) -> void:
 	if current_state != states.AGGRESSIVE:
 		change_state(states.AGGRESSIVE)
-		get_tree().call_group(pb.party_id, "_on_fov_area_body_entered", body)
+		if !isPlayer:
+			get_tree().call_group(pb.party_id, "_on_fov_area_body_entered", body)

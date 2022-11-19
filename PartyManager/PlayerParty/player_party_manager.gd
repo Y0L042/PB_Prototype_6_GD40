@@ -13,7 +13,7 @@ var necromance_queue: Array
 # Runtime
 #-------------------------------------------------------------------------------
 func move_target(delta: float):
-	var vel: Vector2 = Input.get_vector("game_act_left", "game_act_right", "game_act_up", "game_act_down", 0.5).normalized() * party_speed
+	var vel: Vector2 = Input.get_vector("game_act_left", "game_act_right", "game_act_up", "game_act_down", 0.5) * party_speed
 	var party_target_pos = pb.party_target_pos + (vel * delta)
 #	if party_target_pos.distance_to(pb.party_pos) > 1000:
 #		return pb.party_target_pos

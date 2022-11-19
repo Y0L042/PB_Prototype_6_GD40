@@ -30,7 +30,7 @@ script = ExtResource("2_fx46o")
 max_speed = 5
 fov = 5
 view_distance = 5.0
-health = 3
+health = 10
 turn_force = 0.2
 
 [node name="CollBody" parent="." index="0"]
