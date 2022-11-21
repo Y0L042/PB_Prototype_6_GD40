@@ -49,3 +49,6 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/FOV_Area"]
+
+[connection signal="body_entered" from="Pivot/FOV_Area" to="." method="_on_fov_area_body_entered"]
+[connection signal="body_exited" from="Pivot/FOV_Area" to="." method="_on_fov_area_body_exited"]

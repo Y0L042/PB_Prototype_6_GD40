@@ -14,6 +14,10 @@ class_name Actor
 #@export var myself = self
 @export var isAlive: bool = true
 
+@export var sight_range: float = 5 * GlobalSettings.UNIT : set = set_sight_range
+@export var effective_range_max: float = 1 * GlobalSettings.UNIT : set = set_effective_range_max
+@export var effective_range_min: float = 0 * GlobalSettings.UNIT : set = set_effective_range_min
+@export var trigger_range: float = 1 * GlobalSettings.UNIT : set = set_trigger_range
 
 
 #-------------------------------------------------------------------------------
@@ -40,14 +44,39 @@ var actor_formation_index: int : set = set_actor_formation_index # player's posi
 var move_target: Vector2
 
 var actor_target_velocity: Vector2
-var FOV_enemy_list: Array
-var weapon_array: Array
+var enemy_array: Array
+var weapon
 
 #-------------------------------------------------------------------------------
 # Party Variables
 #-------------------------------------------------------------------------------
 var party_manager: PartyManager
 var pb: Dictionary # party blackboard
+
+
+#-------------------------------------------------------------------------------
+# Conditions
+#-------------------------------------------------------------------------------
+var is_enemy_in_sight_range: bool = false
+var is_enemy_in_trigger_range: bool = false
+var is_enemy_in_effective_range: bool = false
+
+
+#-------------------------------------------------------------------------------
+# SetGets
+#-------------------------------------------------------------------------------
+func set_sight_range(new_sight_range):
+	sight_range = new_sight_range * GlobalSettings.UNIT
+	FOV_area.shape.set_scale(sight_range + 2 * GlobalSettings.UNIT)
+
+func set_effective_range_max(new_effective_range_max):
+	effective_range_max = new_effective_range_max * GlobalSettings.UNIT
+
+func set_effective_range_min(new_effective_range_min):
+	effective_range_min = new_effective_range_min * GlobalSettings.UNIT
+
+func set_trigger_range(new_trigger_range):
+	trigger_range = new_trigger_range * GlobalSettings.UNIT
 
 #-------------------------------------------------------------------------------
 # SetGet
@@ -90,7 +119,7 @@ func spawn(spawn_data):
 		weapon.group = pb.party_group
 		var weapon_offset: int = 75
 		weapon.set_position(Tools.random_offset(weapon_marker.get_position(), weapon_offset))
-		weapon_array.append(weapon)
+		weapon = weapon
 
 
 func set_actor_faction_outline():
@@ -148,16 +177,16 @@ func take_damage(damage: float):
 	# play damage effect/move to damage state or something
 
 
-func spawn_weapon(new_weapon):
-	var weapon = SceneLib.spawn_child(new_weapon, weapon_marker)
-	var radius: int = GlobalSettings.UNIT / 3.5
-	weapon.set_position(Tools.random_offset(weapon_marker.get_position(), radius))
-	weapon.group = pb.party_group
-	weapon_array.append(weapon)
-
-func remove_weapon(weapon):
-	weapon_array.erase(weapon)
-	weapon.queue_free()
+#func spawn_weapon(new_weapon):
+#	var weapon = SceneLib.spawn_child(new_weapon, weapon_marker)
+#	var radius: int = GlobalSettings.UNIT / 3.5
+#	weapon.set_position(Tools.random_offset(weapon_marker.get_position(), radius))
+#	weapon.group = pb.party_group
+#	weapon_array.append(weapon)
+#
+#func remove_weapon(weapon):
+#	weapon_array.erase(weapon)
+#	weapon.queue_free()
 #-------------------------------------------------------------------------------
 # States
 #-------------------------------------------------------------------------------
@@ -204,5 +233,12 @@ func state_process_dead():
 #-------------------------------------------------------------------------------
 func rotate_weapon():
 	var angle: float = get_global_position().angle_to(velocity)
-	for weapon in weapon_array:
-		weapon.set_rotation(angle - PI)
+	weapon.set_rotation(angle - PI)
+
+
+func _on_fov_area_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_fov_area_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.

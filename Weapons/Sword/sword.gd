@@ -57,33 +57,34 @@ func _ready() -> void:
 # Runtime
 #-------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
-	check_conditions()
+#	check_conditions()
+	pass
 
-func check_conditions():
-	if !enemy_array.is_empty():
-		enemy = enemy_array[0]
-	else:
-		enemy = null
-	for _enemy in enemy_array:
-		if get_global_position().distance_squared_to(_enemy.get_global_position()) < \
-		get_global_position().distance_squared_to(enemy.get_global_position()):
-			enemy = _enemy
-	if enemy != null:
-		var enemy_dist_sqrd: float = get_global_position().distance_squared_to(enemy.get_global_position())
-		if enemy_dist_sqrd <= trigger_range*trigger_range:
-			is_enemy_in_trigger_range = true
-		else:
-			is_enemy_in_trigger_range = false
-
-		if enemy_dist_sqrd <= effective_range_max*effective_range_max and enemy_dist_sqrd >= effective_range_min*effective_range_min:
-			is_enemy_in_effective_range = true
-		else:
-			is_enemy_in_effective_range = false
-
-		if enemy_dist_sqrd <= sight_range*sight_range:
-			is_enemy_in_sight_range = true
-		else:
-			is_enemy_in_sight_range = false
+#func check_conditions():
+#	if !enemy_array.is_empty():
+#		enemy = enemy_array[0]
+#	else:
+#		enemy = null
+#	for _enemy in enemy_array:
+#		if get_global_position().distance_squared_to(_enemy.get_global_position()) < \
+#		get_global_position().distance_squared_to(enemy.get_global_position()):
+#			enemy = _enemy
+#	if enemy != null:
+#		var enemy_dist_sqrd: float = get_global_position().distance_squared_to(enemy.get_global_position())
+#		if enemy_dist_sqrd <= trigger_range*trigger_range:
+#			is_enemy_in_trigger_range = true
+#		else:
+#			is_enemy_in_trigger_range = false
+#
+#		if enemy_dist_sqrd <= effective_range_max*effective_range_max and enemy_dist_sqrd >= effective_range_min*effective_range_min:
+#			is_enemy_in_effective_range = true
+#		else:
+#			is_enemy_in_effective_range = false
+#
+#		if enemy_dist_sqrd <= sight_range*sight_range:
+#			is_enemy_in_sight_range = true
+#		else:
+#			is_enemy_in_sight_range = false
 
 
 #-------------------------------------------------------------------------------

@@ -104,6 +104,9 @@ radius = 214.033
 
 [node name="Knight" instance=ExtResource("1_55pwg")]
 script = ExtResource("2_wkrd5")
+max_speed = null
+view_distance = null
+isAlive = null
 
 [node name="CollBody" parent="." index="0"]
 position = Vector2(1, -71)
@@ -136,6 +139,3 @@ shape = SubResource("CircleShape2D_b1vlk")
 
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
 current = true
-
-[connection signal="body_entered" from="Pivot/FOV_Area" to="." method="_on_fov_area_body_entered"]
-[connection signal="body_exited" from="Pivot/FOV_Area" to="." method="_on_fov_area_body_exited"]

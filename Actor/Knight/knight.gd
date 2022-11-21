@@ -51,17 +51,44 @@ func enemy_state_process():
 # State Functions
 #-------------------------------------------------------------------------------
 func state_process_standard():
+	set_conditions
 	check_conditions()
 	bt()
 
-var weapon = weapon_array[0]
-var enemy = weapon.enemy
-var is_recalled_to_party: bool = false
-var is_called_to_attack: bool = false
-var is_party_attacking: bool = false
-var is_engaged: bool = false
-var is_attack_possible: bool = false
-var dist_to_party_LIMIT: float = 5 * GlobalSettings.UNIT
+
+@onready var enemy = weapon.enemy
+@onready var is_recalled_to_party: bool = false
+@onready var is_called_to_attack: bool = false
+@onready var is_party_attacking: bool = false
+@onready var is_engaged: bool = false
+@onready var is_attack_possible: bool = false
+@onready var dist_to_party_LIMIT: float = 5 * GlobalSettings.UNIT
+
+func set_conditions():
+	if !enemy_array.is_empty():
+		enemy = enemy_array[0]
+	else:
+		enemy = null
+	for _enemy in enemy_array:
+		if get_global_position().distance_squared_to(_enemy.get_global_position()) < \
+		get_global_position().distance_squared_to(enemy.get_global_position()):
+			enemy = _enemy
+	if enemy != null:
+		var enemy_dist_sqrd: float = get_global_position().distance_squared_to(enemy.get_global_position())
+		if enemy_dist_sqrd <= trigger_range*trigger_range:
+			is_enemy_in_trigger_range = true
+		else:
+			is_enemy_in_trigger_range = false
+
+		if enemy_dist_sqrd <= effective_range_max*effective_range_max and enemy_dist_sqrd >= effective_range_min*effective_range_min:
+			is_enemy_in_effective_range = true
+		else:
+			is_enemy_in_effective_range = false
+
+		if enemy_dist_sqrd <= sight_range*sight_range:
+			is_enemy_in_sight_range = true
+		else:
+			is_enemy_in_sight_range = false
 
 func check_conditions():
 	if weapon.is_enemy_in_trigger_range:
@@ -114,11 +141,11 @@ func state_process_dead():
 #-------------------------------------------------------------------------------
 func _on_fov_area_body_entered(body: Node2D) -> void:
 	if body != self and body.pb.party_group != self.pb.party_group and body.isAlive:
-		if FOV_enemy_list.is_empty():
+		if enemy_array.is_empty():
 			EnemySpotted.emit(body)
-		FOV_enemy_list.append(body)
+		enemy_array.append(body)
 		var enemy_distance_squared: float = get_global_position().distance_squared_to(body.get_global_position())
-		for enemy in FOV_enemy_list:
+		for enemy in enemy_array:
 			var dist: float = get_global_position().distance_squared_to(enemy.get_global_position())
 			if enemy_distance_squared > dist:
 				enemy_distance_squared = dist
@@ -127,7 +154,7 @@ func _on_fov_area_body_entered(body: Node2D) -> void:
 
 func _on_fov_area_body_exited(body: Node2D) -> void:
 	if body != self and body.pb.party_group != self.pb.party_group:
-		FOV_enemy_list.erase(body)
+		enemy_array.erase(body)
 
 
 
