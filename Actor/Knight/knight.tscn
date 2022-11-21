@@ -104,8 +104,6 @@ radius = 214.033
 
 [node name="Knight" instance=ExtResource("1_55pwg")]
 script = ExtResource("2_wkrd5")
-view_distance = null
-isAlive = null
 
 [node name="CollBody" parent="." index="0"]
 position = Vector2(1, -71)
@@ -137,4 +135,3 @@ visible = false
 shape = SubResource("CircleShape2D_b1vlk")
 
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
-current = true

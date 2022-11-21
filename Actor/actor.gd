@@ -45,6 +45,7 @@ var move_target: Vector2
 
 var actor_target_velocity: Vector2
 var enemy_array: Array
+var enemy
 var weapon
 
 #-------------------------------------------------------------------------------

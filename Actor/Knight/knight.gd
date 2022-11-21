@@ -56,7 +56,7 @@ func state_process_standard():
 	bt()
 
 
-@onready var enemy = weapon.enemy
+
 @onready var is_recalled_to_party: bool = false
 @onready var is_called_to_attack: bool = false
 @onready var is_party_attacking: bool = false
@@ -91,10 +91,10 @@ func set_conditions():
 			is_enemy_in_sight_range = false
 
 func check_conditions():
-	if weapon.is_enemy_in_trigger_range:
+	if is_enemy_in_trigger_range:
 		is_engaged = true # triggered_state
 
-	if is_engaged and !weapon.is_enemy_in_sight_range:
+	if is_engaged and !is_enemy_in_sight_range:
 		is_engaged = false # triggered_state
 
 	if is_party_attacking:
@@ -102,7 +102,7 @@ func check_conditions():
 	else:
 		is_called_to_attack = false # triggered_state
 
-	if weapon.is_enemy_in_sight_range:
+	if is_enemy_in_sight_range:
 		if is_engaged or is_called_to_attack:
 			is_attack_possible = true # set_state
 		else:
@@ -119,7 +119,7 @@ func bt():
 		disengage()
 	elif is_attack_possible:
 		attack(enemy)
-	elif is_engaged and !weapon.is_enemy_in_effective_range and weapon.is_enemy_in_sight_range:
+	elif is_engaged and !is_enemy_in_effective_range and is_enemy_in_sight_range:
 		pursue(enemy)
 	else:
 		move_to(move_target)
@@ -149,6 +149,7 @@ func _on_fov_area_body_entered(body: Node2D) -> void:
 			var dist: float = get_global_position().distance_squared_to(enemy.get_global_position())
 			if enemy_distance_squared > dist:
 				enemy_distance_squared = dist
+		enemy = enemy_array[0]
 
 
 
