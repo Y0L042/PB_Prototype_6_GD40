@@ -51,14 +51,16 @@ process():
 
 
         behaviour_tree():
-        if is_recalled_to_party:
-            disengage()
-        elif is_attack_possible:
-            attack(enemy)
-        else:
-            if is_engaged and (enemy is not in effective_range and enemy is in sight_range):
-                pursue(enemy)
-        else:
+            if is_recalled_to_party: # 0.0
+                disengage() # action
+            elif is_attack_possible: # 0.1
+                attack(enemy) # action
+            elif is_engaged: # 0.2
+                if is_engaged and (enemy is not in effective_range and enemy is in sight_range): # 0.2.0
+                    pursue(enemy) # action
+            else: # 0.3
+                move_to(party_target)
+            
         
 
 
