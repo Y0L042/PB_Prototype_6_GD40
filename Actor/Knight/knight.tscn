@@ -104,7 +104,6 @@ radius = 214.033
 
 [node name="Knight" instance=ExtResource("1_55pwg")]
 script = ExtResource("2_wkrd5")
-max_speed = null
 view_distance = null
 isAlive = null
 

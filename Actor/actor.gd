@@ -8,7 +8,7 @@ class_name Actor
 @export var max_speed: int = GlobalSettings.UNIT * 1 : set = set_max_speed
 @export var friction: float
 @export var fov: int
-@export var view_distance: float = GlobalSettings.UNIT * 1 : set = set_view_distance
+#@export var view_distance: float = GlobalSettings.UNIT * 1 : set = set_view_distance
 @export var health: int : set = set_health
 @export var turn_force: float
 #@export var myself = self
@@ -33,7 +33,7 @@ var arrivedAtTarget: bool = false
 @onready var body_sprite: Sprite2D = %BodySprite
 @onready var collbody := %CollBody
 @onready var actor_anim_tree: AnimationTree = $AnimationPlayer/AnimationTree
-@onready var FOV_area: Area2D = $Pivot/FOV_Area
+@onready var FOV_area = $Pivot/FOV_Area/CollisionShape2D
 @onready var pivot_marker: Marker2D = $Pivot
 @onready var weapon_marker: Marker2D = %WeaponMarker
 @onready var actor_anim_tree_mode = actor_anim_tree["parameters/playback"]
@@ -67,7 +67,7 @@ var is_enemy_in_effective_range: bool = false
 #-------------------------------------------------------------------------------
 func set_sight_range(new_sight_range):
 	sight_range = new_sight_range * GlobalSettings.UNIT
-	FOV_area.shape.set_scale(sight_range + 2 * GlobalSettings.UNIT)
+#	FOV_area.shape.set_scale(sight_range + 2 * GlobalSettings.UNIT)
 
 func set_effective_range_max(new_effective_range_max):
 	effective_range_max = new_effective_range_max * GlobalSettings.UNIT
@@ -84,10 +84,10 @@ func set_trigger_range(new_trigger_range):
 func set_max_speed(new_max_speed):
 	max_speed = new_max_speed * GlobalSettings.UNIT
 
-func set_view_distance(new_view_distance):
-	view_distance = new_view_distance
-func get_view_distance() -> float:
-	return view_distance
+#func set_view_distance(new_view_distance):
+#	view_distance = new_view_distance
+#func get_view_distance() -> float:
+#	return view_distance
 
 func set_health(new_health):
 	health = new_health
@@ -114,7 +114,7 @@ func spawn(spawn_data):
 	if pb.party_group == "Player":
 		isPlayer = true
 #	move_target = pb.party_formation.vector_array[actor_formation_index]
-	FOV_area.scale = Vector2(get_view_distance(), get_view_distance())
+	FOV_area.scale = Vector2(sight_range, sight_range)
 	for weapon in weapon_marker.get_children():
 		weapon.group = pb.party_group
 		var weapon_offset: int = 75

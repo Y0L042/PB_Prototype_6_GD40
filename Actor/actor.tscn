@@ -20,6 +20,7 @@ shader_parameter/width = 1.0
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_gq7sa")
+max_speed = 5
 
 [node name="CollBody" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
