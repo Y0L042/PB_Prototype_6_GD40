@@ -1,8 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://cq70cq1lcjonf"]
+[gd_scene load_steps=17 format=3 uid="uid://cq70cq1lcjonf"]
 
 [ext_resource type="Script" path="res://Weapons/Sword/sword.gd" id="1_1xgmp"]
 [ext_resource type="Texture2D" uid="uid://kprqswpacgmt" path="res://Assets/v1.1 dungeon crawler 16X16 pixel pack/heroes/knight/weapon_sword_1.png" id="1_4xppp"]
 [ext_resource type="Texture2D" uid="uid://dtgxg8ehqjj0m" path="res://Assets/v1.1 dungeon crawler 16X16 pixel pack/effects (new)/slash_effect_anim_spritesheet.png" id="2_sauha"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7w6d7"]
+radius = 21.6
 
 [sub_resource type="Animation" id="Animation_fwh4i"]
 resource_name = "Attack"
@@ -203,6 +206,14 @@ z_index = 1
 gizmo_extents = 25.0
 script = ExtResource("1_1xgmp")
 
+[node name="WeaponArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(1, 1)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponArea"]
+shape = SubResource("CircleShape2D_7w6d7")
+
 [node name="SwordAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_8gp3v")
@@ -244,4 +255,6 @@ position = Vector2(0.675363, 1.27173)
 scale = Vector2(6.8, 3.1)
 shape = SubResource("CapsuleShape2D_jeooo")
 
+[connection signal="body_entered" from="WeaponArea" to="." method="_on_weapon_area_body_entered"]
+[connection signal="body_exited" from="WeaponArea" to="." method="_on_weapon_area_body_exited"]
 [connection signal="body_entered" from="Marker2d/Hitbox" to="." method="_on_hitbox_body_entered" flags=3]
