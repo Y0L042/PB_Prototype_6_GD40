@@ -7,18 +7,17 @@ var self_scene := SceneLib.KNIGHT
 #-------------------------------------------------------------------------------
 # Action Functions
 #-------------------------------------------------------------------------------
-func move_to_target(weight: float = 0.5):
-	pass # add velocity to target to array
-
-func move_to_enemy(weight: float = 0.5):
-	pass # add velocity to target to array
-
-func move_away_from_enemy(weight: float = 0.5):
-	pass # add velocity to target to array
-
-func collision_avoidance_function(weight: float): #add target
+func attack(enemy):
 	pass
 
+func pursue(enemy):
+	pass
+
+func disengage():
+	pass
+
+func move_to(target):
+	pass
 
 #-------------------------------------------------------------------------------
 # States
@@ -96,7 +95,7 @@ func bt():
 	elif is_engaged and !weapon.is_enemy_in_effective_range and weapon.is_enemy_in_sight_range:
 		pursue(enemy)
 	else:
-		move_to(party_pos)
+		move_to(move_target)
 
 
 
