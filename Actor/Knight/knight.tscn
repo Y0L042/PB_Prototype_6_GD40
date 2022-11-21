@@ -1,15 +1,90 @@
-[gd_scene load_steps=11 format=3 uid="uid://dai25fcq3236"]
+[gd_scene load_steps=18 format=3 uid="uid://dai25fcq3236"]
 
 [ext_resource type="PackedScene" uid="uid://db15mx0uooog4" path="res://Actor/actor.tscn" id="1_55pwg"]
-[ext_resource type="Script" path="res://Actor/Knight/knight.gd" id="2_fx46o"]
-[ext_resource type="Texture2D" uid="uid://cxw1vbc83ufdw" path="res://Assets/Photoshop/Knight1.png" id="3_6gs1s"]
-[ext_resource type="PackedScene" uid="uid://bb52gs5k12t1u" path="res://Weapons/Sword/sword.tscn" id="3_v57ja"]
+[ext_resource type="Texture2D" uid="uid://u1k0maqy0gjq" path="res://Actor/Knight/knight_idle_spritesheet-export.png" id="3_1yjuy"]
 [ext_resource type="Shader" path="res://Assets/Shaders/faction_outline.gdshader" id="3_wyqfs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_looq6"]
 radius = 25.0
 
+[sub_resource type="Animation" id="Animation_0f7ri"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Pivot/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_fn8qi"]
+resource_name = "Run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Pivot/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_ej1bm"]
+resource_name = "Idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Pivot/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_thf2a"]
+_data = {
+"Idle": SubResource("Animation_ej1bm"),
+"RESET": SubResource("Animation_0f7ri"),
+"Run": SubResource("Animation_fn8qi")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7eofe"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_31cge"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1h3k0"]
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lo40s"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0jiml"]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jqgor"]
+states/Idle/node = SubResource("AnimationNodeAnimation_7eofe")
+states/Idle/position = Vector2(356, 100)
+states/Run/node = SubResource("AnimationNodeAnimation_31cge")
+states/Run/position = Vector2(356, -32)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1h3k0"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_lo40s"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_0jiml")]
+graph_offset = Vector2(-83, -115)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_artbc"]
 
@@ -20,23 +95,23 @@ shader_parameter/add_margins = null
 shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/inside = true
 shader_parameter/pattern = null
-shader_parameter/width = 7.5
+shader_parameter/width = 0.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1vlk"]
 radius = 214.033
 
 [node name="Knight" instance=ExtResource("1_55pwg")]
-script = ExtResource("2_fx46o")
-max_speed = 5
-fov = 5
-view_distance = 5.0
-health = 10
-turn_force = 0.2
+script = null
 
 [node name="CollBody" parent="." index="0"]
 position = Vector2(1, -71)
 shape = SubResource("CircleShape2D_looq6")
 debug_color = Color(0.807843, 0.00392157, 0.992157, 0.419608)
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_thf2a")
+}
 
 [node name="AnimationTree" parent="AnimationPlayer" index="0"]
 tree_root = SubResource("AnimationNodeStateMachine_jqgor")
@@ -44,11 +119,10 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_artbc")
 
 [node name="BodySprite" parent="Pivot" index="0"]
 material = SubResource("ShaderMaterial_w58ht")
-position = Vector2(-3, -1)
-texture = ExtResource("3_6gs1s")
-offset = Vector2(0, -108)
-
-[node name="Sword1" parent="Pivot/WeaponMarker" index="0" instance=ExtResource("3_v57ja")]
+position = Vector2(-16, -112)
+scale = Vector2(15, 15)
+texture = ExtResource("3_1yjuy")
+hframes = 12
 
 [node name="FOV_Area" parent="Pivot" index="2"]
 visible = false
@@ -56,6 +130,8 @@ visible = false
 [node name="CollisionShape2D" parent="Pivot/FOV_Area" index="0"]
 shape = SubResource("CircleShape2D_b1vlk")
 
-[connection signal="EnemySpotted" from="." to="." method="_on_enemy_spotted"]
+[node name="Camera2D" type="Camera2D" parent="." index="3"]
+current = true
+
 [connection signal="body_entered" from="Pivot/FOV_Area" to="." method="_on_fov_area_body_entered"]
 [connection signal="body_exited" from="Pivot/FOV_Area" to="." method="_on_fov_area_body_exited"]

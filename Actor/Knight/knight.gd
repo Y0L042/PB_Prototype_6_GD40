@@ -55,6 +55,8 @@ func state_process_standard():
 	check_conditions()
 	bt()
 
+var enemy_array = weapon_array[0].enemy_array
+var enemy = enemy_array[0]
 var is_recalled_to_party: bool = false
 var is_called_to_attack: bool = false
 var is_engaged: bool = false
