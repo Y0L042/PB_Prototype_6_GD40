@@ -17,7 +17,8 @@ func disengage():
 	pass
 
 func move_to(target):
-	pass
+	velocity = get_global_position().direction_to(target) * max_speed
+	move_and_slide()
 
 #-------------------------------------------------------------------------------
 # States

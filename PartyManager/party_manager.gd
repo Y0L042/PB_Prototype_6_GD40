@@ -159,8 +159,8 @@ func calc_actor_array_center(arr: Array):
 	avg /= arr.size()
 	return avg
 
-#func _draw() -> void: #%Debug
-#	var rad = GlobalSettings.UNIT/2
-#	var col = Color(1, 0, 0)
-#	for pos in pb.party_formation.vector_array:
-#		draw_circle(pos, rad, col)
+func _draw() -> void: #%Debug
+	var rad = GlobalSettings.UNIT/2
+	var col = Color(1, 0, 0)
+	for pos in pb.party_formation.vector_array:
+		draw_circle(pos, rad, col)

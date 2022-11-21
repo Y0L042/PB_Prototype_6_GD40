@@ -19,7 +19,7 @@ var enemy
 @onready var weapon_anim_player: AnimationPlayer = $SwordAnimationPlayer
 @onready var weapon_anim_tree: AnimationTree = %SwordAnimationTree
 @onready var weapon_anim_tree_mode = weapon_anim_tree["parameters/playback"]
-@onready var weapon_area: Area2D = %WeaponArea
+
 
 #-------------------------------------------------------------------------------
 # Conditions
@@ -34,7 +34,7 @@ var is_enemy_in_effective_range: bool = false
 #-------------------------------------------------------------------------------
 func set_sight_range(new_sight_range):
 	sight_range = new_sight_range * GlobalSettings.UNIT
-	weapon_area.shape.set_scale(sight_range + 2 * GlobalSettings.UNIT)
+
 
 func set_effective_range_max(new_effective_range_max):
 	effective_range_max = new_effective_range_max * GlobalSettings.UNIT

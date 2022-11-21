@@ -104,10 +104,14 @@ radius = 214.033
 
 [node name="Knight" instance=ExtResource("1_55pwg")]
 script = ExtResource("2_wkrd5")
+friction = null
+fov = null
+turn_force = null
 
 [node name="CollBody" parent="." index="0"]
 position = Vector2(1, -71)
 shape = SubResource("CircleShape2D_looq6")
+disabled = true
 debug_color = Color(0.807843, 0.00392157, 0.992157, 0.419608)
 
 [node name="AnimationPlayer" parent="." index="1"]
