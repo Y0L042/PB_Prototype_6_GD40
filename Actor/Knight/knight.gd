@@ -24,9 +24,7 @@ func collision_avoidance_function(weight: float): #add target
 # States
 #-------------------------------------------------------------------------------
 enum states {
-	PASSIVE,
-	AGGRESSIVE,
-	HURT,
+	STANDARD,
 	DEAD,
 }
 
@@ -38,22 +36,14 @@ func change_state(NEW_STATE: int):
 	current_state = NEW_STATE
 
 func player_state_process():
-	if current_state == states.PASSIVE:
-		state_process_passive()
-	if current_state == states.AGGRESSIVE:
-		state_process_aggressive()
-	if current_state == states.HURT:
-		state_process_hurt()
+	if current_state == states.STANDARD:
+		state_process_standard()
 	if current_state == states.DEAD:
 		state_process_dead()
 
 func enemy_state_process():
-	if current_state == states.PASSIVE:
-		state_process_passive()
-	if current_state == states.AGGRESSIVE:
-		state_process_aggressive()
-	if current_state == states.HURT:
-		state_process_hurt()
+	if current_state == states.STANDARD:
+		state_process_standard()
 	if current_state == states.DEAD:
 		state_process_dead()
 
@@ -61,101 +51,48 @@ func enemy_state_process():
 #-------------------------------------------------------------------------------
 # State Functions
 #-------------------------------------------------------------------------------
-func state_process_passive():
-	# TODO: Rename state and write state logic here. Use action functions
+func state_process_standard():
+	check_conditions()
+	bt()
 
+var is_recalled_to_party: bool = false
+var is_called_to_attack: bool = false
+var is_engaged: bool = false
+var is_attack_possible: bool = false
 
+func check_conditions():
+	if enemy is in trigger_zone:
+		is_engaged = true # triggered_state
 
+	if is_engaged and enemy is not in sight_range:
+		is_engaged = false # triggered_state
 
+	if is_party_attacking:
+		is_called_to_attack = true # triggered_state
+	else:
+		is_called_to_attack = false # triggered_state
 
+	if enemy is in effective_range:
+		if is_engaged or is_called_to_attack:
+			is_attack_possible = true # set_state
+		else:
+			is_attack_possible = false # set_state
 
+	if distance_to_party_target > LIMIT and is_engaged:
+		is_recalled_to_party = true
+		is_engaged = false
+	else:
+		is_recalled_to_party = false
 
-
-
-
-
-
-
-
-
-	var stopdist: float = GlobalSettings.UNIT * 0.9
-	var target_dist = get_global_position().distance_to(move_target)
-	var collidingAgainstPersonNextToTarget: bool = false
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i).get_collider()
-		if collision and collision.is_in_group(pb.party_group):
-			collidingAgainstPersonNextToTarget = collision.arrivedAtTarget or collidingAgainstPersonNextToTarget
-	var isColliding: bool = get_slide_collision_count() > 0
-	var targetNotMoving: bool = pb.party_target_vel.length() <= 5
-	var withinRadius: bool = target_dist <= pb.active_actors_count*10
-	var nextToTarget: bool = target_dist <= 25
-	arrivedAtTarget = nextToTarget or (targetNotMoving and withinRadius and isColliding and collidingAgainstPersonNextToTarget)
-	if !arrivedAtTarget:
-		var seek_target = SBL.arrive(get_global_position(), move_target, stopdist)
-
-		steering_vector_array.append(seek_target)
-
-
-
-func state_process_aggressive():
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	## If no enemies is in sight (FOV_enemy_list.is_empty()), go to passive
-	## If there is enemy in sight (!FOV_enemy_list.is_empty()), sort through list to erase dead enemies
-	## If there is alive enemies left over, sort by distance and get the nearest enemy
-	## Move towards enemy
-	## If in weapon range, attack enemy
-	var stopdist: float = GlobalSettings.UNIT * 0.9
-	var target_enemy
-	if FOV_enemy_list.is_empty():
-		change_state(states.PASSIVE)
-	elif !FOV_enemy_list.is_empty():
-		for enemy in FOV_enemy_list:
-			if !enemy.isAlive:
-				FOV_enemy_list.erase(enemy)
-		if !FOV_enemy_list.is_empty():
-			target_enemy = FOV_enemy_list[0]
-			var dist_to_nearest_target: float = self.get_global_position().distance_squared_to(target_enemy.get_global_position())
-			for enemy in FOV_enemy_list:
-				var dist_to_enemy: float = self.get_global_position().distance_squared_to(enemy.get_global_position())
-				if dist_to_enemy < dist_to_nearest_target :
-					target_enemy = enemy
-					dist_to_nearest_target = dist_to_enemy
-			var target_pos: Vector2 = target_enemy.get_global_position()
-			var seek_target = SBL.arrive(get_global_position(), target_pos, stopdist)
-			steering_vector_array.append(seek_target)
-			for weapon in weapon_array:
-				if is_instance_valid(weapon) and dist_to_nearest_target <= (weapon.attack_range*weapon.attack_range):
-					weapon.attack()
-	if !isAlive:
-		change_state(states.DEAD)
-
-
-func state_process_hurt():
-	pass
+func bt():
+	if is_recalled_to_party:
+		disengage()
+	elif is_attack_possible:
+		attack(enemy)
+	elif is_engaged and enemy is not in effective_range and enemy is in sight_range:
+		pursue(enemy)
+	else:
+		move_to(party_pos)
 
 
 

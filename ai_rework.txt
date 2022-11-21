@@ -1,0 +1,103 @@
+party: Party
+party_target = party.target
+is_party_attacking: bool (set by self or signal)
+enemy: Enemy
+
+is_recalled_to_party: bool
+is_called_to_attack: bool
+is_engaged: bool
+is_attack_possible: bool
+
+process():
+    logic():
+        set_conditions():
+            if enemy is in trigger_zone:
+                is_engaged = true # triggered_state
+
+            if is_engaged and enemy is not in sight_range:
+                is_engaged = false # triggered_state
+
+            if is_party_attacking:
+                is_called_to_attack = true # triggered_state
+            else:
+                is_called_to_attack = false # triggered_state
+
+            if enemy is in effective_range:
+                if is_engaged or is_called_to_attack:
+                    is_attack_possible = true # set_state
+                else:
+                    is_attack_possible = false # set_state
+
+            if distance_to_party_target > LIMIT and is_engaged:
+                is_recalled_to_party = true
+                is_engaged = false
+            else:
+                is_recalled_to_party = false
+
+
+
+        do_actions():
+            if is_attack_possible:
+                attack(enemy) # do_action
+            if is_engaged and (enemy is not in effective_range and enemy is in sight_range):
+               pursue(enemy) # do_action
+            if is_recalled_to_party:
+                disengage()
+            if """nothing else is happening""":
+                move_to(party_target)
+
+
+
+
+
+        behaviour_tree():
+            if is_recalled_to_party: # 0.0
+                disengage() # action
+            elif is_attack_possible: # 0.1
+                attack(enemy) # action
+            elif is_engaged: # 0.2
+                if enemy is not in effective_range and enemy is in sight_range: # 0.2.0
+                    pursue(enemy) # action
+            else: # 0.3
+                move_to(party_target)
+            
+        
+
+
+
+
+
+        # if enemy is in trigger_zone, then the actor.is_engaged = true
+        # when the actor is engaged, it will not just follow the player target. It will attack the enemy, and move towards the enemy if the enemy moves out of range
+
+        # weapon has 3 areas: sight_range, effective_range, trigger_zone
+
+        """
+        trigger_zone:
+            - the trigger_zone is quite small, just a bit bigger than the actor
+            - if an enemy enters the trigger_zone, the actor is_engaged and attacks automatically
+            - if an enemy leaves the trigger_zone, nothing happens
+
+        effective_range:
+            - effective_range is the range wherein a weapon is able to attack
+            - an actor wants to keep the enemy in effective_range
+            - effective_range can have a min and max distance
+            - if is_party_attacking is true, the actor will attack (but not be engaged with) enemies within effective_range
+            - if the actor (self) is_engaged and the enemy leaves effective_range, the actor will move to pursue/keep distance, to keep enemy in effective_range
+
+        sight_range:
+            - sight_range is slightly bigger than effective_range
+            - if enemies enter sight_range, nothing happens
+            - if enemies leave sight_range, the actor (also) becomes disengaged
+
+        """
+
+
+
+        """
+        is_engaged:
+            - actor is_engaged when enemy enters its trigger zone, and will auto attack the enemy
+            - when actor is_engaged, actor will pursue enemy when enemy leaves effective_range
+            - actor !is_engaged when enemy exits its sight_range; the actor will now only obey party_target
+            - actor !is_engaged when party_target moves more than x distance away (maybe 1 or 1 standard deviations)
+        """
