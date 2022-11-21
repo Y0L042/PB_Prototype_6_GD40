@@ -74,6 +74,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Autoloads/GridClass.gd"
 }, {
+"base": "Actor",
+"class": &"KnightActor",
+"language": &"GDScript",
+"path": "res://Actor/Knight/knight.gd"
+}, {
 "base": "BaseMapScript",
 "class": &"Level000",
 "language": &"GDScript",
@@ -178,6 +183,7 @@ _global_script_class_icons={
 "EnemyPartyManager": "",
 "FDB": "",
 "GridObject": "",
+"KnightActor": "",
 "Level000": "",
 "MainGame": "",
 "MainMenu": "",

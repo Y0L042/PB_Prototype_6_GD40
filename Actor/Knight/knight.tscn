@@ -1,11 +1,30 @@
-[gd_scene load_steps=18 format=3 uid="uid://dai25fcq3236"]
+[gd_scene load_steps=20 format=3 uid="uid://dai25fcq3236"]
 
 [ext_resource type="PackedScene" uid="uid://db15mx0uooog4" path="res://Actor/actor.tscn" id="1_55pwg"]
+[ext_resource type="Script" path="res://Actor/Knight/knight.gd" id="2_wkrd5"]
 [ext_resource type="Texture2D" uid="uid://u1k0maqy0gjq" path="res://Actor/Knight/knight_idle_spritesheet-export.png" id="3_1yjuy"]
 [ext_resource type="Shader" path="res://Assets/Shaders/faction_outline.gdshader" id="3_wyqfs"]
+[ext_resource type="PackedScene" uid="uid://bb52gs5k12t1u" path="res://Weapons/Sword/sword.tscn" id="5_k4ng7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_looq6"]
 radius = 25.0
+
+[sub_resource type="Animation" id="Animation_ej1bm"]
+resource_name = "Idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Pivot/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
 
 [sub_resource type="Animation" id="Animation_0f7ri"]
 length = 0.001
@@ -37,23 +56,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [6, 7, 8, 9, 10, 11]
-}
-
-[sub_resource type="Animation" id="Animation_ej1bm"]
-resource_name = "Idle"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Pivot/BodySprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_thf2a"]
@@ -101,7 +103,7 @@ shader_parameter/width = 0.5
 radius = 214.033
 
 [node name="Knight" instance=ExtResource("1_55pwg")]
-script = null
+script = ExtResource("2_wkrd5")
 
 [node name="CollBody" parent="." index="0"]
 position = Vector2(1, -71)
@@ -123,6 +125,8 @@ position = Vector2(-16, -112)
 scale = Vector2(15, 15)
 texture = ExtResource("3_1yjuy")
 hframes = 12
+
+[node name="Sword" parent="Pivot/WeaponMarker" index="0" instance=ExtResource("5_k4ng7")]
 
 [node name="FOV_Area" parent="Pivot" index="2"]
 visible = false

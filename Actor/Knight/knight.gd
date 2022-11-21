@@ -55,18 +55,20 @@ func state_process_standard():
 	check_conditions()
 	bt()
 
-var enemy_array = weapon_array[0].enemy_array
-var enemy = enemy_array[0]
+var weapon = weapon_array[0]
+var enemy = weapon.enemy
 var is_recalled_to_party: bool = false
 var is_called_to_attack: bool = false
+var is_party_attacking: bool = false
 var is_engaged: bool = false
 var is_attack_possible: bool = false
+var dist_to_party_LIMIT: float = 5 * GlobalSettings.UNIT
 
 func check_conditions():
-	if enemy is in trigger_zone:
+	if weapon.is_enemy_in_trigger_range:
 		is_engaged = true # triggered_state
 
-	if is_engaged and enemy is not in sight_range:
+	if is_engaged and !weapon.is_enemy_in_sight_range:
 		is_engaged = false # triggered_state
 
 	if is_party_attacking:
@@ -74,13 +76,13 @@ func check_conditions():
 	else:
 		is_called_to_attack = false # triggered_state
 
-	if enemy is in effective_range:
+	if weapon.is_enemy_in_sight_range:
 		if is_engaged or is_called_to_attack:
 			is_attack_possible = true # set_state
 		else:
 			is_attack_possible = false # set_state
 
-	if distance_to_party_target > LIMIT and is_engaged:
+	if get_global_position().distance_squared_to(move_target) > dist_to_party_LIMIT and is_engaged:
 		is_recalled_to_party = true
 		is_engaged = false
 	else:
@@ -91,7 +93,7 @@ func bt():
 		disengage()
 	elif is_attack_possible:
 		attack(enemy)
-	elif is_engaged and enemy is not in effective_range and enemy is in sight_range:
+	elif is_engaged and !weapon.is_enemy_in_effective_range and weapon.is_enemy_in_sight_range:
 		pursue(enemy)
 	else:
 		move_to(party_pos)
